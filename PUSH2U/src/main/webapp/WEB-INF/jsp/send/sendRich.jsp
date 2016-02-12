@@ -128,7 +128,6 @@ $(function(){
 				<!-- <form action="/send.jsp" method="post" id="frm"> -->
 				<div id="inapp_msg" style="margin-bottom: 20px;">
 				    <textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:500px; height:300px;"></textarea>
-				    <input type="button" id="savebutton" value="서버전송" />
 				</div>
 				    
 				<div class="checkbox">
