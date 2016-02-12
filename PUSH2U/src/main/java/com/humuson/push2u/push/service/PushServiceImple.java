@@ -1,5 +1,6 @@
 package com.humuson.push2u.push.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,25 @@ public class PushServiceImple implements PushService {
 	public List<Map<String, String>> getAppUserList() throws RuntimeException {
 		
 		return pushDao.getAppUserList();
+		
+	}
+
+	// Ä·ÆäÀÎ Á¤º¸ insert
+	@Override
+	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg,
+			String inAppcontents, String smsYN) throws RuntimeException {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("userId", userId);
+		map.put("msgType", msgType);
+		map.put("pushTitle", pushTitle);
+		map.put("popupContents", popupContents);
+		map.put("pushMsg", pushMsg);
+		map.put("inAppcontents", inAppcontents);
+		map.put("smsYN", smsYN);
+		
+		pushDao.insertCampaign(map);
 		
 	}
 	

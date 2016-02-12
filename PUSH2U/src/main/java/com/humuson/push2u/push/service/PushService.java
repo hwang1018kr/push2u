@@ -14,4 +14,7 @@ public interface PushService {
 	// App User 목록 가져오기
 	public List<Map<String, String>> getAppUserList() throws RuntimeException;
 	
+	// 캠페인 정보 insert
+	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg, String inAppcontents, String smsYN) throws RuntimeException;
+	
 }
