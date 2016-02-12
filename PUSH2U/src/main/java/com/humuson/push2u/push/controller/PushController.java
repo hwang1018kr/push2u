@@ -85,7 +85,6 @@ public class PushController {
 			jsonObj.addProperty("msgType", "T");
 			jsonObj.addProperty("pushTime", 1800);
 			jsonObj.addProperty("pushTitle", pushTitle);
-			jsonObj.addProperty("popupContent", popupContents);
 			jsonObj.addProperty("pushMsg", popupContents);
 			jsonObj.addProperty("inappContent", inAppContents);
 			jsonObj.addProperty("pushKey", "1");
