@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+                          "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- MyBatis 설정 파일 -->
+<configuration>
+	<!--  MyBatis에서 사용할 사용자 정의 클래스(Bean)에 대한 별칭 등록 -->
+	<typeAliases>
+	    <typeAlias type="com.humuson.push2u.user.domain.User" alias="user"/>
+	</typeAliases>
+</configuration>

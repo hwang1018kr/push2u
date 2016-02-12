@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                 
+<mapper namespace="com.humuson.push2u.user.dao.UserDao">
+
+	<!-- 아이다, 비밀번호로 회원 검색 -->
+	<select id="login" parameterType="java.util.Map" resultType="user">
+		SELECT USER_ID "userId", USER_NAME "userName", PASSWD "userPasswd", JOIN_DATE "joinDate", PHONE_NUM "phoneNum"
+		FROM USERS
+		WHERE user_id = #{user_id} and passwd = #{passwd}
+	</select>
+	
+	<!-- 아이디로 회원 찾기 -->	
+	<select id="findUserById" parameterType="java.lang.String" resultType="int">
+		select COUNT(*)
+		from users
+		where user_id = #{userId}
+	</select>
+	
+	<!-- 인증문자 INSERT -->
+	<insert id="authPhoneNum" parameterType="java.util.Map">
+		INSERT INTO MSG_DATA (CUR_STATE, REQ_DATE, CALL_TO, CALL_FROM, SMS_TXT, MSG_TYPE) 
+		VALUES (0, SYSDATE(), #{phoneNum}, '01091741756', #{authNum}, 4)
+	</insert>
+	
+	<!-- 회원가입 -->
+	<insert id="join" parameterType="java.util.Map">
+		INSERT INTO USERS (user_id, user_name, passwd, join_date, phone_num)
+		VALUES (#{userId}, #{userName}, #{userPasswd}, SYSDATE(), #{phoneNum})
+	</insert>
+	
+	<!-- APP USER INSERT -->
+	<insert id="insertAppUser" parameterType="java.util.Map">
+	    INSERT INTO APP_USERS (CUST_ID, PHONE_NUM, REQ_DATE, DEVICE, OS_VER, APP_VER)
+		VALUES (#{custId}, #{phoneNum}, SYSDATE(), #{device}, #{osVer}, #{appVer});
+	</insert>
+	
+</mapper>
