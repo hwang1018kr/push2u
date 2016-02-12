@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,44 +69,52 @@ public class PushController {
 		String inAppContents = request.getParameter("inapp_contents");
 		String smsYN		 = "N"; 
 		
-		pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		
+		pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN, appUserList.size());
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
 		JsonObject jsonObj  = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
 		
-		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		List<Map<String, Object>> detailList  = new ArrayList<Map<String, Object>>();
 		
-		if(appUserList != null) {
+		Map<String, Object> detailMap = null;
 			
-			int i = 1;
+		int i = 1;
+		
+		for (Map<String, String> map : appUserList) {
+			JsonObject listObj = new JsonObject();
 			
-			for (Map<String, String> map : appUserList) {
-				JsonObject listObj = new JsonObject();
-				
-				listObj.addProperty("reqUid", camId + "_" + i);
-				listObj.addProperty("custId", map.get("CUST_ID"));
-				
-				jsonArray.add(listObj);
-				
-				i++;
-			}
+			listObj.addProperty("reqUid", camId + "_" + i);
+			listObj.addProperty("custId", map.get("CUST_ID"));
 			
-			jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
-			jsonObj.addProperty("msgType", "T");
-			jsonObj.addProperty("pushTime", 1800);
-			jsonObj.addProperty("pushTitle", pushTitle);
-			jsonObj.addProperty("pushMsg", popupContents);
-			jsonObj.addProperty("inappContent", inAppContents);
-			jsonObj.addProperty("pushKey", "1");
-			jsonObj.addProperty("pushValue", "http://www.pushpia.com");
-			jsonObj.addProperty("reserveTime", "20160211121212");
-			jsonObj.add("list", jsonArray);
+			jsonArray.add(listObj);
 			
-		} else {
-			return "send/sendView";
+			detailMap = new HashMap<String, Object>();
+			
+			detailMap.put("camId", Integer.parseInt(camId));
+			detailMap.put("reqUid", camId + "_" + i);
+			detailMap.put("custId", map.get("CUST_ID"));
+			
+			detailList.add(detailMap);
+			
+			i++;
 		}
+		
+		pushService.insertPushDetail(detailList);
+		
+		jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
+		jsonObj.addProperty("msgType", "T");
+		jsonObj.addProperty("pushTime", 1800);
+		jsonObj.addProperty("pushTitle", pushTitle);
+		jsonObj.addProperty("pushMsg", popupContents);
+		jsonObj.addProperty("inappContent", inAppContents);
+		jsonObj.addProperty("pushKey", "1");
+		jsonObj.addProperty("pushValue", "http://www.pushpia.com");
+		jsonObj.addProperty("reserveTime", "20160211121212");
+		jsonObj.add("list", jsonArray);
 
 		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
 		
@@ -128,8 +137,6 @@ public class PushController {
         
         printByInputStream(con.getInputStream());
 		 
-        
-        
 		return "report/reportView";
 	}
 	
@@ -146,7 +153,6 @@ public class PushController {
 	/*
 	 * Rich push ¹ß¼Û
 	 */
-
 	@RequestMapping(value="/sendPushRich", method=RequestMethod.POST)
 	public String sendPushRich(HttpServletRequest request, HttpSession session) throws Exception {
 		
@@ -156,7 +162,9 @@ public class PushController {
 		String inAppContents = request.getParameter("smarteditor");
 		String smsYN		 = "N"; 
 		
-		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		
+		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN, appUserList.size());
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
@@ -165,38 +173,45 @@ public class PushController {
 		JsonObject jsonObj  = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
 		
-		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		List<Map<String, Object>> detailList  = new ArrayList<Map<String, Object>>();
 		
-		if(appUserList != null) {
+		Map<String, Object> detailMap = null;
 			
-			int i = 1;
+		int i = 1;
+		
+		for (Map<String, String> map : appUserList) {
+			JsonObject listObj = new JsonObject();
 			
-			for (Map<String, String> map : appUserList) {
-				JsonObject listObj = new JsonObject();
-				
-				listObj.addProperty("reqUid", camId + "_" + i);
-				listObj.addProperty("custId", map.get("CUST_ID"));
-				
-				jsonArray.add(listObj);
-				
-				i++;
-			}
+			listObj.addProperty("reqUid", camId + "_" + i);
+			listObj.addProperty("custId", map.get("CUST_ID"));
 			
-			jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
-			jsonObj.addProperty("msgType", "H");
-			jsonObj.addProperty("pushTime", 1800);
-			jsonObj.addProperty("pushTitle", pushTitle);
-			jsonObj.addProperty("popupContent", inAppContents);
-			jsonObj.addProperty("pushMsg", popupContents);
-			jsonObj.addProperty("inappContent", inAppContents);
-			jsonObj.addProperty("pushKey", "1");
-			jsonObj.addProperty("pushValue", "http://www.pushpia.com");
-			jsonObj.addProperty("reserveTime", "20160212121212");
-			jsonObj.add("list", jsonArray);
+			jsonArray.add(listObj);
 			
-		} else {
-			return "send/sendRich";
+			detailMap = new HashMap<String, Object>();
+			
+			detailMap.put("camId", Integer.parseInt(camId));
+			detailMap.put("reqUid", camId + "_" + i);
+			detailMap.put("custId", map.get("CUST_ID"));
+			
+			detailList.add(detailMap);
+			
+			i++;
 		}
+		
+		pushService.insertPushDetail(detailList);
+		
+		jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
+		jsonObj.addProperty("msgType", "H");
+		jsonObj.addProperty("pushTime", 1800);
+		jsonObj.addProperty("pushTitle", pushTitle);
+		jsonObj.addProperty("popupContent", inAppContents);
+		jsonObj.addProperty("pushMsg", popupContents);
+		jsonObj.addProperty("inappContent", inAppContents);
+		jsonObj.addProperty("pushKey", "1");
+		jsonObj.addProperty("pushValue", "http://www.pushpia.com");
+		jsonObj.addProperty("reserveTime", "20160212121212");
+		jsonObj.add("list", jsonArray);
+		
 
 		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
 	
