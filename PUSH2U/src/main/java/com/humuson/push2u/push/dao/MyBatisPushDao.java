@@ -99,6 +99,20 @@ public class MyBatisPushDao implements PushDao {
 		
 	}
 
+	// 푸시 로그 가져오기
+	@Override
+	public List<Map<String, Object>> getPushDetailList(int maxPushId) throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	// 로컬 DB로 푸시 로그 INSERT
+	@Override
+	public void insertPushLog(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

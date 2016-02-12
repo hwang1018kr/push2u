@@ -26,4 +26,11 @@ public interface PushDao {
 	// 캠페인 디테일 insert
 	public void insertPushDetail(Map<String, Object> map) throws RuntimeException;
 	
+	// 푸시 로그 가져오기
+	public List<Map<String, Object>> getPushDetailList(int maxPushId) throws RuntimeException;
+	
+	// 로컬 DB에 푸시 로그 INSERT
+	public void insertPushLog(Map<String, Object> map) throws RuntimeException;
+	
+	
 }
