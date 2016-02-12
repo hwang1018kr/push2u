@@ -45,5 +45,23 @@ public class MyBatisPushDao implements PushDao {
 		
 		return appUserList;
 	}
+
+	// 캠페인 정보 insert
+	@Override
+	public void insertCampaign(Map<String, String> map) throws RuntimeException {
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			dao.insertCampaign(map);
+			
+		} finally {
+			session.close();
+		}
+		
+	}
 	
 }

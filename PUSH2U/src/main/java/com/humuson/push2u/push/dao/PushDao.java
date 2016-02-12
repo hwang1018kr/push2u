@@ -14,4 +14,7 @@ public interface PushDao {
 	// App User 목록 가져오기
 	public List<Map<String, String>> getAppUserList() throws RuntimeException;
 	
+	// 캠페인 정보 isnert
+	public void insertCampaign(Map<String, String> map) throws RuntimeException;
+	
 }
