@@ -133,6 +133,7 @@ public class PushController {
 	/*
 	 * Rich push ¹ß¼Û
 	 */
+
 	@RequestMapping(value="/sendPushRich", method=RequestMethod.POST)
 	public String sendPushRich(HttpServletRequest request) throws Exception {
 		
@@ -162,7 +163,7 @@ public class PushController {
 			jsonObj.addProperty("msgType", "H");
 			jsonObj.addProperty("pushTime", 1800);
 			jsonObj.addProperty("pushTitle", pushTitle);
-			jsonObj.addProperty("popupContent", popupContents);
+			jsonObj.addProperty("popupContent", inAppContents);
 			jsonObj.addProperty("pushMsg", popupContents);
 			jsonObj.addProperty("inappContent", inAppContents);
 			jsonObj.addProperty("pushKey", "1");
@@ -175,6 +176,7 @@ public class PushController {
 		}
 
 		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
+	
 		
 		logger.debug(jsonObj.toString());
 		
