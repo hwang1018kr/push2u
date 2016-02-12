@@ -30,6 +30,66 @@
 </style>
 
 <script type="text/javascript">
+$(function () {
+	
+	// 미리보기 토글 시작
+	$("#toggle_status").click(function() {
+		$("#push_preview_ui").hide();
+		$("#inapp_preview_ui").hide();
+		
+		$("#status_preview_ui").show();
+	});
+	
+	$("#toggle_push").click(function() {
+		$("#status_preview_ui").hide();
+		$("#inapp_preview_ui").hide();
+		
+		$("#push_preview_ui").show();
+	});
+	
+	$("#toggle_inapp").click(function() {
+		$("#status_preview_ui").hide();
+		$("#push_preview_ui").hide();
+		
+		$("#inapp_preview_ui").show();
+	});
+	// 미리보기 토글 끝
+	
+	// 푸시 타이틀 미리보기 입력
+	$("#push_title").keyup(function() {
+		
+		var title = $("#push_title").val();
+		
+		$("#preview_title").val("");
+		$("#preview_title").val(title);
+		
+	});
+	
+	// 푸시 팝업 내용 미리보기 입력
+	$("#popup_contents").keyup(function() {
+		
+		var popup_contents = $("#popup_contents").val();
+		
+		$("#popup_preview").val("");
+		$("#popup_preview").val(popup_contents);
+		
+		$("#push_preview").val("");
+		$("#push_preview").val(popup_contents);
+		
+	});
+	
+	// 앱 내 메시지 미리보기 입력
+	$("#inapp_contents").keyup(function() {
+		
+		var inapp_contents = $("#inapp_contents").val();
+		
+		$("#inapp_preview").val("");
+		$("#inapp_preview").val(inapp_contents);
+		
+	});
+	
+});
+
 
 </script>
 
@@ -81,7 +141,6 @@
 					<span id="popup_byteInfo">0</span>/80Bytes
 				</div>
 				
-				
 				<label for="inapp_msg" style="font-size: 20px">앱 내 메시지</label>
 				<div id="inapp_msg" style="margin-bottom: 20px;">
 					<textarea id="inapp_contents" name="inapp_contents" class="form-control" style="resize:none;" rows="5" placeholder="앱 내 메시지"></textarea>
@@ -95,9 +154,51 @@
 				</div>
 			</div>
 			<div class="col-md-6">
+				<label for="preview" style="font-size: 20px">미리보기</label>
 				
+				<div id="preview">
+					<div class="btn-group" data-toggle="buttons" style="margin-bottom: 10px;">
+						<label id="toggle_status" class="btn active"> <input type="radio" name="options" id="option2" autocomplete="off"> 
+							상태창
+						</label> 
+						<label id="toggle_push" class="btn"> <input type="radio" name="options" id="option1" autocomplete="off" checked>
+							푸시
+						</label> 
+						<label id="toggle_inapp" class="btn"> <input type="radio"name="options" id="option3" autocomplete="off"> 
+							앱 내 메시지
+						</label>
+					</div>
+					<div id="status_preview_ui" style="display: block;">
+						<div id="preview_background">
+							<img src="/resources/images/android_noti.png">
+							<div style="position:absolute; left:80px; top:265px; height:15px; width: 100%;">
+								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;">
+							</div>
+							<div style="position:absolute; left:80px; top:290px; height:15px; width:100%;">
+								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;" >
+							</div>
+						</div>
+					</div>
+					<div id="push_preview_ui" style="display: none;">
+						<div id="preview_background">
+							<img src="/resources/images/adroid_push.png">
+							<div style="position:absolute; left:120px; top:200px; height:15px; width: 100%;">
+								<textarea id="push_preview" rows="4" cols="28" style="resize: none; border-color: white;"></textarea>
+							</div>
+						</div>
+					</div>
+					<div id="inapp_preview_ui" style="display: none;">
+						<div id="preview_background">
+							<img src="/resources/images/android_inapp.png">
+							<div style="position:absolute; left:20px; top:120px; height:300px; width: 100%;">
+								<textarea id="inapp_preview" rows="10" cols="50" style="resize: none; background-color:black; border-color: black; color: white; font-size: medium;"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
+		
 		<div class="col-md-12">
 			<button id="sendPush" type="submit" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
 		</div>
