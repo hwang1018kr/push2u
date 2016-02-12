@@ -121,6 +121,86 @@ public class PushController {
 		return "report/reportView";
 	}
 	
+
+	
+	/*
+	 * Rich push 발송화면 요청
+	 */
+	@RequestMapping(value="/sendRich")
+	public String sendRich() {
+		return "send/sendRich";
+	}
+	
+	/*
+	 * Rich push 발송
+	 */
+	@RequestMapping(value="/sendPushRich", method=RequestMethod.POST)
+	public String sendPushRich(HttpServletRequest request) throws Exception {
+		
+		String pushTitle     = request.getParameter("push_title");
+		String popupContents = request.getParameter("popup_contents");
+		String inAppContents = request.getParameter("smarteditor");
+		
+		logger.debug(inAppContents);
+		
+		JsonObject jsonObj  = new JsonObject();
+		JsonArray jsonArray = new JsonArray();
+		
+		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		
+		if(appUserList != null) {
+			
+			for (Map<String, String> map : appUserList) {
+				JsonObject listObj = new JsonObject();
+				
+				listObj.addProperty("reqUid", "push2u_160203114200_00002");
+				listObj.addProperty("custId", map.get("CUST_ID"));
+				
+				jsonArray.add(listObj);
+			}
+			
+			jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
+			jsonObj.addProperty("msgType", "H");
+			jsonObj.addProperty("pushTime", 1800);
+			jsonObj.addProperty("pushTitle", pushTitle);
+			jsonObj.addProperty("popupContent", popupContents);
+			jsonObj.addProperty("pushMsg", popupContents);
+			jsonObj.addProperty("inappContent", inAppContents);
+			jsonObj.addProperty("pushKey", "1");
+			jsonObj.addProperty("pushValue", "http://www.pushpia.com");
+			jsonObj.addProperty("reserveTime", "20160204121212");
+			jsonObj.add("list", jsonArray);
+			
+		} else {
+			return "send/sendRich";
+		}
+
+		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
+		
+		logger.debug(jsonObj.toString());
+		
+		logger.debug(param);
+		
+		URL url = new URL("http://dev-api.pushpia.com/msg/send/realtime");
+		HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		
+		con.setRequestMethod("POST");
+		con.setDoOutput(true);
+		
+		DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+        dos.writeBytes(param);
+        dos.flush();
+        dos.close(); 
+        
+        con.disconnect();
+        
+        printByInputStream(con.getInputStream());
+		 
+		return "report/reportView";
+	}
+	
+	
+	
 	// 웹 서버로 부터 받은 웹 페이지 결과를 콘솔에 출력하는 메소드
 	public void printByInputStream(InputStream is) {
 		byte[] buf = new byte[1024];
@@ -139,6 +219,9 @@ public class PushController {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
 	
 	/*
 	 * report 화면 요청
