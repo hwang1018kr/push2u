@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.humuson.push2u.push.controller.PushController;
+import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 @Repository("pushDao")
 public class MyBatisPushDao implements PushDao {
@@ -44,6 +45,27 @@ public class MyBatisPushDao implements PushDao {
 		}
 		
 		return appUserList;
+	}
+	
+	// MAX 푸시아이디 가져오기
+	@Override
+	public int getMaxCamId() throws RuntimeException {
+		
+		int maxPushId = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			maxPushId = dao.getMaxCamId();
+			
+		} finally {
+			session.close();
+		}
+		
+		return maxPushId;
 	}
 
 	// 캠페인 정보 insert
