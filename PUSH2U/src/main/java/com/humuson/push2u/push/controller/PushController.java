@@ -68,6 +68,10 @@ public class PushController {
 		String inAppContents = request.getParameter("inapp_contents");
 		String smsYN		 = "N"; 
 		
+		pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+		
+		String camId = String.valueOf(pushService.getMaxCamId());
+		
 		JsonObject jsonObj  = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
 		
@@ -75,16 +79,20 @@ public class PushController {
 		
 		if(appUserList != null) {
 			
+			int i = 1;
+			
 			for (Map<String, String> map : appUserList) {
 				JsonObject listObj = new JsonObject();
 				
-				listObj.addProperty("reqUid", "push2u_160203114200_00002");
+				listObj.addProperty("reqUid", camId + "_" + i);
 				listObj.addProperty("custId", map.get("CUST_ID"));
 				
 				jsonArray.add(listObj);
+				
+				i++;
 			}
 			
-			jsonObj.addProperty("bizId", "9e443e81c51c492c8492df21af2b688b");
+			jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
 			jsonObj.addProperty("msgType", "T");
 			jsonObj.addProperty("pushTime", 1800);
 			jsonObj.addProperty("pushTitle", pushTitle);
@@ -92,7 +100,7 @@ public class PushController {
 			jsonObj.addProperty("inappContent", inAppContents);
 			jsonObj.addProperty("pushKey", "1");
 			jsonObj.addProperty("pushValue", "http://www.pushpia.com");
-			jsonObj.addProperty("reserveTime", "20160204121212");
+			jsonObj.addProperty("reserveTime", "20160211121212");
 			jsonObj.add("list", jsonArray);
 			
 		} else {
@@ -120,7 +128,7 @@ public class PushController {
         
         printByInputStream(con.getInputStream());
 		 
-        pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+        
         
 		return "report/reportView";
 	}
@@ -148,6 +156,10 @@ public class PushController {
 		String inAppContents = request.getParameter("smarteditor");
 		String smsYN		 = "N"; 
 		
+		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+		
+		String camId = String.valueOf(pushService.getMaxCamId());
+		
 		logger.debug(inAppContents);
 		
 		JsonObject jsonObj  = new JsonObject();
@@ -157,13 +169,17 @@ public class PushController {
 		
 		if(appUserList != null) {
 			
+			int i = 1;
+			
 			for (Map<String, String> map : appUserList) {
 				JsonObject listObj = new JsonObject();
 				
-				listObj.addProperty("reqUid", "push2u_160203114200_00002");
+				listObj.addProperty("reqUid", camId + "_" + i);
 				listObj.addProperty("custId", map.get("CUST_ID"));
 				
 				jsonArray.add(listObj);
+				
+				i++;
 			}
 			
 			jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
@@ -175,7 +191,7 @@ public class PushController {
 			jsonObj.addProperty("inappContent", inAppContents);
 			jsonObj.addProperty("pushKey", "1");
 			jsonObj.addProperty("pushValue", "http://www.pushpia.com");
-			jsonObj.addProperty("reserveTime", "20160204121212");
+			jsonObj.addProperty("reserveTime", "20160212121212");
 			jsonObj.add("list", jsonArray);
 			
 		} else {
@@ -204,7 +220,7 @@ public class PushController {
         
         printByInputStream(con.getInputStream());
         
-        pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+        
         
 		return "report/reportView";
 	}
