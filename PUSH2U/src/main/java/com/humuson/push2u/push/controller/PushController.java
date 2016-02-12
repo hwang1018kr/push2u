@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -59,11 +60,13 @@ public class PushController {
 	 * push 발송
 	 */
 	@RequestMapping(value="/sendPush", method=RequestMethod.POST)
-	public String sendPush(HttpServletRequest request) throws Exception {
+	public String sendPush(HttpServletRequest request, HttpSession session) throws Exception {
 		
+		String userId        = String.valueOf(session.getAttribute("userId"));
 		String pushTitle     = request.getParameter("push_title");
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("inapp_contents");
+		String smsYN		 = "N"; 
 		
 		JsonObject jsonObj  = new JsonObject();
 		JsonArray jsonArray = new JsonArray();
@@ -117,6 +120,8 @@ public class PushController {
         
         printByInputStream(con.getInputStream());
 		 
+        pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+        
 		return "report/reportView";
 	}
 	
@@ -135,11 +140,13 @@ public class PushController {
 	 */
 
 	@RequestMapping(value="/sendPushRich", method=RequestMethod.POST)
-	public String sendPushRich(HttpServletRequest request) throws Exception {
+	public String sendPushRich(HttpServletRequest request, HttpSession session) throws Exception {
 		
+		String userId        = String.valueOf(session.getAttribute("userId"));
 		String pushTitle     = request.getParameter("push_title");
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("smarteditor");
+		String smsYN		 = "N"; 
 		
 		logger.debug(inAppContents);
 		
@@ -196,7 +203,9 @@ public class PushController {
         con.disconnect();
         
         printByInputStream(con.getInputStream());
-		 
+        
+        pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN);
+        
 		return "report/reportView";
 	}
 	
@@ -220,10 +229,7 @@ public class PushController {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
+
 	/*
 	 * report 화면 요청
 	 */
