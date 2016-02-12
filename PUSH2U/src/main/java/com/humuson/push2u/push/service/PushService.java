@@ -18,6 +18,12 @@ public interface PushService {
 	public int getMaxCamId() throws RuntimeException;
 	
 	// 캠페인 정보 insert
-	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg, String inAppcontents, String smsYN) throws RuntimeException;
+	public void insertCampaign(String userId, String msgType, String pushTitle, 
+			String popupContents, String pushMsg, String inAppcontents, String smsYN, int targetcnt) throws RuntimeException;
 	
+	// 캠페인 detail insert
+	public void insertPushDetail(List<Map<String, Object>> detailList) throws RuntimeException;
+	
+	// 로그 스케줄러
+	public void getPushLogSchedular() throws RuntimeException;
 }
