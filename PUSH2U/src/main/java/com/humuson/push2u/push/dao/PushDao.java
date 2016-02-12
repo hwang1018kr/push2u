@@ -14,10 +14,16 @@ public interface PushDao {
 	// App User 목록 가져오기
 	public List<Map<String, String>> getAppUserList() throws RuntimeException;
 	
-	// MAX 푸시아이디 가져오기
+	// MAX 캠페인 아이디 가져오기
 	public int getMaxCamId() throws RuntimeException;
 	
+	// MAX 푸시 아이디 가져오기
+	public int getMaxPushId() throws RuntimeException;
+	
 	// 캠페인 정보 isnert
-	public void insertCampaign(Map<String, String> map) throws RuntimeException;
+	public void insertCampaign(Map<String, Object> map) throws RuntimeException;
+	
+	// 캠페인 디테일 insert
+	public void insertPushDetail(Map<String, Object> map) throws RuntimeException;
 	
 }

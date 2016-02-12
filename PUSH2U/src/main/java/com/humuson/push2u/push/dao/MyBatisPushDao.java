@@ -47,7 +47,7 @@ public class MyBatisPushDao implements PushDao {
 		return appUserList;
 	}
 	
-	// MAX 푸시아이디 가져오기
+	// MAX 캠페인 아이디 가져오기
 	@Override
 	public int getMaxCamId() throws RuntimeException {
 		
@@ -67,10 +67,17 @@ public class MyBatisPushDao implements PushDao {
 		
 		return maxPushId;
 	}
+	
+	// MAX 푸시 아이디 가져오기
+	@Override
+	public int getMaxPushId() throws RuntimeException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	// 캠페인 정보 insert
 	@Override
-	public void insertCampaign(Map<String, String> map) throws RuntimeException {
+	public void insertCampaign(Map<String, Object> map) throws RuntimeException {
 		
 		SqlSession session = null;
 		
@@ -85,5 +92,13 @@ public class MyBatisPushDao implements PushDao {
 		}
 		
 	}
+
+	// 캠페인 디테일 insert
+	@Override
+	public void insertPushDetail(Map<String, Object> map) throws RuntimeException {
+		
+	}
+
+	
 	
 }
