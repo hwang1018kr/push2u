@@ -37,6 +37,13 @@ public class PushServiceImple implements PushService {
 		return pushDao.getAppUserList();
 		
 	}
+	
+	// MAX 푸시아이디 가져오기
+	@Override
+	public int getMaxCamId() throws RuntimeException {
+		
+		return pushDao.getMaxCamId();
+	}
 
 	// 캠페인 정보 insert
 	@Override
@@ -56,6 +63,8 @@ public class PushServiceImple implements PushService {
 		pushDao.insertCampaign(map);
 		
 	}
+
+	
 	
 	
 }
