@@ -106,7 +106,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 로그 스케줄러
-	@Scheduled(fixedDelay = 5000)
+	@Scheduled(fixedDelay = 10000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -114,18 +114,43 @@ public class PushServiceImple implements PushService {
 		
 		int maxPushId = 0;
 		
-		SqlSession session = null;
+		SqlSession session  = null;
+		SqlSession session3 = null;
 		
 		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
+			session  = sqlSessionFactory.openSession();
+			session3 = sqlSessionFactory3.openSession();
+			
+			PushDao dao  = session.getMapper(PushDao.class);
+			PushDao dao3 = session3.getMapper(PushDao.class);
 			
 			maxPushId = dao.getMaxPushId();
 			
+			List<Map<String, Object>> logList = null;
+			
+			logList = dao3.getPushDetailList(maxPushId);
+			
+			for (Map<String, Object> map : logList) {
+				
+				String camId  = null;
+				String str[]  = null;
+				String reqUid = String.valueOf(map.get("REQ_UID"));
+				
+				str = reqUid.split("_");
+				
+				camId = str[0];
+				
+				map.put("CAM_ID", Integer.parseInt(camId));
+				
+				dao.insertPushLog(map);
+			}
+			
 			logger.debug("==========================     MAX 푸시 아이디 : " + maxPushId);
+			logger.debug("==========================     가져온 LOG 개수 : " + logList.size());
 			
 		} finally {
 			session.close();
+			session3.close();
 		}
 		
 	}
