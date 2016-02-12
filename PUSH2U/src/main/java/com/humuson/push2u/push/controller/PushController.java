@@ -241,7 +241,6 @@ public class PushController {
 	}
 	
 	
-	
 	// 웹 서버로 부터 받은 웹 페이지 결과를 콘솔에 출력하는 메소드
 	public void printByInputStream(InputStream is) {
 		byte[] buf = new byte[1024];
