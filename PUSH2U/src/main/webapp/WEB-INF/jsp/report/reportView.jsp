@@ -28,7 +28,34 @@
 
 <script type="text/javascript">
 
+//캠페인 대상 리스트 버튼
+$(document).on('click', '.detailReportBtn', function(e) {
+	
+	e.preventDefault();
+	
+	var data   = $(this).attr('id').split('__');
+	var type   = data[0];
+	var camId  = data[1];
 
+	if( type == null || type == "" || camId == null || camId == "" ) return ;
+	
+	$.ajax({
+		type : "post",
+		url : "detailReport",
+		data : {"camId" : camId},
+		dataType : "json", //text, xml, json
+		success : function() {
+			
+		},
+	    error : function(xhr, error){
+	    	alert(xhr.status + ", " + error);
+	    	alert(xhr.responseText);
+	    }
+	});
+	
+	return false;
+	
+});
 </script>
 
 <title>PUSH2U - 레포트</title>
@@ -92,52 +119,23 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>push test</td>
-						<td style="text-align: center;">150</td>
-						<td style="text-align: center;">130</td>
-						<td style="text-align: center;">40</td>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">Y</td>
-					</tr>
-					<tr>
-						<td>push test</td>
-						<td style="text-align: center;">150</td>
-						<td style="text-align: center;">130</td>
-						<td style="text-align: center;">40</td>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">Y</td>
-					</tr>
-					<tr>
-						<td>push test</td>
-						<td style="text-align: center;">150</td>
-						<td style="text-align: center;">130</td>
-						<td style="text-align: center;">40</td>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">Y</td>
-					</tr>
-					<tr>
-						<td>push test</td>
-						<td style="text-align: center;">150</td>
-						<td style="text-align: center;">130</td>
-						<td style="text-align: center;">40</td>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">Y</td>
-					</tr>
-					<tr>
-						<td>push test</td>
-						<td style="text-align: center;">150</td>
-						<td style="text-align: center;">130</td>
-						<td style="text-align: center;">40</td>
-						<td style="text-align: center;">5</td>
-						<td style="text-align: center;">Y</td>
-					</tr>
 				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
+				<c:forEach var="report" items="${reportList }">
+					<tr>
+						<td><a href="" id="detailReport__${report.CAM_ID }" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
+						<td style="text-align: center;">${report.TARGET_CNT }</td>
+						<td style="text-align: center;">${report.SUCCESS_CNT }</td>
+						<td style="text-align: center;">${report.OPEN_CNT } </td>
+						<td style="text-align: center;">${report.CLICK_CNT }</td>
+						<td style="text-align: center;">${report.SMS_YN } </td>
+					</tr>
+				</c:forEach>
+				
+				<c:if test="${fn:length(reportList) == 0 }">
 					<tr>
 						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
 					</tr>
-				</c:if> --%>
+				</c:if>
 				</tbody>
 			</table>
 		</div>
@@ -145,7 +143,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }	
 				</ul>
 			</nav>
 		</div>

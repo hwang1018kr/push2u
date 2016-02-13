@@ -79,39 +79,45 @@
     <!-- 상세 레포트 테이블 시작 -->
 	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
 		<div class="table-responsive">
-		<label for="detailReport" style="font-size: 20px;">푸시 제목 : push test</label>
-			<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
-				<tbody>
-					<tr style="height: 50px;">
-						<td class="active">Date</td>
-						<td colspan="3">2016-02-04 14:00:00</td>
-					</tr>
-					<tr>
-						<td class="active" style="width: 20%;">TARGET</td>
-						<td></td>
-						<td class="active" style="width: 20%;">OPEN</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="active" style="width: 20%;">SENT(성공/발송)</td>
-						<td></td>
-						<td class="active" style="width: 20%;">NO OPEN</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="active" style="width: 20%;">FAIL</td>
-						<td></td>
-						<td class="active" style="width: 20%;">CLICK</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td class="active" style="width: 20%;">SMS 성공</td>
-						<td></td>
-						<td class="active" style="width: 20%;">SMS 실패</td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
+		
+			<c:forEach var="detail" items="${detailReport }">
+			
+				<label for="detailReport" style="font-size: 20px;">푸시 제목 : ${detail.PUSH_TITLE }</label>
+				<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
+					<tbody>
+						<tr style="height: 50px;">
+							<td class="active">Date</td>
+							<td colspan="3">${detail.REQ_DATE }</td>
+						</tr>
+						<tr>
+							<td class="active" style="width: 20%;">TARGET</td>
+							<td> ${detail.TARGET_CNT } 건 </td>
+							<td class="active" style="width: 20%;">OPEN</td>
+							<td> ${detail.OPEN_CNT } 건</td>
+						</tr>
+						<tr>
+							<td class="active" style="width: 20%;">SENT(성공/발송)</td>
+							<td> ${detail.SUCCESS_CNT } 건 </td>
+							<td class="active" style="width: 20%;">NO OPEN</td>
+							<td> </td>
+						</tr>
+						<tr>
+							<td class="active" style="width: 20%;">FAIL</td>
+							<td></td>
+							<td class="active" style="width: 20%;">CLICK</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="active" style="width: 20%;">SMS 성공</td>
+							<td></td>
+							<td class="active" style="width: 20%;">SMS 실패</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				
+			</c:forEach>
+		
 		</div>
 		
 		
