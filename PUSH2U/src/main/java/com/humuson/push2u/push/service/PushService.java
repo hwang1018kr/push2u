@@ -26,4 +26,14 @@ public interface PushService {
 	
 	// 로그 스케줄러
 	public void getPushLogSchedular() throws RuntimeException;
+	
+	// report 리스트 가져오기
+	public List<Map<String, Object>> getReportList(String userId, int limit) throws RuntimeException;
+		
+	// report 총 개수 
+	public int allReportSize(String userId) throws RuntimeException;
+	
+	// report Detail 가져오기
+	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException;
+	
 }

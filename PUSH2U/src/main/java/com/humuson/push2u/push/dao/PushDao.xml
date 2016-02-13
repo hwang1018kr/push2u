@@ -47,5 +47,27 @@
 	    INSERT INTO PUSH_DETAIL (CAM_ID, PUSH_ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE)
 		VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE})
 	</insert>
+	
+	<!-- report 리스트 -->
+	<select id="getReportList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT CAM_ID, PUSH_TITLE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN 
+	    FROM PUSH_CAMPAIGNS
+		WHERE USER_ID = #{userId}
+		ORDER BY REQ_DATE DESC
+		LIMIT #{limit}, 5
+	</select>
+	
+	<select id="allReportSize" parameterType="java.lang.String" resultType="int">
+		SELECT COUNT(CAM_ID)
+		FROM PUSH_CAMPAIGNS
+		WHERE USER_ID = #{userId};
+	</select>
+	
+	<!-- report 상세 화면 -->
+	<select id="getDetailReport" parameterType="int" resultType="java.util.Map">
+		SELECT PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN 
+		FROM PUSH_CAMPAIGNS
+		WHERE CAM_ID = #{camId};
+	</select>
     
 </mapper>

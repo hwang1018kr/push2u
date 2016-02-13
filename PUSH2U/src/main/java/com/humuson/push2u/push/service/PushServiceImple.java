@@ -106,7 +106,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 로그 스케줄러
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -153,6 +153,31 @@ public class PushServiceImple implements PushService {
 			session3.close();
 		}
 		
+	}
+	
+	
+	// report 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getReportList(String userId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("limit", limit);
+		
+		return pushDao.getReportList(map);
+	}
+	
+	// report 총 개수
+	@Override
+	public int allReportSize(String userId) throws RuntimeException {
+		return pushDao.allReportSize(userId);
+	}
+	
+	// report Detail 가져오기
+	@Override
+	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException {
+		return pushDao.getDetailReport(camId);
 	}
 	
 }

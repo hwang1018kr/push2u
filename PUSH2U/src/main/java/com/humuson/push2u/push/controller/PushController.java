@@ -3,10 +3,8 @@ package com.humuson.push2u.push.controller;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,19 +14,20 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.humuson.push2u.push.service.PushService;
-import com.sun.jna.platform.win32.WinNT.HRESULT;
+import com.humuson.push2u.util.PagingHelper;
 
 /**
  * push 관련 처리 컨트롤러
@@ -264,17 +263,55 @@ public class PushController {
 	 * report 화면 요청
 	 */
 	@RequestMapping(value="/reportView")
-	public String reportView() {
+	public String reportView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId = "qqq";
+		String pagerHtml = null;
+		int reportSize   = pushService.allReportSize(userId);
+		int limit  	     = 0;
+		String pageString = request.getParameter("pageNum");
+		int pageNum = 1;
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		//int pageNum      = Integer.parseInt(request.getParameter("pageNum"));
+
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		
+		pagerHtml = pagingHelper.toHtml("", "");
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getReportList(userId, limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		
 		return "report/reportView";
 	}
 	
 	/*
 	 * report 상세 화면 요청
 	 */
-	@RequestMapping(value="/detailReport")
-	public String detailReportView() {
+	@RequestMapping(value="/detailReport", produces={MediaType.APPLICATION_JSON_VALUE})
+	public String detailReportView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		String camId 	 = request.getParameter("camId");
+		logger.debug("************************ camId : " + camId + " ************************");
+		
+		List<Map<String, Object>> detailReport = pushService.getDetailReport(Integer.parseInt(camId));
+		
+		model.addAttribute("detailReport", detailReport);
 		return "report/detailReport";
 	}
+
 	
 	/*
 	 * report push target 화면 요청

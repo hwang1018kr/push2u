@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.humuson.push2u.push.controller.PushController;
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
 @Repository("pushDao")
 public class MyBatisPushDao implements PushDao {
@@ -112,7 +111,68 @@ public class MyBatisPushDao implements PushDao {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
+	
+	// report 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getReportList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> reportList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportList = dao.getReportList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return reportList;
+	}
+	
+	// report 총 개수
+	@Override
+	public int allReportSize(String userId) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allReportSize(userId);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
+
+	// report detail 가져오기
+	@Override
+	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException {
+		
+		List<Map<String, Object>> detailReport = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			detailReport = dao.getDetailReport(camId);
+
+		} finally {
+			session.close();
+		}
+		
+		return detailReport;
+	}
 	
 }
