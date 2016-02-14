@@ -66,7 +66,7 @@ public class PushController {
 		String pushTitle     = request.getParameter("push_title");
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("inapp_contents");
-		String smsYN		 = "N"; 
+		String smsYN		 = request.getParameter("smsYN"); 
 		
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
 		
@@ -159,7 +159,7 @@ public class PushController {
 		String pushTitle     = request.getParameter("push_title");
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("smarteditor");
-		String smsYN		 = "N"; 
+		String smsYN		 = request.getParameter("smsYN");
 		
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
 		
