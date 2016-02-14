@@ -80,44 +80,51 @@
 	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
 		<div class="table-responsive">
 		
-			<c:forEach var="detail" items="${detailReport }">
-			
-				<label for="detailReport" style="font-size: 20px;">푸시 제목 : ${detail.PUSH_TITLE }</label>
-				<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
-					<tbody>
-						<tr style="height: 50px;">
-							<td class="active">Date</td>
-							<td colspan="3">${detail.REQ_DATE }</td>
-						</tr>
-						<tr>
-							<td class="active" style="width: 20%;">TARGET</td>
-							<td> ${detail.TARGET_CNT } 건 </td>
-							<td class="active" style="width: 20%;">OPEN</td>
-							<td> ${detail.OPEN_CNT } 건</td>
-						</tr>
-						<tr>
-							<td class="active" style="width: 20%;">SENT(성공/발송)</td>
-							<td> ${detail.SUCCESS_CNT } 건 </td>
-							<td class="active" style="width: 20%;">NO OPEN</td>
-							<td> </td>
-						</tr>
-						<tr>
-							<td class="active" style="width: 20%;">FAIL</td>
-							<td></td>
-							<td class="active" style="width: 20%;">CLICK</td>
-							<td></td>
-						</tr>
+			<label for="detailReport" style="font-size: 20px;">푸시 제목 : ${detailReport.PUSH_TITLE }</label>
+			<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
+				<tbody>
+					<tr style="height: 50px;">
+						<td class="active">Date</td>
+						<td colspan="3">${detailReport.REQ_DATE }</td>
+					</tr>
+					<tr>
+						<td class="active" style="width: 20%;">TARGET</td>
+						
+						<td> 
+							<form id="pushTarget" action="pushTarget" name="pushTarget" method="post">
+								<input type="hidden" class="form-control" id="camId" name="camId" value="${detailReport.CAM_ID }">	
+								${detailReport.TARGET_CNT } 건 	
+								<a style="cursor:pointer" onclick="document.forms['pushTarget'].submit(); return false;">
+									<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+								</a>
+							</form>
+						</td>
+						<td class="active" style="width: 20%;">OPEN</td>
+						<td> ${detailReport.OPEN_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+					</tr>
+					<tr>
+						<td class="active" style="width: 20%;">SENT(성공/발송)</td>
+						<td> ${detailReport.SUCCESS_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+						<td class="active" style="width: 20%;">NO OPEN</td>
+						<td> ${detailReport.NOOPEN_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+					</tr>
+					<tr>
+						<td class="active" style="width: 20%;">FAIL</td>
+						<td> ${detailReport.FAIL_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+						<td class="active" style="width: 20%;">CLICK</td>
+						<td> ${detailReport.CLICK_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+					</tr>
+					<c:if test="${detailReport.SMS_YN eq 'Y'}">
 						<tr>
 							<td class="active" style="width: 20%;">SMS 성공</td>
-							<td></td>
+							<td> <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
 							<td class="active" style="width: 20%;">SMS 실패</td>
-							<td></td>
+							<td> <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
 						</tr>
-					</tbody>
-				</table>
-				
-			</c:forEach>
-		
+					</c:if>
+				</tbody>
+			</table>
+
 		</div>
 		
 		

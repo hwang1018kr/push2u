@@ -28,34 +28,6 @@
 
 <script type="text/javascript">
 
-//캠페인 대상 리스트 버튼
-$(document).on('click', '.detailReportBtn', function(e) {
-	
-	e.preventDefault();
-	
-	var data   = $(this).attr('id').split('__');
-	var type   = data[0];
-	var camId  = data[1];
-
-	if( type == null || type == "" || camId == null || camId == "" ) return ;
-	
-	$.ajax({
-		type : "post",
-		url : "detailReport",
-		data : {"camId" : camId},
-		dataType : "json", //text, xml, json
-		success : function() {
-			
-		},
-	    error : function(xhr, error){
-	    	alert(xhr.status + ", " + error);
-	    	alert(xhr.responseText);
-	    }
-	});
-	
-	return false;
-	
-});
 </script>
 
 <title>PUSH2U - 레포트</title>
@@ -122,7 +94,7 @@ $(document).on('click', '.detailReportBtn', function(e) {
 				
 				<c:forEach var="report" items="${reportList }">
 					<tr>
-						<td><a href="" id="detailReport__${report.CAM_ID }" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
+						<td><a href="/push/detailReport?camId=${report.CAM_ID }" id="detailReport" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
 						<td style="text-align: center;">${report.TARGET_CNT }</td>
 						<td style="text-align: center;">${report.SUCCESS_CNT }</td>
 						<td style="text-align: center;">${report.OPEN_CNT } </td>

@@ -63,41 +63,17 @@
 					</tr>
 				</thead>
 				<tbody>
+
+				<c:forEach var="report" items="${reportList }">
 					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
+						<td style="text-align: center;">${report.CUST_ID }</td>
+						<td style="text-align: center;">${report.PHONE_NUM }</td>
+						<td style="text-align: center;">${report.OS_VER } </td>
+						<td style="text-align: center;">${report.DEVICE }</td>
+						<td style="text-align: center;">${report.APP_VER } </td>
 					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01011112222</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01011112222</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01011112222</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01011112222</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
+				</c:forEach>
+
 				
 				<%-- <c:if test="${fn:length(reportList) == 0 }">
 					<tr>
@@ -111,7 +87,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }	
 				</ul>
 			</nav>
 		</div>
