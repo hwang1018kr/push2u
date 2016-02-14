@@ -136,7 +136,7 @@ public class PushController {
         
         printByInputStream(con.getInputStream());
 		 
-		return "report/reportView";
+		return "redirect:/push/reportView";
 	}
 	
 
@@ -236,7 +236,7 @@ public class PushController {
         
         
         
-		return "report/reportView";
+		return "redirect:/push/reportView";
 	}
 	
 	
