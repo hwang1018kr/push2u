@@ -32,6 +32,9 @@ public interface PushDao {
 	// 로컬 DB에 푸시 로그 INSERT
 	public void insertPushLog(Map<String, Object> map) throws RuntimeException;
 	
+	// 캠페인 결과값 카운트 증가
+	public void plusResultCnt(Map<String, Object> map) throws RuntimeException;
+	
 	// report 리스트 가져오기
 	public List<Map<String, Object>> getReportList(Map<String, Object> map) throws RuntimeException;
 	

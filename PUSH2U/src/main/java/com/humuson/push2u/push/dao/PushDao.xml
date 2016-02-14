@@ -55,6 +55,27 @@
 	    </choose>
 	</insert>
 	
+	<!-- 캠페인 성공, 오픈, 클릭 카운트 증가 -->
+	<update id="plusResultCnt" parameterType="java.util.Map">
+	    <choose>
+	        <when test='RTN_TYPE.equals("S") and RES_CD.equals("1000")'>
+	            UPDATE PUSH_CAMPAIGNS
+	            SET SUCCESS_CNT = SUCCESS_CNT + 1
+	            WHERE CAM_ID = #{CAM_ID}
+	        </when>
+	        <when test='RTN_TYPE.equals("R")'>
+	            UPDATE PUSH_CAMPAIGNS
+	            SET OPEN_CNT = OPEN_CNT + 1
+	            WHERE CAM_ID = #{CAM_ID}
+	        </when>
+	        <when test='RTN_TYPE.equals("C")'>
+	            UPDATE PUSH_CAMPAIGNS
+	            SET CLICK_CNT = CLICK_CNT + 1
+	            WHERE CAM_ID = #{CAM_ID}
+	        </when>
+	    </choose>
+	</update>
+	
 	<!-- report 리스트 -->
 	<select id="getReportList" parameterType="java.util.Map" resultType="java.util.Map">
 	    SELECT CAM_ID, PUSH_TITLE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN 

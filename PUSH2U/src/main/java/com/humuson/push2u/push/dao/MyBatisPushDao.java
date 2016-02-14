@@ -222,6 +222,13 @@ public class MyBatisPushDao implements PushDao {
 		
 		return reportSize;
 	}
+
+	// 캠페인 결과값 카운트 증가
+	@Override
+	public void plusResultCnt(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }
