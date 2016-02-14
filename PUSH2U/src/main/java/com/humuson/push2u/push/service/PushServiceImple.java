@@ -28,6 +28,14 @@ public class PushServiceImple implements PushService {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	
+	// 문자발송 DB
+	@Autowired
+	private SqlSessionFactory sqlSessionFactory2;
+	
+	public void setSqlSessionFactory2(SqlSessionFactory sqlSessionFactory2) {
+		this.sqlSessionFactory2 = sqlSessionFactory2;
+	}
+	
 	// 푸시피아 DEV DB
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory3;
@@ -110,7 +118,7 @@ public class PushServiceImple implements PushService {
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
-		logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   로그 스케줄러 실행   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   푸시 로그 스케줄러 실행   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
 		int maxPushId = 0;
 		
@@ -178,6 +186,32 @@ public class PushServiceImple implements PushService {
 	@Override
 	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException {
 		return pushDao.getDetailReport(camId);
+	}
+
+	// SMS 발송 스케줄러
+	@Scheduled(fixedDelay = 6000)
+	@Override
+	public void sendSmsScheduler() throws RuntimeException {
+		
+		logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   문자 발송 스케줄러 실행   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		int maxDetailId = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			maxDetailId = dao.getMaxDetailId();
+		
+			logger.debug("==========================     MAX 디테일 아이디 : " + maxDetailId);
+			
+		} finally {
+			session.close();
+		}
+		
 	}
 	
 }

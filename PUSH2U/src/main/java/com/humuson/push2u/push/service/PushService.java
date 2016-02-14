@@ -24,7 +24,7 @@ public interface PushService {
 	// 캠페인 detail insert
 	public void insertPushDetail(List<Map<String, Object>> detailList) throws RuntimeException;
 	
-	// 로그 스케줄러
+	// 푸시 로그 스케줄러
 	public void getPushLogSchedular() throws RuntimeException;
 	
 	// report 리스트 가져오기
@@ -35,5 +35,8 @@ public interface PushService {
 	
 	// report Detail 가져오기
 	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException;
+	
+	// SMS 발송 스케줄러
+	public void sendSmsScheduler() throws RuntimeException;
 	
 }
