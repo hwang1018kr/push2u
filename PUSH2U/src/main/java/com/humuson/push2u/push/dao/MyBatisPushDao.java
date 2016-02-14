@@ -205,7 +205,7 @@ public class MyBatisPushDao implements PushDao {
 	
 	// report ÃÑ °³¼ö
 	@Override
-	public int allTargetSize(int camId) throws RuntimeException {
+	public int allTargetSize(Map<String, Object> map) throws RuntimeException {
 		
 		int reportSize  = 0;
 		
@@ -215,7 +215,7 @@ public class MyBatisPushDao implements PushDao {
 			session = sqlSessionFactory.openSession();
 			PushDao dao = session.getMapper(PushDao.class);
 			
-			reportSize = dao.allTargetSize(camId);
+			reportSize = dao.allTargetSize(map);
 		} finally {
 			session.close();
 		}
