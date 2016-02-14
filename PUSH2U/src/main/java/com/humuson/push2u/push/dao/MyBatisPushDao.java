@@ -156,9 +156,9 @@ public class MyBatisPushDao implements PushDao {
 
 	// report detail 가져오기
 	@Override
-	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException {
+	public Map<String, Object> getDetailReport(Map<String, Object> map) throws RuntimeException {
 		
-		List<Map<String, Object>> detailReport = null;
+		Map<String, Object> detailReport = null;
 		
 		SqlSession session = null;
 		
@@ -166,7 +166,7 @@ public class MyBatisPushDao implements PushDao {
 			session = sqlSessionFactory.openSession();
 			PushDao dao = session.getMapper(PushDao.class);
 			
-			detailReport = dao.getDetailReport(camId);
+			detailReport = dao.getDetailReport(map);
 
 		} finally {
 			session.close();
@@ -181,5 +181,47 @@ public class MyBatisPushDao implements PushDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	// report 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getTargetList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getTargetList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
+	
+	// report 총 개수
+	@Override
+	public int allTargetSize(int camId) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allTargetSize(camId);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
+	
 	
 }
