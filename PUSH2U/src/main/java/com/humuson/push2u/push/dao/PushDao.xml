@@ -44,8 +44,15 @@
 	
 	<!-- 푸시 로그 INSERT -->
 	<insert id="insertPushLog" parameterType="java.util.Map">
-	    INSERT INTO PUSH_DETAIL (CAM_ID, PUSH_ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE)
-		VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE})
+	    INSERT INTO PUSH_DETAIL (CAM_ID, PUSH_ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, SMS_SEND_YN)
+	    <choose>
+	        <when test='RTN_TYPE.equals("S")'>
+	            VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE}, 'N')
+	        </when>
+	        <otherwise>
+	            VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE}, NULL)
+	        </otherwise>
+	    </choose>
 	</insert>
 	
 	<!-- report 리스트 -->
