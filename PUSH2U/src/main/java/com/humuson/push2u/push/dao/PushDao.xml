@@ -67,14 +67,20 @@
 	<select id="allReportSize" parameterType="java.lang.String" resultType="int">
 		SELECT COUNT(CAM_ID)
 		FROM PUSH_CAMPAIGNS
-		WHERE USER_ID = #{userId};
+		WHERE USER_ID = #{userId}
 	</select>
 	
 	<!-- report 상세 화면 -->
 	<select id="getDetailReport" parameterType="int" resultType="java.util.Map">
 		SELECT PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN 
 		FROM PUSH_CAMPAIGNS
-		WHERE CAM_ID = #{camId};
+		WHERE CAM_ID = #{camId}
+	</select>
+	
+	<!-- MAX detail_id 가져오기 -->
+	<select id="getMaxDetailId" resultType="int">
+	    SELECT MAX(DETAIL_ID)
+		FROM SMS_DETAIL;
 	</select>
     
 </mapper>

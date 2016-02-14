@@ -174,5 +174,12 @@ public class MyBatisPushDao implements PushDao {
 		
 		return detailReport;
 	}
+
+	// MAX detail_id 가져오기
+	@Override
+	public int getMaxDetailId() throws RuntimeException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

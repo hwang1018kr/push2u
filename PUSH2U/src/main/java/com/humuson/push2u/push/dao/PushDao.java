@@ -41,5 +41,8 @@ public interface PushDao {
 	// report Detail 가져오기
 	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException;
 	
+	// MAX detail_id 가져오기
+	public int getMaxDetailId() throws RuntimeException;
+	
 	
 }
