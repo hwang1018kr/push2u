@@ -208,57 +208,43 @@ public class PagingHelper {
 	}
 	
 	/** 페이징 처리 목록을 HTML로 반환 */
-	public String toHtml(String searchType, String searchValue){
+	public String toHtml(String searchType, String searchValue, String reportString, int camId){
 		String pageListhtml = "";
-		String searchQuery ="";
+		String searchQuery = "";
+		String camIdString = "";
+		
+		if (!reportString.equals("reportView")){
+			camIdString = "&camId=" + camId;
+		}
 		
 		// 전체검색이 아닌경우 쿼리스트링 추가
 		if(!searchType.equals("")){
 			searchQuery = "&searchType=" + searchType + "&searchValue=" + searchValue;
 		}
 		
-		// 처음으로 보여주기 여부
-		/*if(isShowFirst()){
-			pageListhtml += "<span><a href='/board/list.jsp?page=1" + searchQuery + "'>처음으로</a></span>";
-		}*/
 		
 		// 이전목록 보여주기 여부
 		if(isShowPreviousList()){
-			pageListhtml += "<li><a href='/push/reportView?pageNum=" + startNoOfPreviousList + "' aria-label='Previous'><span aria-hidden='true'>《</span></a></li>";
+			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfPreviousList + camIdString + "' aria-label='Previous'><span aria-hidden='true'>《</span></a></li>";
 		}
 		
-		// 이전 페이지 보여주기 여부
-		/*if(isShowPreviousPage()){
-			pageListhtml += "<span><a href='?page=" + (requestPage-1) + searchQuery + "'>이전페이지</a></span>";
-		}*/
-		
-		//pageListhtml +=  "<span>|</span>";
-		
+
 		// 페이지 번호 반복
 		for(int i=startNoOfCurrentList; i<=endNoOfCurrentList; i++){
 			if(i == requestPage){
-				pageListhtml += "<li><a style='background-color : #EEEEEE;' href='/push/reportView?pageNum=" + i + "'>" + i + "</a></li>";
+				pageListhtml += "<li><a style='background-color : #EEEEEE;' href='/push/" + reportString + "?pageNum=" + i + camIdString + "'>" + i + "</a></li>";
 			}else{
-				pageListhtml += "<li><a href='/push/reportView?pageNum="+i+"'>"+i+"</a></li>";
+				pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + i + camIdString + "'>" + i + "</a></li>";
 			}
 		}
 
-		// 다음 페이지 보여주기 여부
-		/*if(isShowNextPage()){
-			pageListhtml += "<span><a href='?page=" + (requestPage+1) + searchQuery + "'>다음페이지</a></span>";
-		}*/
-		
 		// 다음 목록 보여주기 여부
 		if(isShowNextList()){
 			//pageListhtml += "<span><a href='?page=" + startNoOfNextList + searchQuery + "'>다음목록</a></span>";
-			pageListhtml += "<li><a href='/push/reportView?pageNum=" + startNoOfNextList + "' aria-label='Previous'><span aria-hidden='true'>》</span></a></li>";;
+			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfNextList + camIdString + "' aria-label='Previous'><span aria-hidden='true'>》</span></a></li>";;
 			 
 		}
 		
-		// 끝으로 보여주기 여부
-		/*if(isShowLast()){
-			pageListhtml += "<span><a href='?page=" + totalPageCount + searchQuery + "'>끝으로</a></span>";
-		}*/
 		return pageListhtml;
 	}
 	
@@ -269,6 +255,6 @@ public class PagingHelper {
 		System.out.println("전체게시물수: " + pagingHelper.getTotalRowCount());
 		System.out.println("현재페이지: " + pagingHelper.getRequestPage());
 		System.out.println("전체페이지: " + pagingHelper.getTotalPageCount());
-		System.out.println(pagingHelper.toHtml("", ""));//전체검색
+		//System.out.println(pagingHelper.toHtml("", ""));//전체검색
 	}
 }
