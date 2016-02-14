@@ -197,10 +197,11 @@ public class PushServiceImple implements PushService {
 	
 	// report 타겟 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getTargetList(int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getTargetList(String userId, int camId, int limit) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
 		
@@ -209,8 +210,14 @@ public class PushServiceImple implements PushService {
 	
 	// report 총 개수
 	@Override
-	public int allTargetSize(int camId) throws RuntimeException {
-		return pushDao.allTargetSize(camId);
+	public int allTargetSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.allTargetSize(map);
 	}
 
 	// SMS 발송 스케줄러
