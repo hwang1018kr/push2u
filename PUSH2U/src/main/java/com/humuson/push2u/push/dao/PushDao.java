@@ -40,10 +40,10 @@ public interface PushDao {
 	
 	// report Detail 가져오기
 	public Map<String, Object> getDetailReport(Map<String, Object> map) throws RuntimeException;
-	
+
 	// report 타겟 대상자 가져오기
 	public List<Map<String, Object>> getTargetList(Map<String, Object> map) throws RuntimeException;
-	
+
 	// report 타겟 대상자 총 개수
 	public int allTargetSize(int camId) throws RuntimeException;
 	
