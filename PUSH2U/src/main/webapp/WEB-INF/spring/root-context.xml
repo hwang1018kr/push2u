@@ -55,6 +55,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/humuson/push2u/user/dao/UserDao.xml</value>
+			    <value>classpath:com/humuson/push2u/push/dao/PushDao.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -82,7 +83,7 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/humuson/push2u/user/dao/UserDao.xml</value>
-				<value>classpath:com/humuson/push2u/push/dao/PushDao.xml</value>
+			    <value>classpath:com/humuson/push2u/push/dao/PushDao.xml</value>
 			</list>
 		</property>
 	</bean>
