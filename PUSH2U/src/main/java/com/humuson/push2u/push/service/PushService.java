@@ -34,9 +34,14 @@ public interface PushService {
 	public int allReportSize(String userId) throws RuntimeException;
 	
 	// report Detail 가져오기
-	public List<Map<String, Object>> getDetailReport(int camId) throws RuntimeException;
+	public Map<String, Object> getDetailReport(String userId, int camId) throws RuntimeException;
+	
+	// report 타겟 대상자 가져오기
+	public List<Map<String, Object>> getTargetList(int camId, int limit) throws RuntimeException;
+	
+	// report 타겟 대상자 총 개수 
+	public int allTargetSize(int camId) throws RuntimeException;
 	
 	// SMS 발송 스케줄러
-	public void sendSmsScheduler() throws RuntimeException;
-	
+		public void sendSmsScheduler() throws RuntimeException;
 }
