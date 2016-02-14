@@ -71,10 +71,12 @@
 	</select>
 	
 	<!-- report 상세 화면 -->
-	<select id="getDetailReport" parameterType="int" resultType="java.util.Map">
-		SELECT PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN 
+	<select id="getDetailReport" parameterType="java.util.Map" resultType="java.util.Map">
+		SELECT CAM_ID, PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, SUCCESS_CNT - OPEN_CNT NOOPEN_CNT, 
+      		   TARGET_CNT - SUCCESS_CNT FAIL_CNT, CLICK_CNT, SMS_YN 
 		FROM PUSH_CAMPAIGNS
 		WHERE CAM_ID = #{camId}
+		AND USER_ID = #{userId};
 	</select>
 	
 	<!-- MAX detail_id 가져오기 -->
@@ -83,4 +85,23 @@
 		FROM SMS_DETAIL;
 	</select>
     
+	<!-- report 타겟 대상자 화면 -->
+	<select id="getTargetList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT d.CUST_ID, PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, REQ_DATE
+		FROM push_detail d
+		JOIN app_users a
+		ON d.CUST_ID = a.CUST_ID
+		WHERE CAM_ID = #{camId}
+		AND RTN_TYPE = 'N'
+		ORDER BY REQ_DATE DESC
+		LIMIT #{limit}, 5
+	</select>
+	
+	<select id="allTargetSize" parameterType="int" resultType="int">
+		SELECT COUNT(CAM_ID) 
+		FROM push_detail
+		WHERE CAM_ID = #{camId}
+		AND RTN_TYPE = 'N'
+	</select>
+	
 </mapper>
