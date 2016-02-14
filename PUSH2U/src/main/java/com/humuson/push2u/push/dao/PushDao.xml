@@ -108,20 +108,23 @@
     
 	<!-- report 타겟 대상자 화면 -->
 	<select id="getTargetList" parameterType="java.util.Map" resultType="java.util.Map">
-	    SELECT d.CUST_ID, PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, REQ_DATE
+	    SELECT d.CUST_ID, PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, RTN_TYPE
 		FROM push_detail d
-		JOIN app_users a
-		ON d.CUST_ID = a.CUST_ID
-		WHERE CAM_ID = #{camId}
+		JOIN app_users a ON d.CUST_ID = a.CUST_ID
+		JOIN push_campaigns p on p.CAM_ID = d.CAM_ID
+		WHERE d.CAM_ID = #{camId}
 		AND RTN_TYPE = 'N'
-		ORDER BY REQ_DATE DESC
-		LIMIT #{limit}, 5
+		AND USER_ID = #{userId}
+		ORDER BY detail_id DESC
+		LIMIT #{limit}, 5		
 	</select>
 	
-	<select id="allTargetSize" parameterType="int" resultType="int">
-		SELECT COUNT(CAM_ID) 
-		FROM push_detail
-		WHERE CAM_ID = #{camId}
+	<select id="allTargetSize" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(c.CAM_ID) 
+		FROM push_detail d
+		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
+		WHERE c.CAM_ID = #{camId}
+		AND USER_ID = #{userId}
 		AND RTN_TYPE = 'N'
 	</select>
 	
