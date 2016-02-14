@@ -88,6 +88,20 @@ $(function () {
 		
 	});
 	
+	// 푸시 발송하기 버튼 클릭시
+	$("#sendPush").click(function() {
+		
+		var chk = $("#smsYN_checkbox").prop("checked");
+		
+		if(chk) {
+			$("#smsYN").val("Y");
+		}
+		
+		if(confirm("발송 하시겠습니까?")) {
+    		$("#pushSendForm").submit();
+    	}
+	});
+	
 });
 
 
@@ -134,7 +148,7 @@ $(function () {
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 70%">
-	<form id="smsSendForm" action="sendPush" method="post">
+	<form id="pushSendForm" action="sendPush" method="post">
 		<div class="page-header col-md-6 col-md-offset-3">
 	          <h2>PUSH 발송</h2>
 	    </div>
@@ -155,7 +169,7 @@ $(function () {
 
 				<div class="checkbox">
 					<label> 
-						<input type="checkbox"> 푸시 실패 시 SMS 발송
+						<input type="checkbox" id="smsYN_checkbox" name="smsYN_checkbox" > 푸시 실패 시 SMS 발송
 					</label>
 				</div>
 			</div>
@@ -206,7 +220,9 @@ $(function () {
 		</div>
 		
 		<div class="col-md-12">
-			<button id="sendPush" type="submit" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
+			<input type="hidden" id="smsYN" name="smsYN" value="N">
+		
+			<button id="sendPush" type="button" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
 		</div>
 	</form>
 	
