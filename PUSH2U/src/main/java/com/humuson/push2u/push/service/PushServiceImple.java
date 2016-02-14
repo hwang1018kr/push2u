@@ -78,7 +78,7 @@ public class PushServiceImple implements PushService {
 		map.put("pushMsg", pushMsg);
 		map.put("inAppcontents", inAppcontents);
 		map.put("smsYN", smsYN);
-		map.put("targetcnt", targetCnt);
+		map.put("targetCnt", targetCnt);
 		
 		pushDao.insertCampaign(map);
 		
