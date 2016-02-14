@@ -151,6 +151,7 @@ public class PushServiceImple implements PushService {
 				map.put("CAM_ID", Integer.parseInt(camId));
 				
 				dao.insertPushLog(map);
+				dao.plusResultCnt(map);
 			}
 			
 			logger.debug("==========================     MAX 푸시 아이디 : " + maxPushId);
@@ -213,7 +214,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 6000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -224,6 +225,7 @@ public class PushServiceImple implements PushService {
 		SqlSession session = null;
 		
 		try {
+			
 			session = sqlSessionFactory.openSession();
 			
 			PushDao dao = session.getMapper(PushDao.class);
