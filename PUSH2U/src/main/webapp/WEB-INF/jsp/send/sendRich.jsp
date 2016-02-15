@@ -133,7 +133,7 @@ $(function(){
 
 <div class="col-md-12" style="height: 70%">
 	<form id="pushRichSendForm" action="sendPushRich" method="post">
-		<div class="page-header col-md-8 col-md-offset-2">
+		<div class="page-header col-md-8 col-md-offset-2" style="margin-top: 0px;">
 	          <h2>RICH PUSH 발송</h2>
 	    </div>
 		<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px; ">
