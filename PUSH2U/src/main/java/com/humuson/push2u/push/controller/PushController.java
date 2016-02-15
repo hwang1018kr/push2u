@@ -26,7 +26,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.humuson.push2u.push.service.PushService;
 import com.humuson.push2u.util.PagingHelper;
-import com.humuson.push2u.util.TargetPagingHelper;
 
 /**
  * push 관련 처리 컨트롤러
@@ -350,6 +349,7 @@ public class PushController {
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
 		
 		return "report/pushTarget";
 	}
@@ -358,7 +358,38 @@ public class PushController {
 	 * report push 성공 화면 요청
 	 */
 	@RequestMapping(value = "/pushSuccess")
-	public String pushSuccessView() {
+	public String pushSuccessView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.allSuccessSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "pushSuccess";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getSuccessList(userId, Integer.parseInt(camId), limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
+		
 		return "report/pushSuccess";
 	}
 
@@ -374,7 +405,38 @@ public class PushController {
 	 * report push 오픈 화면 요청
 	 */
 	@RequestMapping(value = "/pushOpen")
-	public String pushOpenView() {
+	public String pushOpenView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.allOpenSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "pushOpen";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getOpenList(userId, Integer.parseInt(camId), limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
+		
 		return "report/pushOpen";
 	}
 
@@ -382,7 +444,36 @@ public class PushController {
 	 * report push 미오픈 화면 요청
 	 */
 	@RequestMapping(value = "/pushNoOpen")
-	public String pushNoOpenView() {
+	public String pushNoOpenView(Model model, HttpSession session, HttpServletRequest request) {
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.allNoOpenSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "pushNoOpen";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getNoOpenList(userId, Integer.parseInt(camId), limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
 		return "report/pushNoOpen";
 	}
 
