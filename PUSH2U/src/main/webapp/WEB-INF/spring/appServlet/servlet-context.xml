@@ -23,6 +23,10 @@
 	
 	<!-- 인터셉터 등록 -->
 	<interceptors>
+	    <interceptor>
+			<mapping path="/push/*" />
+			<beans:bean class="com.humuson.push2u.interceptor.AuthCheckInterceptor"/>
+		</interceptor>
 		<beans:bean class="com.humuson.push2u.interceptor.LoggerInterceptor"/>
 	</interceptors>
 	
