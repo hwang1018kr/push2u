@@ -89,5 +89,12 @@ public interface PushDao {
 	// SMS 발송 플래그 UPDATE
 	public void updateSmsFlag(int detailId) throws RuntimeException;
 	
+	// 로컬 sms_detail 테이블 MAX msg_id 가져오기
+	public int getMaxMsgId() throws RuntimeException;
 	
+	// 아이하트 SMS 로그 가져오기
+	public List<Map<String, Object>> getSmsLogList(int maxMsgId) throws RuntimeException;
+	
+	// 로컬 sms_detail 로그 UPDATE
+	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException;
 }
