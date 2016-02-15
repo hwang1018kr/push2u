@@ -88,6 +88,19 @@ $(function () {
 		
 	});
 	
+	// SMS 발송 체크박스 클릭 시
+	$("#smsYN_checkbox").click(function() {
+		
+		var chk = $("#smsYN_checkbox").prop("checked");
+		
+		if(chk) {
+			$("#smsContents").show();
+		} else {
+			$("#smsContents").hide();
+		}
+		
+	});
+	
 	// 푸시 발송하기 버튼 클릭시
 	$("#sendPush").click(function() {
 		
@@ -95,6 +108,8 @@ $(function () {
 		
 		if(chk) {
 			$("#smsYN").val("Y");
+		} else {
+			$("#sms_contents").val("");
 		}
 		
 		if(confirm("발송 하시겠습니까?")) {
@@ -171,6 +186,11 @@ $(function () {
 					<label> 
 						<input type="checkbox" id="smsYN_checkbox" name="smsYN_checkbox" > 푸시 실패 시 SMS 발송
 					</label>
+				</div>
+				
+				<div id="smsContents" style="margin-bottom: 20px; display: none;">
+					<textarea id="sms_contents" name="sms_contents" class="form-control" style="resize:none;" rows="3" placeholder="SMS 내용"></textarea>
+					<span id="sms_byteInfo">0</span>/90Bytes
 				</div>
 			</div>
 			<div class="col-md-6">
