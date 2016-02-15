@@ -182,7 +182,7 @@ public class MyBatisPushDao implements PushDao {
 		return 0;
 	}
 	
-	// report Å¸°Ù ¸®½ºÆ® °¡Á®¿À±â
+	// report ¸®½ºÆ® °¡Á®¿À±â
 	@Override
 	public List<Map<String, Object>> getTargetList(Map<String, Object> map) throws RuntimeException {
 		
@@ -203,7 +203,7 @@ public class MyBatisPushDao implements PushDao {
 		return targetList;
 	}
 	
-	// report Å¸°Ù ÃÑ °³¼ö
+	// report ÃÑ °³¼ö
 	@Override
 	public int allTargetSize(Map<String, Object> map) throws RuntimeException {
 		
@@ -260,105 +260,5 @@ public class MyBatisPushDao implements PushDao {
 
 	
 	
-	// report ¼º°ø ÃÑ °³¼ö
-	@Override
-	public int allSuccessSize(Map<String, Object> map) throws RuntimeException {
-		
-		int reportSize  = 0;
-		
-		SqlSession session = null;
-		
-		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
-			
-			reportSize = dao.allSuccessSize(map);
-		} finally {
-			session.close();
-		}
-		
-		return reportSize;
-	}
 	
-	// report ¿ÀÇÂ ¸®½ºÆ® °¡Á®¿À±â
-	@Override
-	public List<Map<String, Object>> getOpenList(Map<String, Object> map) throws RuntimeException {
-		
-		List<Map<String, Object>> targetList = null;
-		
-		SqlSession session = null;
-		
-		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
-			
-			targetList = dao.getOpenList(map);
-			
-		} finally {
-			session.close();
-		}
-		
-		return targetList;
-	}
-	
-	// report ¿ÀÇÂ ÃÑ °³¼ö
-	@Override
-	public int allOpenSize(Map<String, Object> map) throws RuntimeException {
-		
-		int reportSize  = 0;
-		
-		SqlSession session = null;
-		
-		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
-			
-			reportSize = dao.allOpenSize(map);
-		} finally {
-			session.close();
-		}
-		
-		return reportSize;
-	}
-	
-	// report ¹Ì¿ÀÇÂ ¸®½ºÆ® °¡Á®¿À±â
-	@Override
-	public List<Map<String, Object>> getNoOpenList(Map<String, Object> map) throws RuntimeException {
-		
-		List<Map<String, Object>> targetList = null;
-		
-		SqlSession session = null;
-		
-		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
-			
-			targetList = dao.getNoOpenList(map);
-			
-		} finally {
-			session.close();
-		}
-		
-		return targetList;
-	}
-	
-	// report ¹Ì¿ÀÇÂ ÃÑ °³¼ö
-	@Override
-	public int allNoOpenSize(Map<String, Object> map) throws RuntimeException {
-		
-		int reportSize  = 0;
-		
-		SqlSession session = null;
-		
-		try {
-			session = sqlSessionFactory.openSession();
-			PushDao dao = session.getMapper(PushDao.class);
-			
-			reportSize = dao.allNoOpenSize(map);
-		} finally {
-			session.close();
-		}
-		
-		return reportSize;
-	}
 }
