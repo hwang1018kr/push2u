@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.slf4j.Logger;
@@ -75,7 +77,7 @@ public class PushServiceImple implements PushService {
 	// 캠페인 정보 insert
 	@Override
 	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg,
-			String inAppcontents, String smsYN, String smsContents, int targetCnt) throws RuntimeException {
+			String inAppcontents, String smsYN, String smsContents, String phoneNum, int targetCnt) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -87,6 +89,7 @@ public class PushServiceImple implements PushService {
 		map.put("inAppcontents", inAppcontents);
 		map.put("smsYN", smsYN);
 		map.put("smsContents", smsContents);
+		map.put("phoneNum", phoneNum);
 		map.put("targetCnt", targetCnt);
 		
 		pushDao.insertCampaign(map);
@@ -114,8 +117,8 @@ public class PushServiceImple implements PushService {
 		
 	}
 
-	// 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	// 푸시 로그 스케줄러
+	@Scheduled(fixedDelay = 30000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -156,7 +159,7 @@ public class PushServiceImple implements PushService {
 			}
 			
 			logger.debug("==========================     MAX 푸시 아이디 : " + maxPushId);
-			logger.debug("==========================     가져온 LOG 개수 : " + logList.size());
+			logger.debug("==========================     가져온 푸시 LOG 개수 : " + logList.size());
 			
 		} finally {
 			session.close();
@@ -222,7 +225,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -230,22 +233,38 @@ public class PushServiceImple implements PushService {
 		
 		int maxDetailId = 0;
 		
-		SqlSession session = null;
+		SqlSession session  = null;
+		SqlSession session2 = null;
 		
 		try {
 			
-			session = sqlSessionFactory.openSession();
+			session  = sqlSessionFactory.openSession();
+			session2 = sqlSessionFactory2.openSession();
 			
-			PushDao dao = session.getMapper(PushDao.class);
+			PushDao dao  = session.getMapper(PushDao.class);
+			PushDao dao2 = session2.getMapper(PushDao.class);
 			
 			maxDetailId = dao.getMaxDetailId();
 			
+			List<Map<String, Object>> smsList = null;
 			
-		
+			smsList = dao.getSMSInfo(maxDetailId);
+			
 			logger.debug("==========================     MAX 디테일 아이디 : " + maxDetailId);
+			logger.debug("==========================     발송할 SMS 개수 : " + smsList.size());
 			
+			for (Map<String, Object> map : smsList) {
+				
+				int detailId = Integer.parseInt(map.get("DETAIL_ID").toString());
+				
+				dao2.insertSMS(map);
+				dao.insertSmsDetail(map);
+				dao.updateSmsFlag(detailId);
+			}
+		
 		} finally {
 			session.close();
+			session2.close();
 		}
 		
 	}
