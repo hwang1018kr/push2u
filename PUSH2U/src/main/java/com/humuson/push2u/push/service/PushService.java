@@ -19,7 +19,7 @@ public interface PushService {
 	
 	// 캠페인 정보 insert
 	public void insertCampaign(String userId, String msgType, String pushTitle, 
-			String popupContents, String pushMsg, String inAppcontents, String smsYN, int targetcnt) throws RuntimeException;
+			String popupContents, String pushMsg, String inAppcontents, String smsYN, String smsContents, int targetcnt) throws RuntimeException;
 	
 	// 캠페인 detail insert
 	public void insertPushDetail(List<Map<String, Object>> detailList) throws RuntimeException;
@@ -43,5 +43,5 @@ public interface PushService {
 	public int allTargetSize(String userId, int camId) throws RuntimeException;
 	
 	// SMS 발송 스케줄러
-		public void sendSmsScheduler() throws RuntimeException;
+	public void sendSmsScheduler() throws RuntimeException;
 }
