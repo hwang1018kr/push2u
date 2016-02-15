@@ -299,6 +299,46 @@ public class MyBatisPushDao implements PushDao {
 		return reportSize;
 	}
 	
+	// report 실패 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getFailList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getFailList(map);
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
+	
+	// report 실패 총 개수
+	@Override
+	public int allFailSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allFailSize(map);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
+	
 	// report 오픈 리스트 가져오기
 	@Override
 	public List<Map<String, Object>> getOpenList(Map<String, Object> map) throws RuntimeException {
@@ -380,4 +420,8 @@ public class MyBatisPushDao implements PushDao {
 		
 		return reportSize;
 	}
+
+	
+
+	
 }
