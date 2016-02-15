@@ -157,8 +157,8 @@ public class PushController {
 		
 		String userId        = String.valueOf(session.getAttribute("userId"));
 		String pushTitle     = request.getParameter("push_title");
-		String popupContents = request.getParameter("popup_contents");
-		String inAppContents = request.getParameter("smarteditor");
+		String popupContents = request.getParameter("pushEditor");
+		String inAppContents = request.getParameter("inappEditor");
 		String smsYN		 = request.getParameter("smsYN");
 		String smsContents   = request.getParameter("sms_contents");
 		String phoneNum		 = String.valueOf(session.getAttribute("phoneNum"));
@@ -205,7 +205,7 @@ public class PushController {
 		jsonObj.addProperty("msgType", "H");
 		jsonObj.addProperty("pushTime", 1800);
 		jsonObj.addProperty("pushTitle", pushTitle);
-		jsonObj.addProperty("popupContent", inAppContents);
+		jsonObj.addProperty("popupContent", popupContents);
 		jsonObj.addProperty("pushMsg", popupContents);
 		jsonObj.addProperty("inappContent", inAppContents);
 		jsonObj.addProperty("pushKey", "1");
