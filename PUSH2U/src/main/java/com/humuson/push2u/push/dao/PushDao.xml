@@ -24,8 +24,8 @@
 	
 	<!-- 캠페인 정보 INSERT -->
 	<insert id="insertCampaign" parameterType="java.util.Map">
-	    INSERT INTO push_campaigns (USER_ID, MSG_TYPE, PUSH_TITLE, POPUP_CONTENT, PUSH_MSG, INAPP_CONTENT, REQ_DATE, SMS_YN, TARGET_CNT)
-		VALUES (#{userId}, #{msgType}, #{pushTitle}, #{popupContents}, #{pushMsg}, #{inAppcontents}, SYSDATE(), #{smsYN}, #{targetCnt});
+	    INSERT INTO push_campaigns (USER_ID, MSG_TYPE, PUSH_TITLE, POPUP_CONTENT, PUSH_MSG, INAPP_CONTENT, REQ_DATE, SMS_YN, SMS_CONTENT, TARGET_CNT)
+		VALUES (#{userId}, #{msgType}, #{pushTitle}, #{popupContents}, #{pushMsg}, #{inAppcontents}, SYSDATE(), #{smsYN}, #{smsContents}, #{targetCnt});
 	</insert>
 	
 	<!-- 캠페인 디테일 insert -->
