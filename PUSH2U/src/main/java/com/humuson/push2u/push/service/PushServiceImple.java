@@ -291,6 +291,31 @@ public class PushServiceImple implements PushService {
 		return pushDao.allSuccessSize(map);
 	}
 	
+	// report 실패 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getFailList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getFailList(map);
+	}
+	
+	// report 실패 총 개수
+	@Override
+	public int allFailSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.allFailSize(map);
+	}
+	
 	// report 오픈 대상자 가져오기
 	@Override
 	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException {
@@ -340,5 +365,9 @@ public class PushServiceImple implements PushService {
 		
 		return pushDao.allNoOpenSize(map);
 	}
+
+	
+
+	
 	
 }
