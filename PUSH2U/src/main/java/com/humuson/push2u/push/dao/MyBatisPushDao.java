@@ -229,6 +229,36 @@ public class MyBatisPushDao implements PushDao {
 		// TODO Auto-generated method stub
 		
 	}
+
+	// SMS 발송할 정보 가져오기
+	@Override
+	public List<Map<String, Object>> getSMSInfo(int maxDetailId) throws RuntimeException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	// SMS 발송DB INSERT
+	@Override
+	public void insertSMS(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// SMS DETAIL INSERT
+	@Override
+	public void insertSmsDetail(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	// SMS 푸시 플래그 UPDATE
+	@Override
+	public void updateSmsFlag(int detailId) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 	
 }
