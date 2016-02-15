@@ -65,6 +65,67 @@ $(function(){
             bUseModeChanger : true, 
         }
     }); 
+    
+ 	// 푸시 타이틀 미리보기 입력
+	$("#push_title").keyup(function() {
+		
+		limitByte(this, 40);
+		
+	});
+	
+	// 상태창 내용 미리보기 입력
+	$("#popup_contents").keyup(function() {
+		
+		limitByte(this, 80);
+		
+	});
+	
+	// 푸시 팝업 미리보기 입력
+	$("#pushEditor").keyup(function() {
+		
+		limitByte(this, 3500);
+		
+	});
+	
+	// 앱 내 메시지 미리보기 입력
+	$("#inappEditor").keyup(function() {
+		
+		limitByte(this, 3500);
+		
+	});
+	
+	// 바이트 제한 함수
+	function limitByte(obj, bytes){
+        var text = $(obj).val();
+        var leng = text.length;
+        while(getTextLength(text) > bytes) {
+        	
+            leng--;
+            text = text.substring(0, leng);
+            
+        }
+        $(obj).val(text);
+        
+        if (bytes == 80) {
+        	$('#popup_byteInfo').text(getTextLength(text));
+        } else if (bytes == 3500) {
+        	$('#inaap_byteInfo').text(getTextLength(text));
+        }
+        
+    }
+	
+	function getTextLength(str) {
+        var len = 0;
+        for (var i = 0; i < str.length; i++) {
+        	
+            if (escape(str.charAt(i)).length == 6) {
+                len++;
+            }
+            
+            len++;
+        }
+        return len;
+    } // 문자 바이트 체크 끝
      
 	 // SMS 발송 체크박스 클릭 시
 	$("#smsYN_checkbox").click(function() {
@@ -78,7 +139,7 @@ $(function(){
 		}
 		
 	});
-    
+	
     //전송버튼 클릭이벤트
     $("#sendPush").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
@@ -155,7 +216,7 @@ $(function(){
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
 					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
-					<textarea id="popup_contents" name="popup_contents" class="form-control" style="resize:none;" rows="3" placeholder="푸시 팝업 내용"></textarea>
+					<textarea id="popup_contents" name="popup_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
 					<span id="popup_byteInfo">0</span>/80Bytes
 				</div>
 
@@ -191,7 +252,6 @@ $(function(){
 	</form>
 	
 </div>
-
 
 </body>
 </html>
