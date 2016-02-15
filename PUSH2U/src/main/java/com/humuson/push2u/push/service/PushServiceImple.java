@@ -118,7 +118,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 30000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -225,7 +225,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -267,6 +267,81 @@ public class PushServiceImple implements PushService {
 			session2.close();
 		}
 		
+	}
+	
+	// report 성공 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getSuccessList(map);
+	}
+	
+	// report 성공 총 개수
+	@Override
+	public int allSuccessSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.allSuccessSize(map);
+	}
+	
+	// report 오픈 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getOpenList(map);
+	}
+	
+	// report 오픈 총 개수
+	@Override
+	public int allOpenSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.allOpenSize(map);
+	}
+	
+	// report 미오픈 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getNoOpenList(map);
+	}
+	
+	// report 미오픈 총 개수
+	@Override
+	public int allNoOpenSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.allNoOpenSize(map);
 	}
 	
 }
