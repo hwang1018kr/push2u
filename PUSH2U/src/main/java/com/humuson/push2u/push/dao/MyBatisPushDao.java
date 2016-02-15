@@ -420,8 +420,40 @@ public class MyBatisPushDao implements PushDao {
 		
 		return reportSize;
 	}
-
 	
+	// 로컬 sms_detail MAX MSG_ID 가져오기
+	@Override
+	public int getMaxMsgId() throws RuntimeException {
+		// TODO Auto-generated method stub
+		int maxMsgId = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			maxMsgId = dao.getMaxMsgId();
+			
+		} finally {
+			session.close();
+		}
+		
+		return maxMsgId;
 
+	}
 	
+	// 아이하트 SMS 로그 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsLogList(int maxMsgId) throws RuntimeException {
+		// TODO Auto-generated method stub
+
+		return null;
+	}
+	
+	// 로컬 sms_detail 로그 업데이트
+	@Override
+	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+	}
 }
