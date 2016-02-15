@@ -157,6 +157,32 @@
 		AND RES_CD = 1000
 	</select>
 	
+	<!-- report 실패 대상자 가져오기 -->
+	<select id="getFailList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT P.CUST_ID, DATE_FORMAT(P.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE, A.OS_VER, A.DEVICE, A.APP_VER, P.RES_CD
+		FROM APP_USERS A
+		JOIN (SELECT PD.CUST_ID, PD.RES_DATE, PD.RES_CD
+				FROM PUSH_CAMPAIGNS PC JOIN PUSH_DETAIL PD
+				ON PC.CAM_ID = PD.CAM_ID
+				WHERE USER_ID = #{userId}
+				AND PD.CAM_ID = #{camId}
+				AND PD.RTN_TYPE = 'S'
+				AND PD.RES_CD != 1000) P
+		ON A.CUST_ID = P.CUST_ID
+	</select>
+	
+	<!-- 실패 총 개수 -->
+	<select id="allFailSize" parameterType="java.util.Map" resultType="int">
+	    SELECT COUNT(c.CAM_ID) 
+		FROM push_detail d
+		JOIN push_campaigns c 
+		ON c.CAM_ID = d.CAM_ID 
+		WHERE c.CAM_ID = 91
+		AND USER_ID = 'qqq'
+		AND RTN_TYPE = 'S'
+		AND RES_CD != 1000
+	</select>
+	
 	<!-- report 오픈 대상자 화면 -->
 	<select id="getOpenList" parameterType="java.util.Map" resultType="java.util.Map">
 	    SELECT R.CUST_ID, DATE_FORMAT(S.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE_S, DATE_FORMAT(R.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE_R, A.OS_VER, A.DEVICE, A.APP_VER
@@ -233,7 +259,7 @@
 		RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM
 						FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD
 						ON PC.CAM_ID = PD.CAM_ID
-						WHERE PD.DETAIL_ID > 86
+						WHERE PD.DETAIL_ID > #{maxDetailId}
 						AND PC.SMS_YN = 'Y'
 						AND PD.SMS_SEND_YN = 'N'
 						AND PD.RES_CD != '1000') P
