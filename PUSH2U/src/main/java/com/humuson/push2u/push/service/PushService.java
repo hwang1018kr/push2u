@@ -45,6 +45,9 @@ public interface PushService {
 	// SMS 발송 스케줄러
 	public void sendSmsScheduler() throws RuntimeException;
 	
+	// SMS 로그 스케줄러
+	public void getSmsLogScheduler() throws RuntimeException;
+	
 	// report 성공 대상자 가져오기
 	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit) throws RuntimeException;
 	
@@ -68,5 +71,14 @@ public interface PushService {
 	
 	// report 미 오픈 대상자 총 개수 
 	public int allNoOpenSize(String userId, int camId) throws RuntimeException;
+	
+	// 로컬 sms_detail MAX MSG_ID 아이디 가져오기
+	public int getMaxMsgId() throws RuntimeException;
+	
+	// 아이하트 로그 가져오기
+	public List<Map<String, Object>> getSmsLogList(int maxMsgId) throws RuntimeException;
+	
+	// sms_detail 로그 업데이트
+	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException;
 	
 }
