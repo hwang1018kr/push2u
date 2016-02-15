@@ -73,6 +73,11 @@
 	            SET CLICK_CNT = CLICK_CNT + 1
 	            WHERE CAM_ID = #{CAM_ID}
 	        </when>
+	        <otherwise>
+	            UPDATE PUSH_CAMPAIGNS
+	            SET TARGET_CNT = TARGET_CNT
+	            WHERE CAM_ID = #{CAM_ID}
+	        </otherwise>
 	    </choose>
 	</update>
 	
