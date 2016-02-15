@@ -270,7 +270,8 @@ public class PushController {
 		int reportSize    	= pushService.allReportSize(userId);
 		int limit  	      	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int 				pageNum = 1;
+		int pageNum 		= 1;
+		String reportString = "reportView";
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
@@ -279,7 +280,7 @@ public class PushController {
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
 		
-		pagerHtml = pagingHelper.toHtml("", "");
+		pagerHtml = pagingHelper.toHtml("", "", reportString, 0);
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -316,22 +317,24 @@ public class PushController {
 	 */
 	@RequestMapping(value = "/pushTarget")
 	public String pushTargetView(Model model, HttpSession session, HttpServletRequest request) {
-
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
-		int reportSize   	= pushService.allTargetSize(Integer.parseInt(camId));
+		int reportSize   	= pushService.allTargetSize(userId, Integer.parseInt(camId));
 		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
 		int pageNum 		= 1;
+		String reportString = "pushTarget";
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
-		logger.debug("***************" + camId);
-		TargetPagingHelper pagingHelper = new TargetPagingHelper(5, 5, reportSize, pageNum);
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "");
+		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -339,7 +342,7 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getTargetList(Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getTargetList(userId, Integer.parseInt(camId), limit);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
