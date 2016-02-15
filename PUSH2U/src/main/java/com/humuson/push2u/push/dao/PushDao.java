@@ -53,5 +53,17 @@ public interface PushDao {
 	// MAX detail_id 가져오기
 	public int getMaxDetailId() throws RuntimeException;
 	
+	// SMS 발송할 정보 가져오기
+	public List<Map<String, Object>> getSMSInfo(int maxDetailId) throws RuntimeException;
+	
+	// SMS 발송DB INSERT
+	public void insertSMS(Map<String, Object> map) throws RuntimeException;
+	
+	// SMS DETAIL INSERT
+	public void insertSmsDetail(Map<String, Object> map) throws RuntimeException;
+	
+	// SMS 발송 플래그 UPDATE
+	public void updateSmsFlag(int detailId) throws RuntimeException;
+	
 	
 }
