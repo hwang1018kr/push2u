@@ -66,10 +66,11 @@ public class PushController {
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("inapp_contents");
 		String smsYN		 = request.getParameter("smsYN"); 
+		String smsContents	 = request.getParameter("sms_contents");
 		
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
 		
-		pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN, appUserList.size());
+		pushService.insertCampaign(userId, "T", pushTitle, popupContents, popupContents, inAppContents, smsYN, smsContents, appUserList.size());
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
@@ -159,10 +160,11 @@ public class PushController {
 		String popupContents = request.getParameter("popup_contents");
 		String inAppContents = request.getParameter("smarteditor");
 		String smsYN		 = request.getParameter("smsYN");
+		String smsContents   = request.getParameter("sms_contents");
 		
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
 		
-		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN, appUserList.size());
+		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN, smsContents, appUserList.size());
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
