@@ -164,7 +164,7 @@ $(function () {
 
 <div class="col-md-12" style="height: 70%">
 	<form id="pushSendForm" action="sendPush" method="post">
-		<div class="page-header col-md-6 col-md-offset-3">
+		<div class="page-header col-md-6 col-md-offset-3" style="margin-top: 0px;">
 	          <h2>PUSH 발송</h2>
 	    </div>
 		<div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px; ">
