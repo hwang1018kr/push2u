@@ -52,20 +52,42 @@ $(function(){
         }
     });
      
+	 // SMS 발송 체크박스 클릭 시
+	$("#smsYN_checkbox").click(function() {
+		
+		var chk = $("#smsYN_checkbox").prop("checked");
+		
+		if(chk) {
+			$("#smsContents").show();
+		} else {
+			$("#smsContents").hide();
+		}
+		
+	});
+    
     //전송버튼 클릭이벤트
     $("#sendPush").click(function(){
         //id가 smarteditor인 textarea에 에디터에서 대입
         editor_object.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
          
         // 이부분에 에디터 validation 검증
-         
-        //폼 submit
-        $("#pushRichSendForm").submit();
-    })
+        
+        var chk = $("#smsYN_checkbox").prop("checked");
+		
+		if(chk) {
+			$("#smsYN").val("Y");
+		} else {
+			$("#sms_contents").val("");
+		}
+		
+		if(confirm("발송 하시겠습니까?")) {
+			//폼 submit
+	        $("#pushRichSendForm").submit();
+    	}
+        
+    });
+    
 })
-
-
-
 
 </script>
 
@@ -132,8 +154,13 @@ $(function(){
 				    
 				<div class="checkbox">
 					<label> 
-						<input type="checkbox"> 푸시 실패 시 SMS 발송
+						<input type="checkbox" id="smsYN_checkbox"> 푸시 실패 시 SMS 발송
 					</label>
+				</div>
+				
+				<div id="smsContents" style="margin-bottom: 20px; display: none;">
+					<textarea id="sms_contents" name="sms_contents" class="form-control" style="resize:none;" rows="3" placeholder="SMS 내용"></textarea>
+					<span id="sms_byteInfo">0</span>/90Bytes
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -141,7 +168,9 @@ $(function(){
 			</div>
 		</div>
 		<div class="col-md-12">
-			<button id="sendPush" type="submit" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
+			<input type="hidden" id="smsYN" name="smsYN" value="N">
+		
+			<button id="sendPush" type="button" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
 		</div>
 	</form>
 	
