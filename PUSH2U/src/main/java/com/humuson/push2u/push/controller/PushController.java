@@ -376,7 +376,7 @@ public class PushController {
 		
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -397,7 +397,38 @@ public class PushController {
 	 * report push 실패 화면 요청
 	 */
 	@RequestMapping(value = "/pushFail")
-	public String pushFailView() {
+	public String pushFailView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.allFailSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "pushFail";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getFailList(userId, Integer.parseInt(camId), limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
+		
 		return "report/pushFail";
 	}
 
