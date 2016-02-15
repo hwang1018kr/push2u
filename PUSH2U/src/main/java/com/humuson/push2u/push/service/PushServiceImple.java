@@ -75,7 +75,7 @@ public class PushServiceImple implements PushService {
 	// 캠페인 정보 insert
 	@Override
 	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg,
-			String inAppcontents, String smsYN, int targetCnt) throws RuntimeException {
+			String inAppcontents, String smsYN, String smsContents, int targetCnt) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -86,6 +86,7 @@ public class PushServiceImple implements PushService {
 		map.put("pushMsg", pushMsg);
 		map.put("inAppcontents", inAppcontents);
 		map.put("smsYN", smsYN);
+		map.put("smsContents", smsContents);
 		map.put("targetCnt", targetCnt);
 		
 		pushDao.insertCampaign(map);
@@ -238,6 +239,8 @@ public class PushServiceImple implements PushService {
 			PushDao dao = session.getMapper(PushDao.class);
 			
 			maxDetailId = dao.getMaxDetailId();
+			
+			
 		
 			logger.debug("==========================     MAX 디테일 아이디 : " + maxDetailId);
 			
