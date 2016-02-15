@@ -58,6 +58,8 @@ $(function () {
 	// 푸시 타이틀 미리보기 입력
 	$("#push_title").keyup(function() {
 		
+		limitByte(this, 40);
+		
 		var title = $("#push_title").val();
 		
 		$("#preview_title").val("");
@@ -67,6 +69,8 @@ $(function () {
 	
 	// 푸시 팝업 내용 미리보기 입력
 	$("#popup_contents").keyup(function() {
+		
+		limitByte(this, 80);
 		
 		var popup_contents = $("#popup_contents").val();
 		
@@ -81,12 +85,47 @@ $(function () {
 	// 앱 내 메시지 미리보기 입력
 	$("#inapp_contents").keyup(function() {
 		
+		limitByte(this, 3500);
+		
 		var inapp_contents = $("#inapp_contents").val();
 		
 		$("#inapp_preview").val("");
 		$("#inapp_preview").val(inapp_contents);
 		
 	});
+	
+	// 바이트 제한 함수
+	function limitByte(obj, bytes){
+        var text = $(obj).val();
+        var leng = text.length;
+        while(getTextLength(text) > bytes) {
+        	
+            leng--;
+            text = text.substring(0, leng);
+            
+        }
+        $(obj).val(text);
+        
+        if (bytes == 80) {
+        	$('#popup_byteInfo').text(getTextLength(text));
+        } else if (bytes == 3500) {
+        	$('#inaap_byteInfo').text(getTextLength(text));
+        }
+        
+    }
+	
+	function getTextLength(str) {
+        var len = 0;
+        for (var i = 0; i < str.length; i++) {
+        	
+            if (escape(str.charAt(i)).length == 6) {
+                len++;
+            }
+            
+            len++;
+        }
+        return len;
+    } // 문자 바이트 체크 끝
 	
 	// SMS 발송 체크박스 클릭 시
 	$("#smsYN_checkbox").click(function() {
@@ -212,10 +251,10 @@ $(function () {
 						<div id="preview_background">
 							<img src="/resources/images/android_noti.png">
 							<div style="position:absolute; left:80px; top:265px; height:15px; width: 100%;">
-								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;">
+								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
 							</div>
 							<div style="position:absolute; left:80px; top:290px; height:15px; width:100%;">
-								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;" >
+								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;" disabled="disabled">
 							</div>
 						</div>
 					</div>
@@ -223,7 +262,7 @@ $(function () {
 						<div id="preview_background">
 							<img src="/resources/images/adroid_push.png">
 							<div style="position:absolute; left:120px; top:200px; height:15px; width: 100%;">
-								<textarea id="push_preview" rows="4" cols="28" style="resize: none; border-color: white;"></textarea>
+								<textarea id="push_preview" rows="4" cols="28" style="resize: none; border-color: white; background-color: transparent;" disabled="disabled"></textarea>
 							</div>
 						</div>
 					</div>
@@ -231,7 +270,7 @@ $(function () {
 						<div id="preview_background">
 							<img src="/resources/images/android_inapp.png">
 							<div style="position:absolute; left:20px; top:120px; height:300px; width: 100%;">
-								<textarea id="inapp_preview" rows="10" cols="50" style="resize: none; background-color:black; border-color: black; color: white; font-size: medium;"></textarea>
+								<textarea id="inapp_preview" rows="10" cols="50" style="resize: none; background-color: transparent; border-color: black; color: white; font-size: medium;" disabled="disabled"></textarea>
 							</div>
 						</div>
 					</div>
