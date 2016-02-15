@@ -33,7 +33,7 @@ function popup(el){
 
 	var url = "/push/" + el.id + "?camId=" + ${detailReport.CAM_ID };
 	var name = "popup";
-	window.open(url,name,"width=800,height=400,toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=200,top=100")
+	window.open(url,name,"width=1000,height=500,toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=200,top=100")
 }
 
 $(document).ready(function() {
