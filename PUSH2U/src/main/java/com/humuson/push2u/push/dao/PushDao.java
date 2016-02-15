@@ -53,6 +53,24 @@ public interface PushDao {
 	// MAX detail_id 가져오기
 	public int getMaxDetailId() throws RuntimeException;
 	
+	// report 성공 대상자 가져오기
+	public List<Map<String, Object>> getSuccessList(Map<String, Object> map) throws RuntimeException;
+
+	// report 성공 대상자 총 개수
+	public int allSuccessSize(Map<String, Object> map) throws RuntimeException;
+	
+	// report 오픈 대상자 가져오기
+	public List<Map<String, Object>> getOpenList(Map<String, Object> map) throws RuntimeException;
+
+	// report 오픈 대상자 총 개수
+	public int allOpenSize(Map<String, Object> map) throws RuntimeException;
+	
+	// report 미오픈 대상자 가져오기
+	public List<Map<String, Object>> getNoOpenList(Map<String, Object> map) throws RuntimeException;
+
+	// report 미오픈 대상자 총 개수
+	public int allNoOpenSize(Map<String, Object> map) throws RuntimeException;
+	
 	// SMS 발송할 정보 가져오기
 	public List<Map<String, Object>> getSMSInfo(int maxDetailId) throws RuntimeException;
 	
