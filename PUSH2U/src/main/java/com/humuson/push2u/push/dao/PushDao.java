@@ -59,6 +59,12 @@ public interface PushDao {
 	// report 성공 대상자 총 개수
 	public int allSuccessSize(Map<String, Object> map) throws RuntimeException;
 	
+	// report 실패 대상자 가져오기
+	public List<Map<String, Object>> getFailList(Map<String, Object> map) throws RuntimeException; 
+	
+	// report 실패 대상자 총 개수
+	public int allFailSize(Map<String, Object> map) throws RuntimeException;
+	
 	// report 오픈 대상자 가져오기
 	public List<Map<String, Object>> getOpenList(Map<String, Object> map) throws RuntimeException;
 
