@@ -44,7 +44,7 @@
     
     
     <div class="col-md-12">
-          <p>오픈 : 2 건</p>
+          <p>오픈 : ${reportSize } 건</p>
     </div>
     
     
@@ -55,61 +55,31 @@
 				<thead>
 					<tr class="active">
 						<!-- <th style="width: 15%">진행 상태</th> -->
-						<th style="width: 20%; text-align: center;">User ID</th>
-						<th style="width: 20%; text-align: center;">Send Time</th>
-						<th style="width: 20%; text-align: center;">Read Time</th>
-						<th style="width: 10%; text-align: center;">OS</th>
-						<th style="width: 15%; text-align: center;">Device</th>
-						<th style="width: 15%; text-align: center;">App Version</th>
+						<th style="width: 15%; text-align: center;">User ID</th>
+						<th style="width: 25%; text-align: center;">Send Time</th>
+						<th style="width: 25%; text-align: center;">Read Time</th>
+						<th style="width: 7%; text-align: center;">OS</th>
+						<th style="width: 14%; text-align: center;">Device</th>
+						<th style="width: 14%; text-align: center;">App Ver.</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
-					<tr>
-						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
-					</tr>
-				</c:if> --%>
+					<c:forEach var="report" items="${reportList }">
+						<tr>
+							<td style="text-align: center;">${report.CUST_ID }</td>
+							<td style="text-align: center;">${report.RES_DATE_S }</td>
+							<td style="text-align: center;">${report.RES_DATE_R } </td>
+							<td style="text-align: center;">${report.OS_VER } </td>
+							<td style="text-align: center;">${report.DEVICE }</td>
+							<td style="text-align: center;">${report.APP_VER } </td>
+						</tr>
+					</c:forEach>
+
+					<c:if test="${fn:length(reportList) == 0 }">
+						<tr>
+							<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
+						</tr>
+					</c:if> 
 				</tbody>
 			</table>
 		</div>
@@ -117,7 +87,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }
 				</ul>
 			</nav>
 		</div>

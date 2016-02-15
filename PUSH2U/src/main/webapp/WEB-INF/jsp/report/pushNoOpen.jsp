@@ -44,7 +44,7 @@
     
     
     <div class="col-md-12">
-          <p>미오픈 : 108 건</p>
+          <p>미오픈 : ${reportSize } 건</p>
     </div>
     
     
@@ -63,47 +63,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-					</tr>
-				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
-					<tr>
-						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
-					</tr>
-				</c:if> --%>
+					<c:forEach var="report" items="${reportList }">
+						<tr>
+							<td style="text-align: center;">${report.CUST_ID }</td>
+							<td style="text-align: center;">${report.RES_DATE }</td>
+							<td style="text-align: center;">${report.OS_VER } </td>
+							<td style="text-align: center;">${report.DEVICE }</td>
+							<td style="text-align: center;">${report.APP_VER } </td>
+						</tr>
+					</c:forEach>
+
+					<c:if test="${fn:length(reportList) == 0 }">
+						<tr>
+							<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
+						</tr>
+					</c:if> 
 				</tbody>
 			</table>
 		</div>
@@ -111,7 +85,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }	
 				</ul>
 			</nav>
 		</div>

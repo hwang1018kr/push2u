@@ -10,13 +10,15 @@
 <!-- script -->
 <script type="text/javascript" src="../resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="../resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.smartPop.js"></script>
+
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="../resources/css/jquery.smartPop.css" />
 
 <style type="text/css">
 .table_container {
@@ -27,7 +29,21 @@
 </style>
 
 <script type="text/javascript">
+function popup(el){
 
+	var url = "/push/" + el.id + "?camId=" + ${detailReport.CAM_ID };
+	var name = "popup";
+	window.open(url,name,"width=800,height=400,toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=200,top=100")
+}
+
+$(document).ready(function() {
+
+	 
+//	$('#pushTarget').click(function() {
+//	    $.smartPop.open({ title: '스마트팝', width: 900, height: 500, url: '/push/pushTarget?camId=${detailReport.CAM_ID}' });
+//	});
+	
+})
 
 </script>
 
@@ -91,6 +107,11 @@
 						<td class="active" style="width: 20%;">TARGET</td>
 						
 						<td> 
+							${detailReport.TARGET_CNT } 건 	
+							<a style="cursor:pointer" id="pushTarget" onclick="popup(this)">
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a>
+						<%--  폼전송
 							<form id="pushTarget" action="pushTarget" name="pushTarget" method="post">
 								<input type="hidden" class="form-control" id="camId" name="camId" value="${detailReport.CAM_ID }">	
 								${detailReport.TARGET_CNT } 건 	
@@ -98,21 +119,47 @@
 									<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 								</a>
 							</form>
+						--%>
 						</td>
 						<td class="active" style="width: 20%;">OPEN</td>
-						<td> ${detailReport.OPEN_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+						<td> 
+							${detailReport.OPEN_CNT } 건 
+							<a style="cursor:pointer" id="pushOpen" onclick="popup(this)">
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a>
+						</td>
 					</tr>
 					<tr>
 						<td class="active" style="width: 20%;">SENT(성공/발송)</td>
-						<td> ${detailReport.SUCCESS_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+						<td> 
+							${detailReport.SUCCESS_CNT } 건 
+							<a style="cursor:pointer" id="pushSuccess" onclick="popup(this)">
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a>
+						</td>
 						<td class="active" style="width: 20%;">NO OPEN</td>
-						<td> ${detailReport.NOOPEN_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" ></td>
+						<td> 
+							${detailReport.NOOPEN_CNT } 건 
+							<a style="cursor:pointer" id="pushNoOpen" onclick="popup(this)">
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a>
+						</td>
 					</tr>
 					<tr>
 						<td class="active" style="width: 20%;">FAIL</td>
-						<td> ${detailReport.FAIL_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+						<td>
+							${detailReport.FAIL_CNT } 건 
+							<a style="cursor:pointer" id="pushFail" onclick="popup(this)">
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a> 
+						</td>
 						<td class="active" style="width: 20%;">CLICK</td>
-						<td> ${detailReport.CLICK_CNT } 건 <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+						<td> 
+							${detailReport.CLICK_CNT } 건
+							<a style="cursor:pointer" id="pushClick" >
+								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+							</a>
+						</td>
 					</tr>
 					<c:if test="${detailReport.SMS_YN eq 'Y'}">
 						<tr>
@@ -130,6 +177,7 @@
 		
 	</div>
 	<!-- 상세 레포트 테이블 끝 -->
+	<div class="modal fade bs-example-modal-sm" id="editCampModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" ></div>
 	
 </div>
 
