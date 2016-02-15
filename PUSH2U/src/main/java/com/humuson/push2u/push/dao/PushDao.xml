@@ -105,15 +105,9 @@
 		AND USER_ID = #{userId};
 	</select>
 	
-	<!-- MAX detail_id 가져오기 -->
-	<select id="getMaxDetailId" resultType="int">
-	    SELECT MAX(DETAIL_ID)
-		FROM SMS_DETAIL;
-	</select>
-    
 	<!-- report 타겟 대상자 화면 -->
 	<select id="getTargetList" parameterType="java.util.Map" resultType="java.util.Map">
-	    SELECT d.CUST_ID, PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, RTN_TYPE
+	    SELECT d.CUST_ID, a.PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, RTN_TYPE
 		FROM push_detail d
 		JOIN app_users a ON d.CUST_ID = a.CUST_ID
 		JOIN push_campaigns p on p.CAM_ID = d.CAM_ID
@@ -130,7 +124,106 @@
 		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
 		WHERE c.CAM_ID = #{camId}
 		AND USER_ID = #{userId}
-		AND RTN_TYPE = 'N'
+		AND RTN_TYPE = 'N';
+	</select>
+	
+	<!-- MAX detail_id 가져오기 -->
+	<select id="getMaxDetailId" resultType="int">
+	    SELECT MAX(DETAIL_ID)
+		FROM SMS_DETAIL;
+	</select>
+    
+	<!-- report 성공 대상자 화면 -->
+	<select id="getSuccessList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT d.CUST_ID, a.PHONE_NUM, a.OS_VER, a.DEVICE, a.APP_VER, RTN_TYPE, DATE_FORMAT(RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE
+		FROM push_detail d
+		JOIN app_users a ON d.CUST_ID = a.CUST_ID
+		JOIN push_campaigns p on p.CAM_ID = d.CAM_ID
+		WHERE d.CAM_ID = #{camId}
+		AND RTN_TYPE = 'S'
+		AND RES_CD = 1000
+		AND USER_ID = #{userId}
+		ORDER BY detail_id DESC
+		LIMIT #{limit}, 5		
+	</select>
+	
+	<select id="allSuccessSize" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(c.CAM_ID) 
+		FROM push_detail d
+		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
+		WHERE c.CAM_ID = #{camId}
+		AND USER_ID = #{userId}
+		AND RTN_TYPE = 'S'
+		AND RES_CD = 1000
+	</select>
+	
+	<!-- report 오픈 대상자 화면 -->
+	<select id="getOpenList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT R.CUST_ID, DATE_FORMAT(S.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE_S, DATE_FORMAT(R.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE_R, A.OS_VER, A.DEVICE, A.APP_VER
+		FROM push_campaigns P
+		JOIN 
+			(SELECT * FROM push_detail WHERE RTN_TYPE = 'S' AND RES_CD=1000) S
+			ON p.CAM_ID = S.CAM_ID
+		JOIN
+			(SELECT * FROM push_detail WHERE RTN_TYPE = 'R') R 
+			ON p.CAM_ID = R.CAM_ID
+			AND S.CUST_ID = R.CUST_ID
+		JOIN app_users A
+			ON A.CUST_ID = R.CUST_ID
+		WHERE P.CAM_ID = #{camId}
+		AND USER_ID = #{userId}
+		ORDER BY R.DETAIL_ID DESC	
+		LIMIT #{limit}, 5	
+	</select>
+	
+	<select id="allOpenSize" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(c.CAM_ID) 
+		FROM push_detail d
+		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
+		WHERE c.CAM_ID = #{camId}
+		AND USER_ID = #{userId}
+		AND RTN_TYPE = 'R';
+	</select>
+	
+	<!-- report 미오픈 대상자 화면 -->
+	<select id="getNoOpenList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT D.CUST_ID, D.RES_DATE, A.OS_VER, A.DEVICE, A.APP_VER
+		FROM push_campaigns P
+		JOIN push_detail D
+			ON P.CAM_ID = D.CAM_ID
+		JOIN 
+			(select MAX(DETAIL_ID) DETAIL_ID, CAM_ID
+			FROM push_detail
+			WHERE CAM_ID = #{camId}
+			GROUP BY CUST_ID) M
+			ON P.CAM_ID = M.CAM_ID
+		 	AND D.DETAIL_ID = M.DETAIL_ID
+		JOIN app_users A
+			ON A.CUST_ID = D.CUST_ID
+		WHERE P.CAM_ID = #{camId}
+		AND P.USER_ID = #{userId} 
+		AND D.RTN_TYPE = 'S' 
+		AND D.RES_CD = 1000
+		ORDER BY D.DETAIL_ID DESC
+		LIMIT #{limit}, 5	
+	</select>
+	
+	<select id="allNoOpenSize" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(D.CAM_ID)
+		FROM push_campaigns P
+		JOIN push_detail D
+		ON P.CAM_ID = D.CAM_ID
+		JOIN 
+			(select MAX(DETAIL_ID) DETAIL_ID, CAM_ID
+			FROM push_detail
+			WHERE CAM_ID = #{camId}
+			GROUP BY CUST_ID) M
+			ON P.CAM_ID = M.CAM_ID
+			AND D.DETAIL_ID = M.DETAIL_ID
+		WHERE P.CAM_ID = #{camId}
+		AND D.RTN_TYPE = 'S' 
+		AND D.RES_CD = 1000
+		AND P.USER_ID = #{userId};
 	</select>
 	
 	<!-- SMS 발송할 정보 가져오기 -->
