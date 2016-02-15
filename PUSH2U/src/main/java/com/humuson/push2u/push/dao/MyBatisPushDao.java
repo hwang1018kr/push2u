@@ -182,7 +182,7 @@ public class MyBatisPushDao implements PushDao {
 		return 0;
 	}
 	
-	// report 리스트 가져오기
+	// report 타겟 리스트 가져오기
 	@Override
 	public List<Map<String, Object>> getTargetList(Map<String, Object> map) throws RuntimeException {
 		
@@ -203,7 +203,7 @@ public class MyBatisPushDao implements PushDao {
 		return targetList;
 	}
 	
-	// report 총 개수
+	// report 타겟 총 개수
 	@Override
 	public int allTargetSize(Map<String, Object> map) throws RuntimeException {
 		
@@ -257,8 +257,127 @@ public class MyBatisPushDao implements PushDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	// report 성공 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getSuccessList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getSuccessList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
 
+	// report 성공 총 개수
+	@Override
+	public int allSuccessSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allSuccessSize(map);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
 	
+	// report 오픈 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getOpenList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getOpenList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
 	
+	// report 오픈 총 개수
+	@Override
+	public int allOpenSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allOpenSize(map);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
 	
+	// report 미오픈 리스트 가져오기
+	@Override
+	public List<Map<String, Object>> getNoOpenList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getNoOpenList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
+	
+	// report 미오픈 총 개수
+	@Override
+	public int allNoOpenSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.allNoOpenSize(map);
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
 }
