@@ -44,7 +44,7 @@
     
     
     <div class="col-md-12">
-          <p>발송실패 : 20 건</p>
+          <p>발송실패 : ${reportSize } 건</p>
     </div>
     
     
@@ -65,52 +65,42 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-						<td style="text-align: center;">잘못된 PUSH 토큰(GCM)</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-						<td style="text-align: center;">잘못된 PUSH 토큰(GCM)</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-						<td style="text-align: center;">잘못된 PUSH 토큰(GCM)</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-						<td style="text-align: center;">잘못된 PUSH 토큰(GCM)</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">Android</td>
-						<td style="text-align: center;">SHV-E300K</td>
-						<td style="text-align: center;">1.1.2</td>
-						<td style="text-align: center;">토큰 포멧 오류(APNS)</td>
-					</tr>
+					<c:forEach var="report" items="${reportList }"> 
+						<tr>
+							<td style="text-align: center;">${report.CUST_ID }</td>
+							<td style="text-align: center;">${report.RES_DATE }</td>
+							<td style="text-align: center;">${report.OS_VER }</td>
+							<td style="text-align: center;">${report.DEVICE }</td>
+							<td style="text-align: center;">${report.APP_VER }</td>
+							<td style="text-align: center;">
+								<c:choose>
+									<c:when test="${report.RES_CD == 0000 }">토큰 변경 완료</c:when>
+									<c:when test="${report.RES_CD == 3000 }">전송중</c:when>
+									<c:when test="${report.RES_CD == 3203 }">에티켓 타임</c:when>
+									<c:when test="${report.RES_CD == 4000 }">UNKNOWN FAIL</c:when>
+									<c:when test="${report.RES_CD == 4100 }">메시지 거부</c:when>
+									<c:when test="${report.RES_CD == 4400 }">푸시 거부</c:when>
+									<c:when test="${report.RES_CD == 4401 }">DENY_MKT_PUSH</c:when>
+									<c:when test="${report.RES_CD == 4500 }">DENY_APP_VERSION</c:when>
+									<c:when test="${report.RES_CD == 5000 }">미등록 고객ID</c:when>
+									<c:when test="${report.RES_CD == 6000 }">잘못된 파라미터</c:when>
+									<c:when test="${report.RES_CD == 7000 }">PRIVATE_FEEDBACK_TIMEOUT</c:when>
+									<c:when test="${report.RES_CD == 7500 }">TTL_EXPIRED</c:when>
+									<c:when test="${report.RES_CD == 8000 }">NO_SEND</c:when>
+									<c:when test="${report.RES_CD == 8500 }">PRIVATE_SERVER_ERROR</c:when>
+									<c:when test="${report.RES_CD == 9000 }">TODAY_SEND_FILTER</c:when>
+									<c:when test="${report.RES_CD == 9999 }">PENDING</c:when>
+									<c:otherwise>기타 오류</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+					</c:forEach>
 				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
+				<c:if test="${fn:length(reportList) == 0 }">
 					<tr>
 						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
 					</tr>
-				</c:if> --%>
+				</c:if> 
 				</tbody>
 			</table>
 		</div>
@@ -118,7 +108,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }
 				</ul>
 			</nav>
 		</div>
