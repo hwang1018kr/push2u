@@ -3,6 +3,8 @@ package com.humuson.push2u.push.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * push 관련 비즈니스 규약(추상메소드) 선언
  * @author 황집중
@@ -19,7 +21,7 @@ public interface PushService {
 	
 	// 캠페인 정보 insert
 	public void insertCampaign(String userId, String msgType, String pushTitle, 
-			String popupContents, String pushMsg, String inAppcontents, String smsYN, String smsContents, int targetcnt) throws RuntimeException;
+			String popupContents, String pushMsg, String inAppcontents, String smsYN, String smsContents, String phoneNum, int targetcnt) throws RuntimeException;
 	
 	// 캠페인 detail insert
 	public void insertPushDetail(List<Map<String, Object>> detailList) throws RuntimeException;
