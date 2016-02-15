@@ -51,6 +51,12 @@ public interface PushService {
 	// report 성공 대상자 총 개수 
 	public int allSuccessSize(String userId, int camId) throws RuntimeException;
 	
+	// report 실패 대상자 가져오기
+	public List<Map<String, Object>> getFailList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report 실패 대상자 총 개수
+	public int allFailSize(String userId, int camId) throws RuntimeException;
+	
 	// report 오픈 대상자 가져오기
 	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException;
 	
