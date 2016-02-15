@@ -3,8 +3,6 @@ package com.humuson.push2u.push.service;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 /**
  * push 관련 비즈니스 규약(추상메소드) 선언
  * @author 황집중
@@ -46,4 +44,23 @@ public interface PushService {
 	
 	// SMS 발송 스케줄러
 	public void sendSmsScheduler() throws RuntimeException;
+	
+	// report 성공 대상자 가져오기
+	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report 성공 대상자 총 개수 
+	public int allSuccessSize(String userId, int camId) throws RuntimeException;
+	
+	// report 오픈 대상자 가져오기
+	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report 오픈 대상자 총 개수 
+	public int allOpenSize(String userId, int camId) throws RuntimeException;
+	
+	// report 미 오픈 대상자 가져오기
+	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report 미 오픈 대상자 총 개수 
+	public int allNoOpenSize(String userId, int camId) throws RuntimeException;
+	
 }
