@@ -213,7 +213,7 @@
 	
 	<!-- report 미오픈 대상자 화면 -->
 	<select id="getNoOpenList" parameterType="java.util.Map" resultType="java.util.Map">
-	    SELECT D.CUST_ID, D.RES_DATE, A.OS_VER, A.DEVICE, A.APP_VER
+	    SELECT D.CUST_ID, DATE_FORMAT(D.RES_DATE, '%Y-%m-%d %H:%i:%s') RES_DATE, A.OS_VER, A.DEVICE, A.APP_VER
 		FROM push_campaigns P
 		JOIN push_detail D
 			ON P.CAM_ID = D.CAM_ID
@@ -283,6 +283,31 @@
 	    UPDATE PUSH_DETAIL
 		SET SMS_SEND_YN = 'Y'
 		WHERE DETAIL_ID = #{detailId}
+	</update>
+	
+	<!-- 로컬 SMS_DETAIL 테이블 MAX MSG_ID -->
+	<select id="getMaxMsgId" resultType="int">
+		SELECT MAX(MSG_ID)
+		FROM sms_detail
+	</select>
+	
+	<!-- 아이하트 SMS 로그 리스트 가져오기 -->
+	<select id="getSmsLogList" parameterType="int" resultType="java.util.Map">
+		SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3  
+		FROM MSG_LOG_201602
+		WHERE MSG_ETC1 = 'push2u'
+		AND MSG_SEQ > #{maxMsgId}
+		ORDER BY MSG_SEQ
+	</select>
+	
+	<!-- SMS_DETAIL 로그 UPDATE -->
+	<update id="updateSmsDetail" parameterType="java.util.Map">
+	    UPDATE sms_detail
+		SET RSLT_CODE = #{RSLT_CODE}
+		, RSLT_CODE2 = #{RSLT_CODE2}
+		, MSG_ID = #{MSG_SEQ}
+		WHERE CAM_ID = #{MSG_ETC2}
+		AND CUST_ID = #{MSG_ETC3}
 	</update>
 		
 </mapper>
