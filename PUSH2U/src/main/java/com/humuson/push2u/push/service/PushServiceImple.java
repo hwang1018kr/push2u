@@ -116,7 +116,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 30000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +222,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -265,6 +265,72 @@ public class PushServiceImple implements PushService {
 		}
 		
 	}
+	
+	
+	// 로컬 sms_detail MAX MSG_ID 아이디 가져오기
+	@Override
+	public int getMaxMsgId() throws RuntimeException {
+		
+		return pushDao.getMaxMsgId();
+	}
+	
+	// SMS 로그 스케줄러
+	@Scheduled(fixedDelay = 60000)
+	@Override  
+	public void getSmsLogScheduler() throws RuntimeException {
+		
+		logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   문자 로그 스케줄러 실행   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		int maxMsgId = 0;
+		
+		SqlSession session  = null;
+		SqlSession session2 = null;
+		
+		try {
+			
+			session  = sqlSessionFactory.openSession();
+			session2 = sqlSessionFactory2.openSession();
+			
+			PushDao dao  = session.getMapper(PushDao.class);
+			PushDao dao2 = session2.getMapper(PushDao.class);
+			
+			maxMsgId = dao.getMaxMsgId();
+			
+			List<Map<String, Object>> smsList = null;
+			
+			smsList = dao2.getSmsLogList(maxMsgId);
+			
+			logger.debug("==========================     MAX 메세지 아이디 : " + maxMsgId);
+			logger.debug("==========================     가져온 SMS LIST 개수 : " + smsList.size());
+			
+			for (Map<String, Object> map : smsList) {
+				
+				dao.updateSmsDetail(map);
+			}
+		
+		} finally {
+			session.close();
+			session2.close();
+		}
+		
+	}
+	
+	// 아이하트 SMS 로그 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsLogList(int maxMsgId) throws RuntimeException {
+		
+		return pushDao.getSmsLogList(maxMsgId);
+		
+	}
+	
+	// sms_detail 로그 업데이트
+	@Override
+	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException {
+				
+		pushDao.updateSmsDetail(map);
+		
+	}
+	
 	
 	// report 성공 대상자 가져오기
 	@Override
