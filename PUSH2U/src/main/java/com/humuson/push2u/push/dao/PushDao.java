@@ -110,6 +110,15 @@ public interface PushDao {
 	// 로컬 sms_detail 로그 UPDATE
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException;
 	
+	// 로컬 push_click_detail 테이블 MAX click_id 가져오기
+	public int getMaxClickId() throws RuntimeException;
+	
+	// PMS CLICK_DETAIL 로그 가져오기
+	public List<Map<String, Object>> getClickLogList(int maxClickId) throws RuntimeException;
+	
+	// 로컬 push_click_detail 로그 인서트
+	public void insertClickDetail(Map<String, Object> map) throws RuntimeException;
+	
 	// sms 결과 카운트 UPDATE
 	public void plusSmsCnt(Map<String, Object> map) throws RuntimeException;
 }
