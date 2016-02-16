@@ -505,6 +505,7 @@ public class PushController {
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		
 		return "report/pushNoOpen";
 	}
 
@@ -512,7 +513,38 @@ public class PushController {
 	 * report sms 성공 화면 요청
 	 */
 	@RequestMapping(value = "/smsSuccess")
-	public String smsSuccessView() {
+	public String smsSuccessView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.smsSuccessSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "smsSuccess";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getSmsSuccessList(userId, Integer.parseInt(camId), limit);
+		
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
+		
 		return "report/smsSuccess";
 	}
 
@@ -520,7 +552,38 @@ public class PushController {
 	 * report sms 실패 화면 요청
 	 */
 	@RequestMapping(value = "/smsFail")
-	public String smsFailView() {
+	public String smsFailView(Model model, HttpSession session, HttpServletRequest request) {
+		
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId     	= "qqq";
+		String camId        = request.getParameter("camId");
+		String pagerHtml 	= null;
+		int reportSize   	= pushService.smsFailSize(userId, Integer.parseInt(camId));
+		int limit  	     	= 0;
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+		String reportString = "smsFail";
+		
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
+		
+		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
+		pagingHelper.calculate();
+		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
+		
+		if(pageNum == 1) {
+			limit = 0;
+		} else {
+			limit = limit + 5 * (pageNum - 1);
+		}
+		
+		List<Map<String, Object>> reportList = pushService.getSmsFailList(userId, Integer.parseInt(camId), limit);
+				
+		model.addAttribute("reportList", reportList);
+		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("reportSize", reportSize);
+		
 		return "report/smsFail";
 	}
 
