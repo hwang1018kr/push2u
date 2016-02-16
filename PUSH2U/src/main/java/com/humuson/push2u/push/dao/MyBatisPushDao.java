@@ -421,6 +421,90 @@ public class MyBatisPushDao implements PushDao {
 		return reportSize;
 	}
 	
+	// report SMS 성공 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsSuccessList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getSmsSuccessList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
+	
+	// report SMS 성공 대상자 총 개수
+	@Override
+	public int smsSuccessSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.smsSuccessSize(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
+	
+	// report SMS 실패 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsFailList(Map<String, Object> map) throws RuntimeException {
+		
+		List<Map<String, Object>> targetList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			targetList = dao.getSmsFailList(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return targetList;
+	}
+	
+	// report SMS 실패 대상자 총 개수
+	@Override
+	public int smsFailSize(Map<String, Object> map) throws RuntimeException {
+		
+		int reportSize  = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			reportSize = dao.smsFailSize(map);
+			
+		} finally {
+			session.close();
+		}
+		
+		return reportSize;
+	}
+	
 	// 로컬 sms_detail MAX MSG_ID 가져오기
 	@Override
 	public int getMaxMsgId() throws RuntimeException {
@@ -456,4 +540,12 @@ public class MyBatisPushDao implements PushDao {
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException {
 		// TODO Auto-generated method stub
 	}
+
+	// sms 결과 카운트 UPDATE
+	@Override
+	public void plusSmsCnt(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
