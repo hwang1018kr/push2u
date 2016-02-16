@@ -116,7 +116,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +222,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -275,7 +275,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
@@ -331,6 +331,77 @@ public class PushServiceImple implements PushService {
 		pushDao.updateSmsDetail(map);
 		
 	}
+	
+	
+	
+	// 로컬 puch_click_detail MAX CLICK_ID 아이디 가져오기
+	@Override
+	public int getMaxClickId() throws RuntimeException {
+		
+		return pushDao.getMaxClickId();
+	}
+	
+	// CLICK_DETAIL 로그 스케줄러
+	@Scheduled(fixedDelay = 60000)
+	@Override  
+	public void getClickLogScheduler() throws RuntimeException {
+		
+		logger.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   클릭 로그 스케줄러 실행   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		
+		int maxClickId = 0;
+		
+		SqlSession session  = null;
+		SqlSession session3 = null;
+		
+		try {
+			
+			session  = sqlSessionFactory.openSession();
+			session3 = sqlSessionFactory3.openSession();
+			
+			PushDao dao  = session.getMapper(PushDao.class);
+			PushDao dao3 = session3.getMapper(PushDao.class);
+			
+			maxClickId = dao.getMaxClickId();
+			
+			List<Map<String, Object>> clickList = null;
+			
+			clickList = dao3.getClickLogList(maxClickId);
+			
+			logger.debug("==========================     MAX 클릭 아이디 : " + maxClickId);
+			logger.debug("==========================     가져온 CLICK LIST 개수 : " + clickList.size());
+			
+			for (Map<String, Object> map : clickList) {
+				
+				dao.insertClickDetail(map);
+			}
+		
+		} finally {
+			session.close();
+			session3.close();
+		}
+		
+	}
+	
+	// PMS CLICK DETAIL 로그 가져오기
+	@Override
+	public List<Map<String, Object>> getClickLogList(int maxClickId) throws RuntimeException {
+		
+		return pushDao.getClickLogList(maxClickId);
+		
+	}
+	
+	// push_click_detail 로그 인서트
+	@Override
+	public void insertClickDetail(Map<String, Object> map) throws RuntimeException {
+				
+		pushDao.insertClickDetail(map);
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	// report 성공 대상자 가져오기
