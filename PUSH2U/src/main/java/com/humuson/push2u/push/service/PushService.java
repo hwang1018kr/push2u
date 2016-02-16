@@ -93,4 +93,16 @@ public interface PushService {
 	// sms_detail 로그 업데이트
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException;
 	
+	// CLICK_DETAIL 로그 스케줄러
+	public void getClickLogScheduler() throws RuntimeException;
+	
+	// 로컬 push_click_detail MAX CLICK_ID 아이디 가져오기
+	public int getMaxClickId() throws RuntimeException;
+	
+	// PMS TB_CLICK 테이블 로그 가져오기
+	public List<Map<String, Object>> getClickLogList(int maxMsgId) throws RuntimeException;
+	
+	// push_click_detail 로그 인서트
+	public void insertClickDetail(Map<String, Object> map) throws RuntimeException;
+	
 }
