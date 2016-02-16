@@ -540,6 +540,42 @@ public class MyBatisPushDao implements PushDao {
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException {
 		// TODO Auto-generated method stub
 	}
+	
+	// 로컬 click_detail_id MAX Click_ID 가져오기
+	@Override
+	public int getMaxClickId() throws RuntimeException {
+		// TODO Auto-generated method stub
+		int maxClickId = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			maxClickId = dao.getMaxClickId();
+			
+		} finally {
+			session.close();
+		}
+		
+		return maxClickId;
+
+	}
+	
+	// PMS CLICK 로그 가져오기
+	@Override
+	public List<Map<String, Object>> getClickLogList(int maxMsgId) throws RuntimeException {
+		// TODO Auto-generated method stub
+
+		return null;
+	}
+	
+	// 로컬 push_click_detail 로그 인서트
+	@Override
+	public void insertClickDetail(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+	}
 
 	// sms 결과 카운트 UPDATE
 	@Override
