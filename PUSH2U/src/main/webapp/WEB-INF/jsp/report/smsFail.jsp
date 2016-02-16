@@ -44,7 +44,7 @@
     
     
     <div class="col-md-12">
-          <p>발송실패 : 5 건</p>
+          <p>발송실패 : ${reportSize } 건</p>
     </div>
     
     
@@ -63,42 +63,34 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">잘못된 전화번호</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">잘못된 전화번호</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">잘못된 전화번호</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">하루 메시지 수량 초과</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">하루 메시지 수량 초과</td>
-					</tr>
+					<c:forEach var="report" items="${reportList }">
+						<tr>
+							<td style="text-align: center;">${report.CUST_ID }</td>
+							<td style="text-align: center;">${report.SEND_TO }</td>
+							<td style="text-align: center;">${report.REQ_DATE } </td>
+							<td style="text-align: center;">
+								<c:choose>
+									<c:when test="${report.RSLT_CODE2 eq '1' }">TIMEOUT</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'C' }">전원 꺼짐</c:when>
+									<c:when test="${report.RSLT_CODE2 eq '2' }">잘못된 전화번호</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'Z' }">기타 실패</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'k' }">이통사 스팸 처리</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'o' }">메시지 길이 초과</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'p' }">번호 형식 오류</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'Q' }">필드 형식 오류</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'q' }">메시지 중복키 체크</c:when>
+									<c:when test="${report.RSLT_CODE2 eq 'y' }">하루 메시지 수량 초과</c:when>
+									<c:otherwise>기타 오류</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
+					</c:forEach>
 				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
-					<tr>
-						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
-					</tr>
-				</c:if> --%>
+					<c:if test="${fn:length(reportList) == 0 }">
+						<tr>
+							<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
@@ -106,7 +98,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }
 				</ul>
 			</nav>
 		</div>
