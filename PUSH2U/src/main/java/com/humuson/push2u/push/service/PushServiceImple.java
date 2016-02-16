@@ -116,7 +116,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +222,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -275,7 +275,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
@@ -306,6 +306,7 @@ public class PushServiceImple implements PushService {
 			for (Map<String, Object> map : smsList) {
 				
 				dao.updateSmsDetail(map);
+				dao.plusSmsCnt(map);
 			}
 		
 		} finally {
@@ -432,8 +433,55 @@ public class PushServiceImple implements PushService {
 		return pushDao.allNoOpenSize(map);
 	}
 
+	// report SMS 성공 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getSmsSuccessList(map);
+	}
 	
+	// report SMS 성공 대상사 총 개수
+	@Override
+	public int smsSuccessSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.smsSuccessSize(map);
+	}
+	
+	// report SMS 실패 대상자 가져오기
+	@Override
+	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		map.put("limit", limit);
+		
+		return pushDao.getSmsFailList(map);
+	}
 
-	
-	
+	// report SMS 실패 대상자 총 개수
+	@Override
+	public int smsFailSize(String userId, int camId) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("camId", camId);
+		
+		return pushDao.smsFailSize(map);
+		
+	}
+
 }
