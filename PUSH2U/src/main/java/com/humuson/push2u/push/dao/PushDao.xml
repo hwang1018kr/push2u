@@ -99,7 +99,7 @@
 	<!-- report 상세 화면 -->
 	<select id="getDetailReport" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT CAM_ID, PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, SUCCESS_CNT - OPEN_CNT NOOPEN_CNT, 
-      		   TARGET_CNT - SUCCESS_CNT FAIL_CNT, CLICK_CNT, SMS_YN 
+      		   TARGET_CNT - SUCCESS_CNT FAIL_CNT, CLICK_CNT, SMS_YN, SMS_SUCCESS_CNT, SMS_FAIL_CNT
 		FROM PUSH_CAMPAIGNS
 		WHERE CAM_ID = #{camId}
 		AND USER_ID = #{userId};
@@ -252,6 +252,54 @@
 		AND P.USER_ID = #{userId};
 	</select>
 	
+	<!-- report SMS 성공 대상자 리스트 -->
+	<select id="getSmsSuccessList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT S.CUST_ID, S.SEND_TO, S.REQ_DATE
+		FROM PUSH_CAMPAIGNS P 
+		JOIN SMS_DETAIL S
+		ON P.CAM_ID = S.CAM_ID
+		WHERE P.USER_ID = #{userId}
+		AND S.CAM_ID = #{camId}
+		AND S.RSLT_CODE = 100
+		ORDER BY S.DETAIL_ID DESC
+		LIMIT #{limit}, 5
+	</select>
+	
+	<!-- report SMS 성공 대상자 개수 -->
+	<select id="smsSuccessSize" parameterType="java.util.Map" resultType="int">
+	    SELECT COUNT(*)
+		FROM PUSH_CAMPAIGNS P 
+		JOIN SMS_DETAIL S
+		ON P.CAM_ID = S.CAM_ID
+		WHERE P.USER_ID = #{userId}
+		AND S.CAM_ID = #{camId}
+		AND S.RSLT_CODE = 100
+	</select>
+	
+	<!-- report SMS 실패 대상자 리스트 -->
+	<select id="getSmsFailList" parameterType="java.util.Map" resultType="java.util.Map">
+	    SELECT S.CUST_ID, S.SEND_TO, S.REQ_DATE, S.RSLT_CODE2
+		FROM PUSH_CAMPAIGNS P 
+		JOIN SMS_DETAIL S
+		ON P.CAM_ID = S.CAM_ID
+		WHERE P.USER_ID = #{userId}
+		AND S.CAM_ID = #{camId}
+		AND S.RSLT_CODE IS NULL
+		ORDER BY S.DETAIL_ID DESC
+		LIMIT #{limit}, 5
+	</select>
+	
+	<!-- report SMS 실패 대상자 개수 -->
+	<select id="smsFailSize" parameterType="java.util.Map" resultType="int">
+	    SELECT COUNT(*)
+		FROM PUSH_CAMPAIGNS P 
+		JOIN SMS_DETAIL S
+		ON P.CAM_ID = S.CAM_ID
+		WHERE P.USER_ID = #{userId}
+		AND S.CAM_ID = #{camId}
+		AND S.RSLT_CODE IS NULL
+	</select>
+	
 	<!-- SMS 발송할 정보 가져오기 -->
 	<select id="getSMSInfo" parameterType="int" resultType="java.util.Map">
 	    SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM'
@@ -329,5 +377,21 @@
 		INSERT INTO PUSH_CLICK_DETAIL(CLICK_ID, LINK_SEQ, LINK, MSG_PUSH_TYPE)
 		VALUES (#{ID}, #{LINK_SEQ}, #{LINK}, #{MSG_PUSH_TYPE})
 	</insert>
+	
+	<!-- SMS 결과 카운트 UPDATE -->
+	<update id="plusSmsCnt" parameterType="java.util.Map">
+		<choose>
+			<when test="RSLT_CODE == 100">
+			    UPDATE PUSH_CAMPAIGNS
+				SET SMS_SUCCESS_CNT = SMS_SUCCESS_CNT + 1
+				WHERE CAM_ID = #{MSG_ETC2}
+			</when>
+			<otherwise>
+			    UPDATE PUSH_CAMPAIGNS
+				SET SMS_FAIL_CNT = SMS_FAIL_CNT + 1
+				WHERE CAM_ID = #{MSG_ETC2}
+			</otherwise>
+		</choose>	    
+	</update>
 		
 </mapper>
