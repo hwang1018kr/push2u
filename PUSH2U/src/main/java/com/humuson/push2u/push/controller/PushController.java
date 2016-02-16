@@ -157,15 +157,18 @@ public class PushController {
 		
 		String userId        = String.valueOf(session.getAttribute("userId"));
 		String pushTitle     = request.getParameter("push_title");
+		String pushMsg 		 = request.getParameter("popup_contents");
 		String popupContents = request.getParameter("pushEditor");
 		String inAppContents = request.getParameter("inappEditor");
 		String smsYN		 = request.getParameter("smsYN");
 		String smsContents   = request.getParameter("sms_contents");
 		String phoneNum		 = String.valueOf(session.getAttribute("phoneNum"));
 		
+		popupContents = popupContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
+		inAppContents = inAppContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
 		
-		pushService.insertCampaign(userId, "H", pushTitle, popupContents, popupContents, inAppContents, smsYN, smsContents, phoneNum, appUserList.size());
+		pushService.insertCampaign(userId, "H", pushTitle, popupContents, pushMsg, inAppContents, smsYN, smsContents, phoneNum, appUserList.size());
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
