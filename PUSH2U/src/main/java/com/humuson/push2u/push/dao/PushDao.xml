@@ -50,7 +50,7 @@
 	            VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE}, 'N', #{DATA})
 	        </when>
 	        <otherwise>
-	            VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE}, NULL)
+	            VALUES (#{CAM_ID}, #{ID}, #{REQ_UID}, #{CUST_ID}, #{RTN_TYPE}, #{RES_CD}, #{RES_DATE}, NULL, #{DATA})
 	        </otherwise>
 	    </choose>
 	</insert>
