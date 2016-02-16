@@ -55,7 +55,7 @@ $(function(){
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: editor_object,
         elPlaceHolder: "inappEditor",
-        sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html", 
+        sSkinURI: "/resources/smarteditor/SmartEditor2Skin2.html", 
         htParams : {
             // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
             bUseToolbar : true,             
@@ -69,33 +69,37 @@ $(function(){
  	// 푸시 타이틀 미리보기 입력
 	$("#push_title").keyup(function() {
 		
-		limitByte(this, 40);
+		limitByte(this, 40, "title");
 		
 	});
 	
 	// 상태창 내용 미리보기 입력
 	$("#popup_contents").keyup(function() {
 		
-		limitByte(this, 80);
+		limitByte(this, 80, "status");
 		
 	});
 	
 	// 푸시 팝업 미리보기 입력
-	$("#pushEditor").keyup(function() {
+	$(".se2_inputarea").keyup(function() {
 		
-		limitByte(this, 3500);
+		alert("호출");
+		
+		limitByte(this, 3500, "popup");
 		
 	});
 	
 	// 앱 내 메시지 미리보기 입력
-	$("#inappEditor").keyup(function() {
+	$(".se2_inputarea").keyup(function() {
 		
-		limitByte(this, 3500);
+		alert("호출");
+		
+		limitByte(this, 3500, "inapp");
 		
 	});
 	
 	// 바이트 제한 함수
-	function limitByte(obj, bytes){
+	function limitByte(obj, bytes, type){
         var text = $(obj).val();
         var leng = text.length;
         while(getTextLength(text) > bytes) {
@@ -106,10 +110,12 @@ $(function(){
         }
         $(obj).val(text);
         
-        if (bytes == 80) {
+        if (type == "status") {
+        	$('#status_byteInfo').text(getTextLength(text));
+        } else if (type == "popup") {
         	$('#popup_byteInfo').text(getTextLength(text));
-        } else if (bytes == 3500) {
-        	$('#inaap_byteInfo').text(getTextLength(text));
+        } else if (type == "inapp") {
+        	$('#inapp_byteInfo').text(getTextLength(text));
         }
         
     }
@@ -126,6 +132,34 @@ $(function(){
         }
         return len;
     } // 문자 바이트 체크 끝
+    
+    // 스마트에디터 popup 영역 글자수 체크
+    /* function popup_count_text() { 
+    	
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
+
+        var context = oEditors.getById["ir1"].getIR(); 
+
+            if (context.length >= 1000) { 
+                alert("내용은 1000 자 이하를 입력하세요."); 
+                oEditors[0].exec("FOCUS", []); 
+                return false; 
+            } 
+    }  */
+    
+ 	// 스마트에디터 inapp 영역 글자수 체크
+    /* function inapp_count_text() { 
+ 		
+        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
+
+        var context = oEditors.getById["ir1"].getIR(); 
+
+            if (context.length >= 1000) { 
+                alert("내용은 1000 자 이하를 입력하세요."); 
+                oEditors[0].exec("FOCUS", []); 
+                return false; 
+            } 
+    }  */
      
 	 // SMS 발송 체크박스 클릭 시
 	$("#smsYN_checkbox").click(function() {
@@ -217,16 +251,18 @@ $(function(){
 				<div id="push_popup" style="margin-bottom: 20px;">
 					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
 					<textarea id="popup_contents" name="popup_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
-					<span id="popup_byteInfo">0</span>/80Bytes
+					<span id="status_byteInfo">0</span>/80Bytes
 				</div>
 
 				<div id="push_msg" style="margin-bottom: 20px;">
 				    <textarea name="pushEditor" id="pushEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea>
+				    <span id="popup_byteInfo">0</span>/3500Bytes
 				</div>
 				    
 				<label for="inapp_msg" style="font-size: 20px">앱 내 메시지</label>
 				<div id="inapp_msg" style="margin-bottom: 20px;">
 				    <textarea name="inappEditor" id="inappEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea>
+				    <span id="inapp_byteInfo">0</span>/3500Bytes
 				</div>    
 				    
 				<div class="checkbox">
