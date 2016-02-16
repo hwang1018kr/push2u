@@ -72,6 +72,18 @@ public interface PushService {
 	// report 미 오픈 대상자 총 개수 
 	public int allNoOpenSize(String userId, int camId) throws RuntimeException;
 	
+	// report SMS 성공 대상자 가져오기
+	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report SMS 성공 대상자 가져오기
+	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit) throws RuntimeException;
+	
+	// report SMS 성공 대상자 총 개수
+	public int smsSuccessSize(String userId, int camId) throws RuntimeException;
+	
+	// report SMS 실패 대상자 총 개수
+	public int smsFailSize(String userId, int camId) throws RuntimeException;
+	
 	// 로컬 sms_detail MAX MSG_ID 아이디 가져오기
 	public int getMaxMsgId() throws RuntimeException;
 	
