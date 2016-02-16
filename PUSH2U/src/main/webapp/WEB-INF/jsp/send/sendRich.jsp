@@ -9,9 +9,8 @@
 <!-- script -->
 <script type="text/javascript" src="/resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
-
-
 <script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script src="/resources/ckeditor/ckeditor.js"></script>
 
 <!-- css -->
 <!-- <link rel="stylesheet" href="../resources/css/bootstrap.css" />
@@ -22,7 +21,7 @@
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+<link rel="stylesheet" href="/resources/ckeditor/samples/css/samples.css">
 
 <style type="text/css">
 .table_container {
@@ -35,36 +34,7 @@
 <script type="text/javascript">
 
 $(function(){
-    //전역변수선언
-    var editor_object = [];
-    
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "pushEditor",
-        sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html", 
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,             
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
-        }
-    });
-    
-    nhn.husky.EZCreator.createInIFrame({
-        oAppRef: editor_object,
-        elPlaceHolder: "inappEditor",
-        sSkinURI: "/resources/smarteditor/SmartEditor2Skin2.html", 
-        htParams : {
-            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseToolbar : true,             
-            // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseVerticalResizer : true,     
-            // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-            bUseModeChanger : true, 
-        }
-    }); 
+
     
  	// 푸시 타이틀 미리보기 입력
 	$("#push_title").keyup(function() {
@@ -81,18 +51,14 @@ $(function(){
 	});
 	
 	// 푸시 팝업 미리보기 입력
-	$(".se2_inputarea").keyup(function() {
-		
-		alert("호출");
-		
+	$("#pushEditor").keyup(function() {
+		alert("Asdf");
 		limitByte(this, 3500, "popup");
 		
 	});
 	
 	// 앱 내 메시지 미리보기 입력
-	$(".se2_inputarea").keyup(function() {
-		
-		alert("호출");
+	$("#inappEditor").keyup(function() {
 		
 		limitByte(this, 3500, "inapp");
 		
@@ -132,34 +98,6 @@ $(function(){
         }
         return len;
     } // 문자 바이트 체크 끝
-    
-    // 스마트에디터 popup 영역 글자수 체크
-    /* function popup_count_text() { 
-    	
-        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
-
-        var context = oEditors.getById["ir1"].getIR(); 
-
-            if (context.length >= 1000) { 
-                alert("내용은 1000 자 이하를 입력하세요."); 
-                oEditors[0].exec("FOCUS", []); 
-                return false; 
-            } 
-    }  */
-    
- 	// 스마트에디터 inapp 영역 글자수 체크
-    /* function inapp_count_text() { 
- 		
-        oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
-
-        var context = oEditors.getById["ir1"].getIR(); 
-
-            if (context.length >= 1000) { 
-                alert("내용은 1000 자 이하를 입력하세요."); 
-                oEditors[0].exec("FOCUS", []); 
-                return false; 
-            } 
-    }  */
      
 	 // SMS 발송 체크박스 클릭 시
 	$("#smsYN_checkbox").click(function() {
@@ -176,11 +114,10 @@ $(function(){
 	
     //전송버튼 클릭이벤트
     $("#sendPush").click(function(){
-        //id가 smarteditor인 textarea에 에디터에서 대입
-        editor_object.getById["pushEditor"].exec("UPDATE_CONTENTS_FIELD", []);
-        editor_object.getById["inappEditor"].exec("UPDATE_CONTENTS_FIELD", []); 
-        // 이부분에 에디터 validation 검증
         
+    	CKEDITOR.instances.pushEditor.getData();
+    	CKEDITOR.instances.inappEditor.getData();
+    	
         var chk = $("#smsYN_checkbox").prop("checked");
 		
 		if(chk) {
@@ -253,15 +190,17 @@ $(function(){
 					<textarea id="popup_contents" name="popup_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
 					<span id="status_byteInfo">0</span>/80Bytes
 				</div>
-
+				
 				<div id="push_msg" style="margin-bottom: 20px;">
-				    <textarea name="pushEditor" id="pushEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea>
+				  <!--  <textarea name="pushEditor" id="pushEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea> -->
+				  <textarea class="ckeditor" cols="20" id="pushEditor" name="pushEditor" rows="15"></textarea>
 				    <span id="popup_byteInfo">0</span>/3500Bytes
 				</div>
 				    
 				<label for="inapp_msg" style="font-size: 20px">앱 내 메시지</label>
 				<div id="inapp_msg" style="margin-bottom: 20px;">
-				    <textarea name="inappEditor" id="inappEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea>
+				   <!-- <textarea name="inappEditor" id="inappEditor" rows="10" cols="100" style="width:490px; height:100px;"></textarea> -->
+					<textarea class="ckeditor" cols="20" id="inappEditor" name="inappEditor" rows="15"></textarea>
 				    <span id="inapp_byteInfo">0</span>/3500Bytes
 				</div>    
 				    
