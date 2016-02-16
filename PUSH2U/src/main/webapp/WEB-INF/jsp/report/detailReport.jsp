@@ -164,9 +164,19 @@ $(document).ready(function() {
 					<c:if test="${detailReport.SMS_YN eq 'Y'}">
 						<tr>
 							<td class="active" style="width: 20%;">SMS 성공</td>
-							<td> <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+							<td> 
+								${detailReport.SMS_SUCCESS_CNT } 건
+								<a style="cursor:pointer" id="smsSuccess" onclick="popup(this)">
+									<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" >
+								</a>
+							</td>
 							<td class="active" style="width: 20%;">SMS 실패</td>
-							<td> <img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > </td>
+							<td> 
+								${detailReport.SMS_FAIL_CNT } 건
+								<a style="cursor:pointer" id="smsFail"  onclick="popup(this)">
+									<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
+								</a>
+							</td>
 						</tr>
 					</c:if>
 				</tbody>
