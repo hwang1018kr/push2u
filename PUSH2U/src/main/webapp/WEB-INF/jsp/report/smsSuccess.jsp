@@ -44,7 +44,7 @@
     
     
     <div class="col-md-12">
-          <p>발송성공 : 90 건</p>
+          <p>발송성공 : ${reportSize } 건</p>
     </div>
     
     
@@ -58,47 +58,23 @@
 						<th style="width: 25%; text-align: center;">User ID</th>
 						<th style="width: 25%; text-align: center;">Phone</th>
 						<th style="width: 25%; text-align: center;">Send Date</th>
-						<th style="width: 25%; text-align: center;">Receive Date</th>
 
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style="text-align: center;">sehee</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-					</tr>
-					<tr>
-						<td style="text-align: center;">aaa</td>
-						<td style="text-align: center;">01066901757</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-						<td style="text-align: center;">2016-02-04 15:17:00</td>
-					</tr>
+					<c:forEach var="report" items="${reportList }">
+						<tr>
+							<td style="text-align: center;">${report.CUST_ID }</td>
+							<td style="text-align: center;">${report.SEND_TO }</td>
+							<td style="text-align: center;">${report.REQ_DATE } </td>
+						</tr>
+					</c:forEach>
 				
-				<%-- <c:if test="${fn:length(reportList) == 0 }">
-					<tr>
-						<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
-					</tr>
-				</c:if> --%>
+					<c:if test="${fn:length(reportList) == 0 }">
+						<tr>
+							<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
+						</tr>
+					</c:if>
 				</tbody>
 			</table>
 		</div>
@@ -106,7 +82,7 @@
 		<div class="col-md-6 col-md-offset-3">
 			<nav>
 				<ul id="pager" class="pager">
-					
+					${pagerHtml }
 				</ul>
 			</nav>
 		</div>
