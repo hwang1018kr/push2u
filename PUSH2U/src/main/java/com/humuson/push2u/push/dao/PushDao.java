@@ -77,6 +77,18 @@ public interface PushDao {
 	// report 미오픈 대상자 총 개수
 	public int allNoOpenSize(Map<String, Object> map) throws RuntimeException;
 	
+	// report SMS 성공 대상자 가져오기
+	public List<Map<String, Object>> getSmsSuccessList(Map<String, Object> map) throws RuntimeException;
+	
+	// report SMS 성공 대상자 총 개수
+	public int smsSuccessSize(Map<String, Object> map) throws RuntimeException;
+	
+	// report SMS 실패 대상자 가져오기
+	public List<Map<String, Object>> getSmsFailList(Map<String, Object> map) throws RuntimeException;
+	
+	// report SMS 실패 대상자 총 개수
+	public int smsFailSize(Map<String, Object> map) throws RuntimeException;
+	
 	// SMS 발송할 정보 가져오기
 	public List<Map<String, Object>> getSMSInfo(int maxDetailId) throws RuntimeException;
 	
@@ -97,4 +109,7 @@ public interface PushDao {
 	
 	// 로컬 sms_detail 로그 UPDATE
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException;
+	
+	// sms 결과 카운트 UPDATE
+	public void plusSmsCnt(Map<String, Object> map) throws RuntimeException;
 }
