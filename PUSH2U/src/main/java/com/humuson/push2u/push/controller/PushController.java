@@ -163,29 +163,30 @@ public class PushController {
 		String smsYN		 = request.getParameter("smsYN");
 		String smsContents   = request.getParameter("sms_contents");
 		String phoneNum		 = String.valueOf(session.getAttribute("phoneNum"));
+		String temp 		 = "";
+		String tempATag 	 = "";
 		
+		popupContents 		 = popupContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
+		inAppContents 		 = inAppContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
 		
-		popupContents = popupContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
-		inAppContents = inAppContents + "<script src=\"http://pushpia.com/pms-sdk.js\"></script>";
+		ArrayList<String> popupImgArray = new ArrayList<String>();
+		ArrayList<String> messageImgArray = new ArrayList<String>();
 		
-		String temp = "";
-		
-		String atag[] = new String[10];
-		String imgtag[] = new String[10];
 		int i = 0;
-		int j = 0;
+		
+		//팝업 IMG_URL 분리
 		temp = popupContents.replaceAll(System.getProperty("line.separator"), "");
 		do {
 			if (temp.contains("<a ")){
-				temp = temp.substring(popupContents.indexOf("<a") + 1);
-				atag[i] = temp.substring(0, temp.indexOf("</a>"));
+				temp = temp.substring(temp.indexOf("<a") + 1);
+				tempATag = temp.substring(0, temp.indexOf("</a>"));
 				temp = temp.substring(temp.indexOf("</a>"));
-				if(atag[i].contains("src")){
-					atag[i] = atag[i].substring(atag[i].indexOf("src"));
-					atag[i] = atag[i].substring(atag[i].indexOf("\"") + 1);
-					imgtag[j] = atag[i].substring(0, atag[i].indexOf("\""));
-					System.out.println("imgtag : " + imgtag[j]);
-					j++;
+				if(tempATag.contains("src")){
+					tempATag = tempATag.substring(tempATag.indexOf("src"));
+					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
+					popupImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+				}else{
+					popupImgArray.add("");
 				}
 				i++;
 			}else{
@@ -193,84 +194,117 @@ public class PushController {
 			}
 		}while(!temp.equals(""));
 		
-		for(i = 0; i < imgtag.length;i++){
-			System.out.println(imgtag[i]);
-		}
-
 		
-//		List<Map<String, String>> appUserList = pushService.getAppUserList();
-//		
-//		pushService.insertCampaign(userId, "H", pushTitle, popupContents, pushMsg, inAppContents, smsYN, smsContents, phoneNum, appUserList.size());
-//		
-//		String camId = String.valueOf(pushService.getMaxCamId());
-//		
-//		logger.debug(inAppContents);
-//		
-//		JsonObject jsonObj  = new JsonObject();
-//		JsonArray jsonArray = new JsonArray();
-//		
-//		List<Map<String, Object>> detailList  = new ArrayList<Map<String, Object>>();
-//		
-//		Map<String, Object> detailMap = null;
-//			
-//		int i = 1;
-//		
-//		for (Map<String, String> map : appUserList) {
-//			JsonObject listObj = new JsonObject();
-//			
-//			listObj.addProperty("reqUid", camId + "_" + i);
-//			listObj.addProperty("custId", map.get("CUST_ID"));
-//			
-//			jsonArray.add(listObj);
-//			
-//			detailMap = new HashMap<String, Object>();
-//			
-//			detailMap.put("camId", Integer.parseInt(camId));
-//			detailMap.put("reqUid", camId + "_" + i);
-//			detailMap.put("custId", map.get("CUST_ID"));
-//			
-//			detailList.add(detailMap);
-//			
-//			i++;
-//		}
-//		
-//		pushService.insertPushDetail(detailList);
-//		
-//		jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
-//		jsonObj.addProperty("msgType", "H");
-//		jsonObj.addProperty("pushTime", 1800);
-//		jsonObj.addProperty("pushTitle", pushTitle);
-//		jsonObj.addProperty("popupContent", popupContents);
-//		jsonObj.addProperty("pushMsg", popupContents);
-//		jsonObj.addProperty("inappContent", inAppContents);
-//		jsonObj.addProperty("pushKey", "1");
-//		jsonObj.addProperty("pushValue", "http://www.pushpia.com");
-//		jsonObj.addProperty("reserveTime", "20160212121212");
-//		jsonObj.add("list", jsonArray);
-//		
-//
-//		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
-//	
-//		
-//		logger.debug(jsonObj.toString());
-//		
-//		logger.debug(param);
-//		
-//		URL url = new URL("http://dev-api.pushpia.com/msg/send/realtime");
-//		HttpURLConnection con = (HttpURLConnection)url.openConnection();
-//		
-//		con.setRequestMethod("POST");
-//		con.setDoOutput(true);
-//		
-//		DataOutputStream dos = new DataOutputStream(con.getOutputStream());
-//        dos.writeBytes(param);
-//        dos.flush();
-//        dos.close(); 
-//        
-//        con.disconnect();
-//        
-//        printByInputStream(con.getInputStream());
-//        
+		i = 0;
+		
+		//인앱메세지 IMG_URL 분리
+		temp = inAppContents.replaceAll(System.getProperty("line.separator"), "");
+		do {
+			if (temp.contains("<a ")){
+				temp = temp.substring(temp.indexOf("<a") + 1);
+				tempATag = temp.substring(0, temp.indexOf("</a>"));
+				temp = temp.substring(temp.indexOf("</a>"));
+				if(tempATag.contains("src")){
+					tempATag = tempATag.substring(tempATag.indexOf("src"));
+					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
+					messageImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+				}else{
+					messageImgArray.add("");
+				}
+				i++;
+			}else{
+				temp = "";
+			}
+		}while(!temp.equals(""));
+		
+
+		List<Map<String, String>> appUserList = pushService.getAppUserList();
+		
+		pushService.insertCampaign(userId, "H", pushTitle, popupContents, pushMsg, inAppContents, smsYN, smsContents, phoneNum, appUserList.size());
+		
+		String camId = String.valueOf(pushService.getMaxCamId());
+		
+		for (i = 0; i < popupImgArray.size(); i++){
+			if ( popupImgArray.get(i)!= "" ){
+				pushService.insertImgDetail(Integer.parseInt(camId), "P", i + 1, popupImgArray.get(i)); 
+			}
+		}
+		
+		for (i = 0; i< messageImgArray.size(); i++){
+			if ( messageImgArray.get(i) != null ){
+//				logger.debug("********************" + messageImg[i]);
+				pushService.insertImgDetail(Integer.parseInt(camId), "M", i + 1, messageImgArray.get(i));  
+			} 
+		}
+		
+		
+		logger.debug(inAppContents);
+		
+		JsonObject jsonObj  = new JsonObject();
+		JsonArray jsonArray = new JsonArray();
+		
+		List<Map<String, Object>> detailList  = new ArrayList<Map<String, Object>>();
+		
+		Map<String, Object> detailMap = null;
+			
+		i = 1;
+		
+		for (Map<String, String> map : appUserList) {
+			JsonObject listObj = new JsonObject();
+			
+			listObj.addProperty("reqUid", camId + "_" + i);
+			listObj.addProperty("custId", map.get("CUST_ID"));
+			
+			jsonArray.add(listObj);
+			
+			detailMap = new HashMap<String, Object>();
+			
+			detailMap.put("camId", Integer.parseInt(camId));
+			detailMap.put("reqUid", camId + "_" + i);
+			detailMap.put("custId", map.get("CUST_ID"));
+			
+			detailList.add(detailMap);
+			
+			i++;
+		}
+		
+		pushService.insertPushDetail(detailList);
+		
+		jsonObj.addProperty("bizId", "2fa2cd24481642f190919a4edf64f653");
+		jsonObj.addProperty("msgType", "H");
+		jsonObj.addProperty("pushTime", 1800);
+		jsonObj.addProperty("pushTitle", pushTitle);
+		jsonObj.addProperty("popupContent", popupContents);
+		jsonObj.addProperty("pushMsg", popupContents);
+		jsonObj.addProperty("inappContent", inAppContents);
+		jsonObj.addProperty("pushKey", "1");
+		jsonObj.addProperty("pushValue", "http://www.pushpia.com");
+		jsonObj.addProperty("reserveTime", "20160212121212");
+		jsonObj.add("list", jsonArray);
+		
+
+		String param = "d=" + URLEncoder.encode(jsonObj.toString(), "UTF-8");
+	
+		
+		logger.debug(jsonObj.toString());
+		
+		logger.debug(param);
+		
+		URL url = new URL("http://dev-api.pushpia.com/msg/send/realtime");
+		HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		
+		con.setRequestMethod("POST");
+		con.setDoOutput(true);
+		
+		DataOutputStream dos = new DataOutputStream(con.getOutputStream());
+        dos.writeBytes(param);
+        dos.flush();
+        dos.close(); 
+        
+        con.disconnect();
+        
+        printByInputStream(con.getInputStream());
+        
         
         
 		return "redirect:/push/reportView";
