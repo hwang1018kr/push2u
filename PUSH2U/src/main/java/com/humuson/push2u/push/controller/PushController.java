@@ -157,7 +157,7 @@ public class PushController {
 		
 		String userId        = String.valueOf(session.getAttribute("userId"));
 		String pushTitle     = request.getParameter("push_title");
-		String pushMsg 		 = request.getParameter("popup_contents");
+		String pushMsg 		 = request.getParameter("status_contents");
 		String popupContents = request.getParameter("pushEditor");
 		String inAppContents = request.getParameter("inappEditor");
 		String smsYN		 = request.getParameter("smsYN");
