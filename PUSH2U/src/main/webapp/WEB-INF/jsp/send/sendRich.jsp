@@ -326,7 +326,7 @@ $(function(){
 					<div id="inapp_preview_ui" style="display: none;">
 						<div id="preview_background">
 							<img src="/resources/images/android_rich_inapp.png">
-							<div id="rich_inapp" style="position:absolute; left:20px; top:120px; height:600px; width: 385px; word-break : break-all; color: white;">
+							<div id="rich_inapp" style="position:absolute; left:20px; top:120px; height:600px; width: 385px; word-break : break-all; color: white; overflow: auto;">
 							
 							</div>
 						</div>
