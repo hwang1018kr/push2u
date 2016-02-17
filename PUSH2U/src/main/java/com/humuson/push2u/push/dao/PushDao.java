@@ -121,4 +121,13 @@ public interface PushDao {
 	
 	// sms 결과 카운트 UPDATE
 	public void plusSmsCnt(Map<String, Object> map) throws RuntimeException;
+	
+	// CLICK 인앱메세지 상세 가져오기
+	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException;
+	
+	// CLICK 팝업 상세 가져오기
+	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException;
+	
+	// CLICK IMG URL DETAIL INSERT
+	public void insertImgDetail(Map<String, Object> map) throws RuntimeException;
 }
