@@ -73,6 +73,11 @@
 	            SET CLICK_CNT = CLICK_CNT + 1
 	            WHERE CAM_ID = #{CAM_ID}
 	        </when>
+	        <when test='RTN_TYPE.equals("S") and !RES_CD.equals("1000")'>
+	            UPDATE PUSH_CAMPAIGNS
+	            SET FAIL_CNT = FAIL_CNT + 1
+	            WHERE CAM_ID = #{CAM_ID}
+	        </when>
 	        <otherwise>
 	            UPDATE PUSH_CAMPAIGNS
 	            SET TARGET_CNT = TARGET_CNT
@@ -99,7 +104,7 @@
 	<!-- report 상세 화면 -->
 	<select id="getDetailReport" parameterType="java.util.Map" resultType="java.util.Map">
 		SELECT CAM_ID, PUSH_TITLE, REQ_DATE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, SUCCESS_CNT - OPEN_CNT NOOPEN_CNT, 
-      		   TARGET_CNT - SUCCESS_CNT FAIL_CNT, CLICK_CNT, SMS_YN, SMS_SUCCESS_CNT, SMS_FAIL_CNT
+      		   FAIL_CNT, CLICK_CNT, SMS_YN, SMS_SUCCESS_CNT, SMS_FAIL_CNT
 		FROM PUSH_CAMPAIGNS
 		WHERE CAM_ID = #{camId}
 		AND USER_ID = #{userId};
