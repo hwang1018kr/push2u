@@ -94,6 +94,11 @@ $(function () {
 		
 	});
 	
+	// SMS 글자수 제한
+	$("#sms_contents").keyup(function() {
+		limitByte(this, 90);
+	});
+	
 	// 바이트 제한 함수
 	function limitByte(obj, bytes){
         var text = $(obj).val();
@@ -108,7 +113,9 @@ $(function () {
         
         if (bytes == 80) {
         	$('#popup_byteInfo').text(getTextLength(text));
-        } else if (bytes == 3500) {
+        } else if(bytes == 90) {
+        	$('#sms_byteInfo').text(getTextLength(text));
+		} else if (bytes == 3500) {
         	$('#inaap_byteInfo').text(getTextLength(text));
         }
         
@@ -254,7 +261,7 @@ $(function () {
 								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
 							</div>
 							<div style="position:absolute; left:80px; top:290px; height:15px; width:100%;">
-								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%;" disabled="disabled">
+								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
 							</div>
 						</div>
 					</div>
