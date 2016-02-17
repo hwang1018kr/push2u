@@ -116,7 +116,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +222,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -275,7 +275,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 20000)
+	@Scheduled(fixedDelay = 60000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
@@ -552,6 +552,40 @@ public class PushServiceImple implements PushService {
 		map.put("camId", camId);
 		
 		return pushDao.smsFailSize(map);
+		
+	}
+	
+	// Click 인앱메세지 상세 가져오기
+	@Override
+	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException {
+		
+//		Map<String, Object> map = new HashMap<String, Object>();
+		
+		return pushDao.getClickMessageList(camId);
+	}
+	
+	// Click 팝업 상세 가져오기
+	@Override
+	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException {
+		
+//			Map<String, Object> map = new HashMap<String, Object>();
+		
+		return pushDao.getClickPopupList(camId);
+	}
+	
+	// push_click_detail 로그 인서트
+	@Override
+	public void insertImgDetail(int camId, String pushType, int linkSeq, String imgUrl) throws RuntimeException {
+				
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("camId", camId);
+		map.put("pushType", pushType);
+		map.put("linkSeq", linkSeq);
+		map.put("imgUrl", imgUrl);
+		
+		pushDao.insertImgDetail(map);
 		
 	}
 
