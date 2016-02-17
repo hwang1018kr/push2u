@@ -16,12 +16,14 @@
 <!-- <link rel="stylesheet" href="../resources/css/bootstrap.css" />
 <link rel="stylesheet" href="../resources/css/bootstrap-theme.css" /> -->
 
+<link rel="stylesheet" href="/resources/ckeditor/samples/css/samples.css">
+
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="/resources/ckeditor/samples/css/samples.css">
+
 
 <style type="text/css">
 .table_container {
@@ -139,10 +141,6 @@ $(function(){
         
         if (type == "popup") {
         	
-        	//$(obj).val(text);
-        	//obj.setData(text);
-        	//obj.insertText(text);
-        	
         	$('#popup_byteInfo').text(getTextLength(text));
         	
         	$("#rich_popup").html("");
@@ -152,7 +150,6 @@ $(function(){
 
         } else if (type == "inapp") {
         	
-        	//$(obj).val(text);
         	$('#inapp_byteInfo').text(getTextLength(text));
         	
         	$("#rich_inapp").html("");
