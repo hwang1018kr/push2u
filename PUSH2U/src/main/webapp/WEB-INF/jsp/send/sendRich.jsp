@@ -252,11 +252,11 @@ $(function(){
 
 <div class="col-md-12" style="height: 70%">
 	<form id="pushRichSendForm" action="sendPushRich" method="post">
-		<div class="page-header col-md-10 col-md-offset-1" style="margin-top: 0px;">
+		<div class="page-header col-md-8 col-md-offset-2" style="margin-top: 0px;">
 	          <h2>RICH PUSH 발송</h2>
 	    </div>
 		<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
-			<div class="col-md-6 ">
+			<div class="col-md-6  col-md-offset-1">
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
 					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
@@ -288,7 +288,7 @@ $(function(){
 					<span id="sms_byteInfo">0</span>/90Bytes
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<label for="preview" style="font-size: 20px">미리보기</label>
 				
 				<div id="preview">
