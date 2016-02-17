@@ -105,4 +105,12 @@ public interface PushService {
 	// push_click_detail 로그 인서트
 	public void insertClickDetail(Map<String, Object> map) throws RuntimeException;
 	
+	// Click 인앱메세지 상세 가져오기
+	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException;
+	
+	// Click 팝업 상세 가져오기
+	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException;
+	
+	// Click IMG_URL 인서트
+	public void insertImgDetail(int camId, String pushType, int linkSeq, String imgUrl) throws RuntimeException;
 }
