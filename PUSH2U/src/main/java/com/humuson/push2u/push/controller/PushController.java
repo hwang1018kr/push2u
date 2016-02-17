@@ -225,13 +225,13 @@ public class PushController {
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
 		for (i = 0; i < popupImgArray.size(); i++){
-			if ( popupImgArray.get(i)!= "" ){
+			if ( "".equals(popupImgArray.get(i)) ){
 				pushService.insertImgDetail(Integer.parseInt(camId), "P", i + 1, popupImgArray.get(i)); 
 			}
 		}
 		
 		for (i = 0; i< messageImgArray.size(); i++){
-			if ( messageImgArray.get(i) != null ){
+			if ( "".equals(messageImgArray.get(i)) ){
 //				logger.debug("********************" + messageImg[i]);
 				pushService.insertImgDetail(Integer.parseInt(camId), "M", i + 1, messageImgArray.get(i));  
 			} 
@@ -364,6 +364,7 @@ public class PushController {
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
+		model.addAttribute("pageNum", pageNum);
 		
 		return "report/reportView";
 	}
@@ -376,10 +377,17 @@ public class PushController {
 		//String userId    = String.valueOf(session.getAttribute("userId"));
 		String userId = "qqq";
 		String camId 	 = request.getParameter("camId");
+		String pageString 	= request.getParameter("pageNum");
+		int pageNum 		= 1;
+
+		if (pageString != null){
+			pageNum =  Integer.parseInt(pageString);
+		}
 
 		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
 		
 		model.addAttribute("detailReport", detailReport);
+		model.addAttribute("pageNum", pageNum);
 		return "report/detailReport";
 	}
 
@@ -674,6 +682,23 @@ public class PushController {
 		model.addAttribute("pList", pList);
 		
 		return "report/pushClick";
+	}
+	
+	/*
+	 * report 전문보기 화면 요청
+	 */
+	@RequestMapping(value = "/pushView")
+	public String pushView(Model model, HttpSession session, HttpServletRequest request) {
+
+		//String userId    = String.valueOf(session.getAttribute("userId"));
+		String userId = "qqq";
+		String camId 	 = request.getParameter("camId");
+
+		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
+		
+		model.addAttribute("detailReport", detailReport);
+
+		return "report/pushView";
 	}
 
 }
