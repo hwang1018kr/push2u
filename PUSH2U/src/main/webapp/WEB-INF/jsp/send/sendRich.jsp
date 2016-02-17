@@ -7,10 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- script -->
+<script type="text/javascript" src="/resources/ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="/resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
-<script src="/resources/ckeditor/ckeditor.js"></script>
+
 
 <!-- css -->
 <!-- <link rel="stylesheet" href="../resources/css/bootstrap.css" />
@@ -29,39 +29,80 @@
     border-radius: 10px;
     position: relative;
 }
+
+.popup_button {
+	bottom : 2%;
+}
 </style>
 
 <script type="text/javascript">
 
 $(function(){
-
+	
+	// 미리보기 토글 시작
+	$("#toggle_status").click(function() {
+		$("#push_preview_ui").hide();
+		$("#inapp_preview_ui").hide();
+		
+		$("#status_preview_ui").show();
+	});
+	
+	$("#toggle_push").click(function() {
+		$("#status_preview_ui").hide();
+		$("#inapp_preview_ui").hide();
+		
+		$("#push_preview_ui").show();
+	});
+	
+	$("#toggle_inapp").click(function() {
+		$("#status_preview_ui").hide();
+		$("#push_preview_ui").hide();
+		
+		$("#inapp_preview_ui").show();
+	});
+	// 미리보기 토글 끝
     
  	// 푸시 타이틀 미리보기 입력
 	$("#push_title").keyup(function() {
 		
 		limitByte(this, 40, "title");
 		
+		var title = $("#push_title").val();
+		
+		$("#preview_title").val("");
+		$("#preview_title").val(title);
+		
 	});
 	
-	// 상태창 내용 미리보기 입력
-	$("#popup_contents").keyup(function() {
+	// 상태창 메시지 미리보기 입력
+	$("#status_contents").keyup(function() {
 		
 		limitByte(this, 80, "status");
 		
-	});
-	
-	// 푸시 팝업 미리보기 입력
-	$("#pushEditor").keyup(function() {
-		alert("Asdf");
-		limitByte(this, 3500, "popup");
+		var title = $("#status_contents").val();
+		
+		$("#status_preview").val("");
+		$("#status_preview").val(title);
 		
 	});
 	
-	// 앱 내 메시지 미리보기 입력
-	$("#inappEditor").keyup(function() {
-		
-		limitByte(this, 3500, "inapp");
-		
+	// CKEDITOR keyup(푸시 팝업 미리보기)
+	CKEDITOR.instances["pushEditor"].on("instanceReady", function(){
+		CKEDITOR.instances.pushEditor.on("change", function() {
+        	ckLimitByte(CKEDITOR.instances.pushEditor, 3500, "popup");
+        });
+ 	});
+	
+	// CKEDITOR keyup(인앱 미리보기)
+	CKEDITOR.instances["inappEditor"].on("instanceReady", function(){
+		CKEDITOR.instances.inappEditor.on("change", function() {
+        	ckLimitByte(CKEDITOR.instances.inappEditor, 3500, "inapp");
+        });
+ 	});
+	
+	// SMS 글자수 제한
+	$("#sms_contents").keyup(function() {
+		limitByte(this, 90, "sms");
 	});
 	
 	// 바이트 제한 함수
@@ -78,12 +119,43 @@ $(function(){
         
         if (type == "status") {
         	$('#status_byteInfo').text(getTextLength(text));
-        } else if (type == "popup") {
-        	$('#popup_byteInfo').text(getTextLength(text));
-        } else if (type == "inapp") {
-        	$('#inapp_byteInfo').text(getTextLength(text));
+        } else if (type == "sms") {
+        	$('#sms_byteInfo').text(getTextLength(text));
+        }
+    }
+	
+	// 바이트 제한 함수(ckeditor)
+	function ckLimitByte(obj, bytes, type){
+		
+        var text = obj.getData();
+        var leng = text.length;
+        while(getTextLength(text) > bytes) {
+        	
+            leng--;
+            text = text.substring(0, leng);
+            
         }
         
+        if (type == "popup") {
+        	
+        	//$(obj).val(text);
+        	//obj.setData(text);
+        	//obj.insertText(text);
+        	$('#popup_byteInfo').text(getTextLength(text));
+        	
+        	$("#rich_popup").html("");
+        	$("#rich_popup").html(text);
+        	
+        	$("#rich_popup").append('<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px; height:30px; width: 60px;" disabled="disabled">닫기</button><button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>');
+        	
+        } else if (type == "inapp") {
+        	
+        	//$(obj).val(text);
+        	$('#inapp_byteInfo').text(getTextLength(text));
+        	
+        	$("#rich_inapp").html("");
+        	$("#rich_inapp").html(text);
+        }
     }
 	
 	function getTextLength(str) {
@@ -134,7 +206,6 @@ $(function(){
     });
     
 })
-
 </script>
 
 <title>PUSH2U - PUSH 발송</title>
@@ -179,15 +250,15 @@ $(function(){
 
 <div class="col-md-12" style="height: 70%">
 	<form id="pushRichSendForm" action="sendPushRich" method="post">
-		<div class="page-header col-md-8 col-md-offset-2" style="margin-top: 0px;">
+		<div class="page-header col-md-10 col-md-offset-1" style="margin-top: 0px;">
 	          <h2>RICH PUSH 발송</h2>
 	    </div>
-		<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px; ">
-			<div class="col-md-8 ">
+		<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
+			<div class="col-md-6 ">
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
 					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
-					<textarea id="popup_contents" name="popup_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
+					<textarea id="status_contents" name="status_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
 					<span id="status_byteInfo">0</span>/80Bytes
 				</div>
 				
@@ -216,7 +287,49 @@ $(function(){
 				</div>
 			</div>
 			<div class="col-md-6">
+				<label for="preview" style="font-size: 20px">미리보기</label>
 				
+				<div id="preview">
+					<div class="btn-group" data-toggle="buttons" style="margin-bottom: 10px;">
+						<label id="toggle_status" class="btn active"> <input type="radio" name="options" id="option2" autocomplete="off"> 
+							상태창
+						</label> 
+						<label id="toggle_push" class="btn"> <input type="radio" name="options" id="option1" autocomplete="off" checked>
+							푸시
+						</label> 
+						<label id="toggle_inapp" class="btn"> <input type="radio"name="options" id="option3" autocomplete="off"> 
+							앱 내 메시지
+						</label>
+					</div>
+					<div id="status_preview_ui" style="display: block;">
+						<div id="preview_background">
+							<img src="/resources/images/android_rich_status.png">
+							<div style="position:absolute; left:90px; top:260px; height:15px; width: 330px;">
+								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
+							</div>
+							<div style="position:absolute; left:90px; top:285px; height:15px; width:330px;">
+								<input type="text" id="status_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
+							</div>
+						</div>
+					</div>
+					<div id="push_preview_ui" style="display: none;">
+						<div id="preview_background">
+							<img src="/resources/images/android_rich_popup.png">
+							<div id="rich_popup" style="position:absolute; background-color : white; left:70px; top:200px; width: 280px; border-radius : 15px; padding: 15px; padding-bottom: 30px; word-break : break-all; min-height: 180px; max-height: 500px; overflow: auto;">
+								<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px;  height:30px; width: 60px;" disabled="disabled">닫기</button>
+								<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>
+							</div>
+						</div>
+					</div>
+					<div id="inapp_preview_ui" style="display: none;">
+						<div id="preview_background">
+							<img src="/resources/images/android_rich_inapp.png">
+							<div id="rich_inapp" style="position:absolute; left:20px; top:120px; height:600px; width: 385px; word-break : break-all; color: white;">
+							
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-12">
