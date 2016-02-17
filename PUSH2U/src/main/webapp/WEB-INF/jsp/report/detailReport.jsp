@@ -104,9 +104,11 @@ $(document).ready(function() {
 						<td colspan="3">${detailReport.REQ_DATE }</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">TARGET</td>
+						<td class="active" style="width: 20%;">
+							TARGET</br>총 발송 수
+						</td>
 						
-						<td> 
+						<td style="width: 30%;"> 
 							${detailReport.TARGET_CNT } 건 	
 							<a style="cursor:pointer" id="pushTarget" onclick="popup(this)">
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
@@ -130,9 +132,11 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">SENT(성공/발송)</td>
+						<td class="active" style="width: 20%;">
+							SENT(성공/발송)</br>성공 발송 수
+						</td>
 						<td> 
-							${detailReport.SUCCESS_CNT } 건 
+							${detailReport.SUCCESS_CNT } 건 / ${detailReport.TARGET_CNT } 건
 							<a style="cursor:pointer" id="pushSuccess" onclick="popup(this)">
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a>
@@ -146,17 +150,21 @@ $(document).ready(function() {
 						</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">FAIL</td>
+						<td class="active" style="width: 20%;">
+							FAIL</br> 실패 건수
+						</td>
 						<td>
 							${detailReport.FAIL_CNT } 건 
 							<a style="cursor:pointer" id="pushFail" onclick="popup(this)">
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a> 
 						</td>
-						<td class="active" style="width: 20%;">CLICK</td>
+						<td class="active" style="width: 20%;">
+							CLICK</br>클릭 건수
+						</td>
 						<td> 
 							${detailReport.CLICK_CNT } 건
-							<a style="cursor:pointer" id="pushClick" >
+							<a style="cursor:pointer" id="pushClick" onclick="popup(this)">
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a>
 						</td>
