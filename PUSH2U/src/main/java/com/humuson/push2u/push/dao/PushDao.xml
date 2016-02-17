@@ -394,4 +394,43 @@
 		</choose>	    
 	</update>
 		
+	<!-- CLICK 인앱 메세지 상세 가져오기-->
+	<select id="getClickMessageList" parameterType="int" resultType="java.util.Map">
+		SELECT LINK.LINK_SEQ, LINK.LINK, LINK.CLICK_COUNT, IFNULL(IMG.IMG_URL, '') IMG_URL
+		FROM
+		  (SELECT 'M' PUSH_TYPE, LINK_SEQ, COUNT(LINK_SEQ) CLICK_COUNT, LINK, D.CAM_ID
+		  FROM push_detail D
+		  JOIN push_click_detail C
+		  ON D.DATA = C.CLICK_ID
+		  WHERE D.CAM_ID = #{camId}
+		  AND C.MSG_PUSH_TYPE = 'M'
+		  GROUP BY LINK_SEQ, LINK) LINK
+		LEFT OUTER JOIN img_detail IMG
+		ON LINK.PUSH_TYPE = IMG.PUSH_TYPE
+		AND LINK.LINK_SEQ = IMG.LINK_SEQ
+		AND LINK.CAM_ID = IMG.CAM_ID
+	</select>
+	
+	<!-- CLICK 팝업 상세 가져오기-->
+	<select id="getClickPopupList" parameterType="int" resultType="java.util.Map">
+		SELECT LINK.LINK_SEQ, LINK.LINK, LINK.CLICK_COUNT, IFNULL(IMG.IMG_URL, '') IMG_URL
+		FROM
+		  (SELECT 'P' PUSH_TYPE, LINK_SEQ, COUNT(LINK_SEQ) CLICK_COUNT, LINK, D.CAM_ID
+		  FROM push_detail D
+		  JOIN push_click_detail C
+		  ON D.DATA = C.CLICK_ID
+		  WHERE D.CAM_ID = #{camId}
+		  AND C.MSG_PUSH_TYPE = 'P'
+		  GROUP BY LINK_SEQ, LINK) LINK
+		LEFT OUTER JOIN img_detail IMG
+		ON LINK.PUSH_TYPE = IMG.PUSH_TYPE
+		AND LINK.LINK_SEQ = IMG.LINK_SEQ
+		AND LINK.CAM_ID = IMG.CAM_ID
+	</select>
+	
+	<!-- IMG DETAIL INSERT -->
+	<insert id="insertImgDetail" parameterType="java.util.Map">
+		INSERT INTO IMG_DETAIL (CAM_ID, PUSH_TYPE, LINK_SEQ, IMG_URL)
+		VALUES(#{camId}, #{pushType}, #{linkSeq}, #{imgUrl})
+	</insert>
 </mapper>
