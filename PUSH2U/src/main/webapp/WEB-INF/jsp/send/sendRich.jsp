@@ -85,7 +85,7 @@ $(function(){
 		$("#status_preview").val(title);
 		
 	});
-	
+
 	// CKEDITOR keyup(푸시 팝업 미리보기)
 	CKEDITOR.instances["pushEditor"].on("instanceReady", function(){
 		CKEDITOR.instances.pushEditor.on("change", function() {
@@ -107,7 +107,8 @@ $(function(){
 	
 	// 바이트 제한 함수
 	function limitByte(obj, bytes, type){
-        var text = $(obj).val();
+
+		var text = $(obj).val();
         var leng = text.length;
         while(getTextLength(text) > bytes) {
         	
@@ -129,11 +130,11 @@ $(function(){
 		
         var text = obj.getData();
         var leng = text.length;
+        
         while(getTextLength(text) > bytes) {
         	
             leng--;
             text = text.substring(0, leng);
-            
         }
         
         if (type == "popup") {
@@ -141,13 +142,14 @@ $(function(){
         	//$(obj).val(text);
         	//obj.setData(text);
         	//obj.insertText(text);
+        	
         	$('#popup_byteInfo').text(getTextLength(text));
         	
         	$("#rich_popup").html("");
         	$("#rich_popup").html(text);
         	
         	$("#rich_popup").append('<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px; height:30px; width: 60px;" disabled="disabled">닫기</button><button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>');
-        	
+
         } else if (type == "inapp") {
         	
         	//$(obj).val(text);
