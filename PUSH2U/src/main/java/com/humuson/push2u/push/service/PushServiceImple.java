@@ -116,7 +116,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +222,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -275,7 +275,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
