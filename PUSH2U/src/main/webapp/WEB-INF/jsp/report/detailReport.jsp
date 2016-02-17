@@ -33,7 +33,17 @@ function popup(el){
 
 	var url = "/push/" + el.id + "?camId=" + ${detailReport.CAM_ID };
 	var name = "popup";
-	window.open(url,name,"width=1000,height=500,toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=200,top=100")
+	var height = 500;
+	var width = 1000;
+	
+	if (el.id == "pushView"){
+		height = 600;
+	}
+	
+	var top = (screen.availHeight - height) / 2 - 50;
+	var left = (screen.availWidth - width) / 2;
+	
+	window.open(url,name,"width=" + width + ",height=" + height + ",toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=" + left + ",top=" + top + "")
 }
 
 $(document).ready(function() {
@@ -95,8 +105,24 @@ $(document).ready(function() {
     <!-- 상세 레포트 테이블 시작 -->
 	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
 		<div class="table-responsive">
-		
-			<label for="detailReport" style="font-size: 20px;">푸시 제목 : ${detailReport.PUSH_TITLE }</label>
+			
+
+				<div class="col-md-2" style="padding-left: 1px;">
+					<a style="cursor:pointer; " id="pushView" onclick="popup(this)">
+						<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-primary btn-sm">전문보기</button>
+					</a>
+				</div>
+				<div class="col-md-8" align="center">
+					<label for="detailReport" style="font-size: 20px; text-align: center;">푸시 제목 : ${detailReport.PUSH_TITLE }</label>
+				</div>
+				<div class="col-md-2" style="padding-right: 1px;" align="right">
+					<a style="cursor:pointer; outline-width: 0;" id="goList" href="reportView?pageNum=${pageNum }">
+						<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-default btn-sm">목록으로</button>
+					
+					</a>
+				</div>
+
+			
 			<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
 				<tbody>
 					<tr style="height: 50px;">
@@ -105,7 +131,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="active" style="width: 20%;">
-							TARGET</br>총 발송 수
+							TARGET</br>총 발송 수${pageNum }
 						</td>
 						
 						<td style="width: 30%;"> 

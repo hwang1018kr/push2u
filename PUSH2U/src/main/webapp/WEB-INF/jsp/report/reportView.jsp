@@ -94,7 +94,7 @@
 				
 				<c:forEach var="report" items="${reportList }">
 					<tr>
-						<td><a href="/push/detailReport?camId=${report.CAM_ID }" id="detailReport" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
+						<td style="white-space: nowrap;"><a href="/push/detailReport?camId=${report.CAM_ID }&pageNum=${pageNum }" id="detailReport" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
 						<td style="text-align: center;">${report.TARGET_CNT }</td>
 						<td style="text-align: center;">${report.SUCCESS_CNT }</td>
 						<td style="text-align: center;">${report.OPEN_CNT } </td>
