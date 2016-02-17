@@ -583,5 +583,66 @@ public class MyBatisPushDao implements PushDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	// Click 인앱메세지 상세 가져오기
+	@Override
+	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> clickList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			clickList = dao.getClickMessageList(camId);
+			
+		} finally {
+			session.close();
+		}
+		
+		return clickList;
+
+	}
+	
+	// Click 팝업 상세 가져오기
+	@Override
+	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> clickList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			clickList = dao.getClickPopupList(camId);
+			
+		} finally {
+			session.close();
+		}
+		
+		return clickList;
+
+	}
+	
+	// CLICK IMG URL INSERT
+	@Override
+	public void insertImgDetail(Map<String, Object> map) throws RuntimeException {
+		// TODO Auto-generated method stub
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			dao.insertImgDetail(map);
+			
+		} finally {
+			session.close();
+		}
+	}
 
 }
