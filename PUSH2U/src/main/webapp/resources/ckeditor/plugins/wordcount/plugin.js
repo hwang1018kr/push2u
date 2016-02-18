@@ -368,7 +368,10 @@ CKEDITOR.plugins.add("wordcount", {
 
                 if (config.maxCharCount > 0 && charCount > config.maxCharCount && config.hardLimit) {
                     notification.show();
-                    event.cancel();
+                    setTimeout( function() {
+                        notification.hide();
+                       }, 3000 );
+                   // event.cancel();
                 }
 
                 if (config.maxWordCount > 0 && wordCount > config.maxWordCount && config.hardLimit) {
