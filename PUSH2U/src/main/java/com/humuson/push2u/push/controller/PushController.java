@@ -369,8 +369,7 @@ public class PushController {
 	@RequestMapping(value="/reportView")
 	public String reportView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String pagerHtml  	= null;
 		int reportSize    	= pushService.allReportSize(userId);
 		int limit  	      	= 0;
@@ -407,11 +406,11 @@ public class PushController {
 	 */
 	@RequestMapping(value="/detailReport")
 	public String detailReportView(Model model, HttpSession session, HttpServletRequest request) {
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId = "qqq";
-		String camId 	 = request.getParameter("camId");
-		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		
+		String userId     = String.valueOf(session.getAttribute("userId"));
+		String camId 	  = request.getParameter("camId");
+		String pageString = request.getParameter("pageNum");
+		int pageNum 	  = 1;
 
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
@@ -431,8 +430,7 @@ public class PushController {
 	@RequestMapping(value = "/pushTarget")
 	public String pushTargetView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.allTargetSize(userId, Integer.parseInt(camId));
@@ -470,8 +468,7 @@ public class PushController {
 	@RequestMapping(value = "/pushSuccess")
 	public String pushSuccessView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.allSuccessSize(userId, Integer.parseInt(camId));
@@ -509,8 +506,7 @@ public class PushController {
 	@RequestMapping(value = "/pushFail")
 	public String pushFailView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.allFailSize(userId, Integer.parseInt(camId));
@@ -548,8 +544,7 @@ public class PushController {
 	@RequestMapping(value = "/pushOpen")
 	public String pushOpenView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.allOpenSize(userId, Integer.parseInt(camId));
@@ -586,8 +581,8 @@ public class PushController {
 	 */
 	@RequestMapping(value = "/pushNoOpen")
 	public String pushNoOpenView(Model model, HttpSession session, HttpServletRequest request) {
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.allNoOpenSize(userId, Integer.parseInt(camId));
@@ -625,8 +620,7 @@ public class PushController {
 	@RequestMapping(value = "/smsSuccess")
 	public String smsSuccessView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.smsSuccessSize(userId, Integer.parseInt(camId));
@@ -664,8 +658,7 @@ public class PushController {
 	@RequestMapping(value = "/smsFail")
 	public String smsFailView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
+		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
 		String pagerHtml 	= null;
 		int reportSize   	= pushService.smsFailSize(userId, Integer.parseInt(camId));
@@ -703,9 +696,8 @@ public class PushController {
 	@RequestMapping(value = "/pushClick")
 	public String pushClickView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId     	= "qqq";
-		String camId        = request.getParameter("camId");
+		String userId = String.valueOf(session.getAttribute("userId"));
+		String camId  = request.getParameter("camId");
 	
 		List<Map<String, Object>> mList = pushService.getClickMessageList(Integer.parseInt(camId));
 		List<Map<String, Object>> pList = pushService.getClickPopupList(Integer.parseInt(camId));
@@ -723,9 +715,8 @@ public class PushController {
 	@RequestMapping(value = "/pushView")
 	public String pushView(Model model, HttpSession session, HttpServletRequest request) {
 
-		//String userId    = String.valueOf(session.getAttribute("userId"));
-		String userId = "qqq";
-		String camId 	 = request.getParameter("camId");
+		String userId = String.valueOf(session.getAttribute("userId"));
+		String camId  = request.getParameter("camId");
 
 		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
 		
