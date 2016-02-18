@@ -77,7 +77,12 @@ $(function(){
 				
 				$("#push_title").val(result.PUSH_TITLE);
 				$("#status_contents").val(result.PUSH_MSG);
-				//$("#inapp_contents").val(result.INAPP_CONTENT);
+				CKEDITOR.instances.pushEditor.setData(result.POPUP_CONTENT);
+				CKEDITOR.instances.inappEditor.setData(result.INAPP_CONTENT);
+				
+				$("#preview_title").val(result.PUSH_TITLE);
+				$("#status_preview").val(result.PUSH_MSG);
+				
 				
 			},
 		    error : function(xhr, error){
