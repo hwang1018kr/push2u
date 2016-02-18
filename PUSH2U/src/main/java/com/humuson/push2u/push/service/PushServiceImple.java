@@ -56,6 +56,25 @@ public class PushServiceImple implements PushService {
 	public void setPushDao(PushDao pushDao) {
 		this.pushDao = pushDao;
 	}
+	
+	// 최근 푸시 목록 가져오기
+	@Override
+	public List<Map<String, Object>> getRecentList(String userId, String msgType) throws RuntimeException {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("userId", userId);
+		map.put("msgType", msgType);
+		
+		return pushDao.getRecentList(map);
+	}
+	
+	// 푸시 템플릿 가져오기
+	@Override
+	public Map<String, String> getRecentTemplete(String camId) throws RuntimeException {
+		
+		return pushDao.getRecentTemplete(Integer.parseInt(camId));
+	}
 
 	// App User 목록 가져오기
 	@Override
@@ -116,7 +135,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -222,7 +241,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -275,7 +294,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 20000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
