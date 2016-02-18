@@ -17,10 +17,12 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -50,9 +52,31 @@ public class PushController {
 	 * push 발송화면 요청
 	 */
 	@RequestMapping(value="/sendView")
-	public String sendView() {
+	public String sendView(Model model, HttpSession session) {
+		
+		String userId = String.valueOf(session.getAttribute("userId"));
+		
+		List<Map<String, Object>> recentList = null;
+		
+		recentList = pushService.getRecentList(userId, "T");
+		
+		model.addAttribute("recentList", recentList);
+		
 		return "send/sendView";
 	}
+	
+	/*
+	 * 푸시 템플릿 가져오기
+	 */
+	@RequestMapping(value="/getRecentTemplete", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Map<String, String> getRecentTemplete(String camId) {
+		
+		Map<String, String> templeteMap = null;
+		
+		templeteMap = pushService.getRecentTemplete(camId);
+		
+		return templeteMap;
+	} 
 	
 	/*
 	 * push 발송
@@ -145,7 +169,16 @@ public class PushController {
 	 * Rich push 발송화면 요청
 	 */
 	@RequestMapping(value="/sendRich")
-	public String sendRich() {
+	public String sendRich(Model model, HttpSession session) {
+		
+		String userId = String.valueOf(session.getAttribute("userId"));
+		
+		List<Map<String, Object>> recentList = null;
+		
+		recentList = pushService.getRecentList(userId, "H");
+		
+		model.addAttribute("recentList", recentList);
+		
 		return "send/sendRich";
 	}
 	
@@ -275,7 +308,7 @@ public class PushController {
 		jsonObj.addProperty("pushTime", 1800);
 		jsonObj.addProperty("pushTitle", pushTitle);
 		jsonObj.addProperty("popupContent", popupContents);
-		jsonObj.addProperty("pushMsg", popupContents);
+		jsonObj.addProperty("pushMsg", pushMsg);
 		jsonObj.addProperty("inappContent", inAppContents);
 		jsonObj.addProperty("pushKey", "1");
 		jsonObj.addProperty("pushValue", "http://www.pushpia.com");
