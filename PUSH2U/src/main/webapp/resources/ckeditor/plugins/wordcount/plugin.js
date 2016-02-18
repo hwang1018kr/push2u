@@ -139,11 +139,13 @@ CKEDITOR.plugins.add("wordcount", {
             	var str = text;
                 var len = 0;
                 for (var i = 0; i < str.length; i++) {
-                       if (escape(str.charAt(i)).length == 6) {
-                           len++;
-                       }
+                	
+                   if (escape(str.charAt(i)).length == 6) {
                        len++;
                    }
+                   
+                   len++;
+                }
                 return (len);
             } else {
                 var normalizedText;
