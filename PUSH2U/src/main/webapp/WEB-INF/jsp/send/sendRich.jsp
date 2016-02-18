@@ -38,6 +38,16 @@
 </style>
 
 <script type="text/javascript">
+$("document").ready(function() {  
+	  
+    /* var currentPosition = parseInt($("#preview_div").css("top"));  
+  
+    $(window).scroll(function() {  
+            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
+            $("#preview_div").stop().animate({"top":position+currentPosition+"px"},500);  
+    }); */   
+      
+});  
 
 $(function(){
 	
@@ -294,7 +304,7 @@ $(function(){
 				  <li class="active">Rich Push 발송</li>
 			  </ol>
 	    </div>
-	    <div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
+	    <%-- <div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
 	    	
 	    	<div class="col-md-6  col-md-offset-1 ">
 		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
@@ -305,8 +315,18 @@ $(function(){
 		    		</c:forEach>
 		    	</select>
 	    	</div>
-	    </div>
+	    </div> --%>
 		<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
+		    <div class="col-md-6  col-md-offset-1 ">
+		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
+		    	<select id="recent_push" class="form-control" >
+		    		<option value="no-use" id="no-use" selected>미사용</option>
+		    		<c:forEach var="list" items="${recentList }">
+		    			<option class="recent_list" id="${list.CAM_ID }">${list.PUSH_TITLE }</option>
+		    		</c:forEach>
+		    	</select>
+	    	</div>
+		    
 			<div class="col-md-6  col-md-offset-1">
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
@@ -339,56 +359,64 @@ $(function(){
 					<span id="sms_byteInfo">0</span>/90Bytes
 				</div>
 			</div>
-			<div class="col-md-5">
-				<label for="preview" style="font-size: 20px">미리보기</label>
+			
+			<div class="col-md-5" >
+				<!-- <div id="preview_div" style="position:absolute;top:0px;left:0px;"> -->
+				<!-- <div id="preview_div" > -->
+			
+					<label for="preview" style="font-size: 20px">미리보기</label>
 				
-				<div id="preview">
-					<div class="btn-group" data-toggle="buttons" style="margin-bottom: 10px;">
-						<label id="toggle_status" class="btn active"> <input type="radio" name="options" id="option2" autocomplete="off"> 
-							상태창
-						</label> 
-						<label id="toggle_push" class="btn"> <input type="radio" name="options" id="option1" autocomplete="off" checked>
-							푸시
-						</label> 
-						<label id="toggle_inapp" class="btn"> <input type="radio"name="options" id="option3" autocomplete="off"> 
-							앱 내 메시지
-						</label>
-					</div>
-					<div id="status_preview_ui" style="display: block;">
-						<div id="preview_background">
-							<img src="/resources/images/android_rich_status.png">
-							<div style="position:absolute; left:90px; top:260px; height:15px; width: 330px;">
-								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
+					<div id="preview">
+						<div class="btn-group" data-toggle="buttons" style="margin-bottom: 10px;">
+							<label id="toggle_status" class="btn active"> <input type="radio" name="options" id="option2" autocomplete="off"> 
+								상태창
+							</label> 
+							<label id="toggle_push" class="btn"> <input type="radio" name="options" id="option1" autocomplete="off" checked>
+								푸시
+							</label> 
+							<label id="toggle_inapp" class="btn"> <input type="radio"name="options" id="option3" autocomplete="off"> 
+								앱 내 메시지
+							</label>
+						</div>
+						<div id="status_preview_ui" style="display: block;">
+							<div id="preview_background">
+								<img src="/resources/images/android_rich_status.png">
+								<div style="position:absolute; left:90px; top:260px; height:15px; width: 310px;">
+									<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; " disabled="disabled">
+								</div>
+								<div style="position:absolute; left:90px; top:285px; height:15px; width:310px;">
+									<input type="text" id="status_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
+								</div>
 							</div>
-							<div style="position:absolute; left:90px; top:285px; height:15px; width:330px;">
-								<input type="text" id="status_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
+						</div>
+						<div id="push_preview_ui" style="display: none;">
+							<div id="preview_background">
+								<img src="/resources/images/android_rich_popup.png">
+								<div id="rich_popup" style="position:absolute; background-color : white; left:70px; top:200px; width: 280px; border-radius : 15px; padding: 15px; padding-bottom: 30px; word-break : break-all; min-height: 180px; max-height: 500px; overflow: auto;">
+									<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px;  height:30px; width: 60px;" disabled="disabled">닫기</button>
+									<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>
+								</div>
+							</div>
+						</div>
+						<div id="inapp_preview_ui" style="display: none;">
+							<div id="preview_background">
+								<img src="/resources/images/android_rich_inapp.png">
+								<div id="rich_inapp" style="position:absolute; left:20px; top:120px; height:600px; width: 385px; word-break : break-all; color: white; overflow: auto;">
+								
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="push_preview_ui" style="display: none;">
-						<div id="preview_background">
-							<img src="/resources/images/android_rich_popup.png">
-							<div id="rich_popup" style="position:absolute; background-color : white; left:70px; top:200px; width: 280px; border-radius : 15px; padding: 15px; padding-bottom: 30px; word-break : break-all; min-height: 180px; max-height: 500px; overflow: auto;">
-								<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px;  height:30px; width: 60px;" disabled="disabled">닫기</button>
-								<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>
-							</div>
-						</div>
-					</div>
-					<div id="inapp_preview_ui" style="display: none;">
-						<div id="preview_background">
-							<img src="/resources/images/android_rich_inapp.png">
-							<div id="rich_inapp" style="position:absolute; left:20px; top:120px; height:600px; width: 385px; word-break : break-all; color: white; overflow: auto;">
-							
-							</div>
-						</div>
-					</div>
-				</div>
+				<!-- </div> -->
 			</div>
+			
 		</div>
 		<div class="col-md-12">
 			<input type="hidden" id="smsYN" name="smsYN" value="N">
 		
 			<button id="sendPush" type="button" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
+		
+			<br><br><br><br>
 		</div>
 	</form>
 	
