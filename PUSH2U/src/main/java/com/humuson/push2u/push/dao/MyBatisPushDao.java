@@ -24,6 +24,46 @@ public class MyBatisPushDao implements PushDao {
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
+	
+	// 최근 푸시 목록 가져오기
+	@Override
+	public List<Map<String, Object>> getRecentList(Map<String, String> map) throws RuntimeException {
+		
+		List<Map<String, Object>> recentList = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			recentList = dao.getRecentList(map);
+		} finally {
+			session.close();
+		}
+		
+		return recentList;
+	}
+	
+	// 푸시 템플릿 가져오기
+	@Override
+	public Map<String, String> getRecentTemplete(int camId) throws RuntimeException {
+		
+		Map<String, String> templeteMap = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			templeteMap = dao.getRecentTemplete(camId);
+		} finally {
+			session.close();
+		}
+		
+		return templeteMap;
+	}
 
 	// App User 목록 가져오기
 	@Override
