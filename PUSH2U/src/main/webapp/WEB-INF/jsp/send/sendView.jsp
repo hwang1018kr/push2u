@@ -32,6 +32,49 @@
 <script type="text/javascript">
 $(function () {
 	
+	//최근 메시지 제목 클릭시
+	$("#recent_push").change(function(){
+		
+		var camId  = $("#recent_push option:selected").attr('id');
+		
+		if( camId == null || camId == "" ) {
+			return ;
+			
+		} else if (camId == "no-use") {
+			$("#push_title").val("");
+			$("#popup_contents").val("");
+			$("#inapp_contents").val("");
+			
+			return;
+		}
+		
+		$.ajax({
+			
+			type     : "post",
+			url      : "getRecentTemplete",
+			data     : {"camId" : camId},
+			dataType : "json",//text,xml, json
+			success  : function(result) {
+				
+				$("#push_title").val(result.PUSH_TITLE);
+				$("#popup_contents").val(result.PUSH_MSG);
+				$("#inapp_contents").val(result.INAPP_CONTENT);
+				
+				$("#preview_title").val(result.PUSH_TITLE);
+				$("#push_preview").val(result.PUSH_MSG);
+				$("#popup_preview").val(result.PUSH_MSG);
+				$("#inapp_preview").val(result.INAPP_CONTENT);
+				
+			},
+		    error : function(xhr, error){
+		    	alert(xhr.status + ", " + error);
+		    	alert(xhr.responseText);
+		    }
+		});
+		
+		return false;
+	});
+	
 	// 미리보기 토글 시작
 	$("#toggle_status").click(function() {
 		$("#push_preview_ui").hide();
@@ -192,8 +235,8 @@ $(function () {
             	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="/push/sendView">Text Push</a></li>
-		            <li><a href="/push/sendRich">Rich Push</a></li>
+		            <li><a href="/push/sendView">Text Push 발송</a></li>
+		            <li><a href="/push/sendRich">Rich Push 발송</a></li>
 		          </ul>
 		        </li>
             	<li><a href="/push/reportView"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  레포트</a></li>
@@ -211,7 +254,23 @@ $(function () {
 <div class="col-md-12" style="height: 70%">
 	<form id="pushSendForm" action="sendPush" method="post">
 		<div class="page-header col-md-6 col-md-offset-3" style="margin-top: 0px;">
-	          <h2>PUSH 발송</h2>
+	          <h2>Text Push 발송</h2>
+	          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
+				  <li class="active">PUSH 발송</li>
+				  <li class="active">Text Push 발송</li>
+			  </ol>
+	    </div>
+	    <div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px; ">
+	    	
+	    	<div class="col-md-6 ">
+		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
+		    	<select id="recent_push" class="form-control" >
+		    		<option value="no-use" id="no-use" selected>미사용</option>
+		    		<c:forEach var="list" items="${recentList }">
+		    			<option class="recent_list" id="${list.CAM_ID }">${list.PUSH_TITLE }</option>
+		    		</c:forEach>
+		    	</select>
+	    	</div>
 	    </div>
 		<div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px; ">
 			<div class="col-md-6 ">
