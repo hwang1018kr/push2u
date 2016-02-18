@@ -11,6 +11,12 @@ import java.util.Map;
 
 public interface PushDao {
 
+	// 최근 푸시 목록 가져오기
+	public List<Map<String, Object>> getRecentList(Map<String, String> map) throws RuntimeException; 
+	
+	// 푸시 템플릿 가져오기
+	public Map<String, String> getRecentTemplete(int camId) throws RuntimeException;
+	
 	// App User 목록 가져오기
 	public List<Map<String, String>> getAppUserList() throws RuntimeException;
 	
