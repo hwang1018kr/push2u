@@ -4,6 +4,23 @@
                  
 <mapper namespace="com.humuson.push2u.push.dao.PushDao">
 
+    <!-- 최근 푸시 목록 가져오기 -->
+    <select id="getRecentList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT PUSH_TITLE, CAM_ID
+		FROM PUSH_CAMPAIGNS
+		WHERE USER_ID = #{userId}
+		AND MSG_TYPE = #{msgType}
+		ORDER BY REQ_DATE DESC
+		LIMIT 0, 15
+    </select>
+    
+    <!-- 푸시 템플릿 가져오기 -->
+    <select id="getRecentTemplete" parameterType="int" resultType="java.util.Map">
+        SELECT PUSH_TITLE, PUSH_MSG, POPUP_CONTENT, INAPP_CONTENT
+		FROM PUSH_CAMPAIGNS
+		WHERE CAM_ID = #{camId}
+    </select>
+    
     <!-- 앱 유저 리스트 가져오기 -->
 	<select id="getAppUserList" resultType="java.util.Map">
 		SELECT CUST_ID, PHONE_NUM
