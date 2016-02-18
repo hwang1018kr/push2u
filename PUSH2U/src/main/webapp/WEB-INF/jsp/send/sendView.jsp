@@ -253,16 +253,16 @@ $(function () {
 
 <div class="col-md-12" style="height: 70%">
 	<form id="pushSendForm" action="sendPush" method="post">
-		<div class="page-header col-md-6 col-md-offset-3" style="margin-top: 0px;">
+		<div class="page-header col-md-8 col-md-offset-2" style="margin-top: 0px;">
 	          <h2>Text Push 발송</h2>
 	          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
 				  <li class="active">PUSH 발송</li>
 				  <li class="active">Text Push 발송</li>
 			  </ol>
 	    </div>
-	    <div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px; ">
+	    <div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px; ">
 	    	
-	    	<div class="col-md-6 ">
+	    	<div class="col-md-7 ">
 		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
 		    	<select id="recent_push" class="form-control" >
 		    		<option value="no-use" id="no-use" selected>미사용</option>
@@ -272,8 +272,8 @@ $(function () {
 		    	</select>
 	    	</div>
 	    </div>
-		<div class="col-md-6 col-md-offset-3" style="margin-bottom: 20px; ">
-			<div class="col-md-6 ">
+		<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px; ">
+			<div class="col-md-7 ">
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
 					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
@@ -298,7 +298,7 @@ $(function () {
 					<span id="sms_byteInfo">0</span>/90Bytes
 				</div>
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<label for="preview" style="font-size: 20px">미리보기</label>
 				
 				<div id="preview">
@@ -316,11 +316,11 @@ $(function () {
 					<div id="status_preview_ui" style="display: block;">
 						<div id="preview_background">
 							<img src="/resources/images/android_noti.png">
-							<div style="position:absolute; left:80px; top:265px; height:15px; width: 100%;">
-								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
+							<div style="position:absolute; left:80px; top:265px; height:15px; width: 370px;">
+								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; " disabled="disabled">
 							</div>
-							<div style="position:absolute; left:80px; top:290px; height:15px; width:100%;">
-								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
+							<div style="position:absolute; left:80px; top:290px; height:15px; width:370px;">
+								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
 							</div>
 						</div>
 					</div>
@@ -348,6 +348,8 @@ $(function () {
 			<input type="hidden" id="smsYN" name="smsYN" value="N">
 		
 			<button id="sendPush" type="button" class="btn btn-info btn-lg center-block"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송하기</button>
+		
+			<br><br><br><br>
 		</div>
 	</form>
 	
