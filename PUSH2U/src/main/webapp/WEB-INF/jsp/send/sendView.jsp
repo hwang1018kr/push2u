@@ -45,6 +45,10 @@ $(function () {
 			$("#popup_contents").val("");
 			$("#inapp_contents").val("");
 			
+			$("#preview_title").val("");
+			$("#push_preview").val("");
+			$("#popup_preview").val("");
+			$("#inapp_preview").val("");
 			return;
 		}
 		
