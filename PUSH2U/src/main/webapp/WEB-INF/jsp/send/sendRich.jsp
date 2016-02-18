@@ -62,7 +62,11 @@ $(function(){
 		} else if (camId == "no-use") {
 			$("#push_title").val("");
 			$("#status_contents").val("");
-			//$("#inapp_contents").val("");
+			$("#preview_title").val("");
+			$("#status_preview").val("");
+			
+			CKEDITOR.instances.pushEditor.setData("");
+			CKEDITOR.instances.inappEditor.setData("");
 			
 			return;
 		}
@@ -322,7 +326,7 @@ $(function(){
 	    	</div>
 	    </div> --%>
 		<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
-		    <div class="col-md-6  col-md-offset-1 ">
+		    <div class="col-md-6  col-md-offset-1 " style="margin-bottom: 20px; ">
 		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
 		    	<select id="recent_push" class="form-control" >
 		    		<option value="no-use" id="no-use" selected>미사용</option>
