@@ -67,9 +67,8 @@
 					<div class="col-md-4"> 
 					
 						앱 내 메시지
-					</label>
 					
-				
+					</div>
 			</div>	
 			<div class="col-md-12">		
 				<div id="status_preview_ui" class="col-md-4" style="display: block;">
