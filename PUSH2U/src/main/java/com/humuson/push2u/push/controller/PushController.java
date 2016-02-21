@@ -204,13 +204,12 @@ public class PushController {
 		
 		ArrayList<String> popupImgArray = new ArrayList<String>();
 		ArrayList<String> messageImgArray = new ArrayList<String>();
-		
-		int i = 0;
+
 		
 		//팝업 IMG_URL 분리
 		temp = popupContents.replaceAll(System.getProperty("line.separator"), "");
 		do {
-			if (temp.contains("<a ")){
+			if (temp.contains("<a")){
 				temp = temp.substring(temp.indexOf("<a") + 1);
 				tempATag = temp.substring(0, temp.indexOf("</a>"));
 				temp = temp.substring(temp.indexOf("</a>"));
@@ -218,22 +217,20 @@ public class PushController {
 					tempATag = tempATag.substring(tempATag.indexOf("src"));
 					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
 					popupImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+					logger.debug(tempATag.substring(0, tempATag.indexOf("\"")));
 				}else{
 					popupImgArray.add("");
 				}
-				i++;
 			}else{
 				temp = "";
 			}
 		}while(!temp.equals(""));
-		
-		
-		i = 0;
+
 		
 		//인앱메세지 IMG_URL 분리
 		temp = inAppContents.replaceAll(System.getProperty("line.separator"), "");
 		do {
-			if (temp.contains("<a ")){
+			if (temp.contains("<a")){
 				temp = temp.substring(temp.indexOf("<a") + 1);
 				tempATag = temp.substring(0, temp.indexOf("</a>"));
 				temp = temp.substring(temp.indexOf("</a>"));
@@ -241,10 +238,10 @@ public class PushController {
 					tempATag = tempATag.substring(tempATag.indexOf("src"));
 					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
 					messageImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+					logger.debug(tempATag.substring(0, tempATag.indexOf("\"")));
 				}else{
 					messageImgArray.add("");
 				}
-				i++;
 			}else{
 				temp = "";
 			}
@@ -257,15 +254,16 @@ public class PushController {
 		
 		String camId = String.valueOf(pushService.getMaxCamId());
 		
-		for (i = 0; i < popupImgArray.size(); i++){
-			if ( "".equals(popupImgArray.get(i)) ){
+		for (int i = 0; i < popupImgArray.size(); i++){
+			if ( !"".equals(popupImgArray.get(i)) ){
+				logger.debug("******************** P :" + popupImgArray.get(i));
 				pushService.insertImgDetail(Integer.parseInt(camId), "P", i + 1, popupImgArray.get(i)); 
 			}
 		}
 		
-		for (i = 0; i< messageImgArray.size(); i++){
-			if ( "".equals(messageImgArray.get(i)) ){
-//				logger.debug("********************" + messageImg[i]);
+		for (int i = 0; i< messageImgArray.size(); i++){
+			if ( !"".equals(messageImgArray.get(i)) ){
+				logger.debug("******************** M :" + messageImgArray.get(i));
 				pushService.insertImgDetail(Integer.parseInt(camId), "M", i + 1, messageImgArray.get(i));  
 			} 
 		}
@@ -280,7 +278,7 @@ public class PushController {
 		
 		Map<String, Object> detailMap = null;
 			
-		i = 1;
+		int i = 1;
 		
 		for (Map<String, String> map : appUserList) {
 			JsonObject listObj = new JsonObject();
