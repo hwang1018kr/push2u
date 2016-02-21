@@ -135,7 +135,7 @@ $(document).ready(function() {
 					</tr>
 					<tr>
 						<td class="active" style="width: 20%;">
-							TARGET</br>총 발송 수${pageNum }
+							TARGET</br>총 발송 수
 						</td>
 						
 						<td style="width: 30%;"> 
