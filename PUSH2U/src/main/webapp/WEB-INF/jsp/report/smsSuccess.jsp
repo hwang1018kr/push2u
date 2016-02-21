@@ -40,11 +40,6 @@
 <div class="col-md-12" style="height: 30%">
 	<div class="page-header col-md-12">
           <h2>SMS 성공 상세 보기</h2>
-          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
-			  <li class="active">레포트</li>
-			  <li class="active">상세 레포트</li>
-			  <li class="active">SMS 성공 상세 보기</li>
-		  </ol>
     </div>
     
     
