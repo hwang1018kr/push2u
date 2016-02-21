@@ -37,7 +37,7 @@ function popup(el){
 	var width = 1000;
 	
 	if (el.id == "pushView"){
-		height = 600;
+		height = 750;
 	}
 	
 	var top = (screen.availHeight - height) / 2 - 50;
