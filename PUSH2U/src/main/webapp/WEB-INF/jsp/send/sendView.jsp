@@ -313,7 +313,7 @@ $(function () {
 						<label id="toggle_push" class="btn"> <input type="radio" name="options" id="option1" autocomplete="off" checked>
 							푸시
 						</label> 
-						<label id="toggle_inapp" class="btn"> <input type="radio"name="options" id="option3" autocomplete="off"> 
+						<label id="toggle_inapp" class="btn"> <input type="radio" name="options" id="option3" autocomplete="off"> 
 							앱 내 메시지
 						</label>
 					</div>
