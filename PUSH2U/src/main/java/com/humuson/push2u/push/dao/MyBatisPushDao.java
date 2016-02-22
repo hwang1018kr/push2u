@@ -685,4 +685,27 @@ public class MyBatisPushDao implements PushDao {
 		}
 	}
 
+	// 그래프 오픈 통계 가져오기
+	@Override
+	public Map<String, Object> getOpenGraph(int camId) throws RuntimeException {
+		
+		Map<String, Object> map = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
+			
+			map = dao.getOpenGraph(camId);
+			
+			logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
+			
+		} finally {
+			session.close();
+		}
+		
+		return map;
+	}
+
 }

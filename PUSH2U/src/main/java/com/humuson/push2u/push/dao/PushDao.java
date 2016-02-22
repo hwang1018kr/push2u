@@ -136,4 +136,7 @@ public interface PushDao {
 	
 	// CLICK IMG URL DETAIL INSERT
 	public void insertImgDetail(Map<String, Object> map) throws RuntimeException;
+	
+	// 그래프 오픈 통계 가져오기
+	public Map<String, Object> getOpenGraph(int camId) throws RuntimeException;
 }
