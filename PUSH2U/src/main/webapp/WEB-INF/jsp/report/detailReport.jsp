@@ -36,7 +36,8 @@ function popup(el){
 	var width = 1000;
 	
 	if (el.id == "pushView"){
-		height = 600;
+		height = 800;
+		width = 500;
 	}
 	
 	var top = (screen.availHeight - height) / 2 - 50;
@@ -47,64 +48,6 @@ function popup(el){
 
 $(function() {
 	
-	/* $('#open_graph_container').highcharts({
-        chart: {
-            type: 'areaspline'
-        },
-        title: {
-            text: '시간별 오픈 추이'
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 150,
-            y: 100,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
-        },
-        xAxis: {
-            categories: [
-                '1Hour',
-                '2Hour',
-                '3Hour',
-                '4Hour',
-                '5Hour',
-                '6Hour',
-                '7Hour',
-                '8Hour',
-                '9Hour',
-                '10Hour',
-                '11Hour',
-                '12Hour',
-                
-            ]
-        },
-        yAxis: {
-            title: {
-                text: '오픈 수'
-            },
-            min: 0,
-            tickAmount: 6
-        },
-        tooltip: {
-            shared: true,
-            valueSuffix: ' 건'
-        },
-        credits: {
-            enabled: false
-        },
-        plotOptions: {
-            areaspline: {
-                fillOpacity: 0.6
-            }
-        },
-        series: [{
-            name: '오픈',
-            data: [4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        }]
-    }); */
     setOpenGraph();
 });
 
