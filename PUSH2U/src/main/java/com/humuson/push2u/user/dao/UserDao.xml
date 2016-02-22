@@ -30,10 +30,24 @@
 		VALUES (#{userId}, #{userName}, #{userPasswd}, SYSDATE(), #{phoneNum})
 	</insert>
 	
+	<!-- custId 체크 -->
+	<select id="checkCust" parameterType="java.lang.String" resultType="int">
+	    SELECT COUNT(*)
+		FROM APP_USERS
+		WHERE CUST_ID = #{custId}
+	</select>
+	
+	<!-- App User update -->
+	<update id="updateAppUser" parameterType="java.util.Map">
+	    UPDATE APP_USERS
+		SET PHONE_NUM = #{phoneNum}, REQ_DATE = SYSDATE(), DEVICE = #{device}, #{osVer}, APP_VER = #{appVer}
+		WHERE CUST_ID = #{custId}
+	</update>
+	
 	<!-- APP USER INSERT -->
 	<insert id="insertAppUser" parameterType="java.util.Map">
 	    INSERT INTO APP_USERS (CUST_ID, PHONE_NUM, REQ_DATE, DEVICE, OS_VER, APP_VER)
-		VALUES (#{custId}, #{phoneNum}, SYSDATE(), #{device}, #{osVer}, #{appVer});
+		VALUES (#{custId}, #{phoneNum}, SYSDATE(), #{device}, #{osVer}, #{appVer})
 	</insert>
 	
 </mapper>
