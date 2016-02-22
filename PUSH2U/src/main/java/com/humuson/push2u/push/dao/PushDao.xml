@@ -459,4 +459,39 @@
 		INSERT INTO IMG_DETAIL (CAM_ID, PUSH_TYPE, LINK_SEQ, IMG_URL)
 		VALUES(#{camId}, #{pushType}, #{linkSeq}, #{imgUrl})
 	</insert>
+	
+	<!-- 그래프 오픈 통계 가져오기 -->
+	<select id="getOpenGraph" parameterType="int" resultType="java.util.Map">
+	    <![CDATA[
+	    SELECT 
+			SUM(CASE WHEN PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +1 hour), '%Y%m%d%H%i%s') THEN 1 ELSE 0 END) CNT_1,
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +1 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +2 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_2,
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +2 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +3 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_3,
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +3 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +4 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_4, 
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +4 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +5 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_5,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +5 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +6 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_6,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +6 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +7 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_7,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +7 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +8 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_8,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +8 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +9 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_9,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +9 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +10 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_10,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +10 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +11 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_11,  
+			SUM(CASE WHEN (PD.RES_DATE >= DATE_FORMAT(date_add(PC.REQ_DATE, interval +11 hour), '%Y%m%d%H%i%s')) AND 
+			              (PD.RES_DATE < DATE_FORMAT(date_add(PC.REQ_DATE, interval +12 hour), '%Y%m%d%H%i%s')) THEN 1 ELSE 0 END) CNT_12  
+		FROM PUSH_DETAIL PD
+		JOIN PUSH_CAMPAIGNS PC
+		ON PD.CAM_ID = PC.CAM_ID
+		WHERE PC.CAM_ID = #{camId}
+		AND PD.RTN_TYPE = 'R'
+	    ]]>
+	</select>
 </mapper>
