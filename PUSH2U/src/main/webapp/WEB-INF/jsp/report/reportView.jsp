@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         	<ul class="nav navbar-nav">
             	<li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>PUSH 발송<span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
 		            <li><a href="/push/sendView">Text Push</a></li>
 		            <li><a href="/push/sendRich">Rich Push</a></li>
