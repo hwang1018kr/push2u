@@ -418,6 +418,8 @@ public class PushController {
 		
 		model.addAttribute("detailReport", detailReport);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("camId", camId);
+		
 		return "report/detailReport";
 	}
 
@@ -700,7 +702,6 @@ public class PushController {
 		List<Map<String, Object>> mList = pushService.getClickMessageList(Integer.parseInt(camId));
 		List<Map<String, Object>> pList = pushService.getClickPopupList(Integer.parseInt(camId));
 		
-		//model.addAttribute("reportList", reportList);
 		model.addAttribute("mList", mList);
 		model.addAttribute("pList", pList);
 		
@@ -722,5 +723,19 @@ public class PushController {
 
 		return "report/pushView";
 	}
-
+	
+	/*
+	 * 그래프 오픈 통계
+	 */
+	@RequestMapping(value="/getOpenGraph", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody Map<String, Object> getOpenGrapgh(String camId) {
+		
+		Map<String, Object> openMap = null;
+		
+		openMap = pushService.getOpenGraph(camId);
+		
+		//logger.debug("*******************************************************************   CNT_1 = " + openMap.get("CNT_1"));
+		
+		return openMap;
+	}
 }
