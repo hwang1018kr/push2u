@@ -17,7 +17,7 @@
 
 <style type="text/css">
 .table_container {
-    border: 3px solid lightgrey;
+    border: 2px solid #2D6BA1;
     border-radius: 10px;
     position: relative;
 }
