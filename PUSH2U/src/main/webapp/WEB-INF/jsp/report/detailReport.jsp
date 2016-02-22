@@ -10,7 +10,7 @@
 <!-- script -->
 <script type="text/javascript" src="../resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="../resources/js/bootstrap.js"></script>
-<script type="text/javascript" src="../resources/js/jquery.smartPop.js"></script>
+<script type="text/javascript" src="/resources/Highcharts-4.2.3/js/highcharts.js"></script>
 
 
 <!-- 합쳐지고 최소화된 최신 CSS -->
@@ -18,11 +18,10 @@
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="../resources/css/jquery.smartPop.css" />
 
 <style type="text/css">
 .table_container {
-    border: 3px solid lightgrey;
+    border: 2px solid gray;
     border-radius: 10px;
     position: relative;
 }
@@ -37,7 +36,7 @@ function popup(el){
 	var width = 1000;
 	
 	if (el.id == "pushView"){
-		height = 750;
+		height = 600;
 	}
 	
 	var top = (screen.availHeight - height) / 2 - 50;
@@ -46,14 +45,187 @@ function popup(el){
 	window.open(url,name,"width=" + width + ",height=" + height + ",toorbar=no,status=no,location=no,scrollbars=yes,menubar=no,resizable=yes,left=" + left + ",top=" + top + "")
 }
 
-$(document).ready(function() {
-
-	 
-//	$('#pushTarget').click(function() {
-//	    $.smartPop.open({ title: '스마트팝', width: 900, height: 500, url: '/push/pushTarget?camId=${detailReport.CAM_ID}' });
-//	});
+$(function() {
 	
-})
+	/* $('#open_graph_container').highcharts({
+        chart: {
+            type: 'areaspline'
+        },
+        title: {
+            text: '시간별 오픈 추이'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'left',
+            verticalAlign: 'top',
+            x: 150,
+            y: 100,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+        },
+        xAxis: {
+            categories: [
+                '1Hour',
+                '2Hour',
+                '3Hour',
+                '4Hour',
+                '5Hour',
+                '6Hour',
+                '7Hour',
+                '8Hour',
+                '9Hour',
+                '10Hour',
+                '11Hour',
+                '12Hour',
+                
+            ]
+        },
+        yAxis: {
+            title: {
+                text: '오픈 수'
+            },
+            min: 0,
+            tickAmount: 6
+        },
+        tooltip: {
+            shared: true,
+            valueSuffix: ' 건'
+        },
+        credits: {
+            enabled: false
+        },
+        plotOptions: {
+            areaspline: {
+                fillOpacity: 0.6
+            }
+        },
+        series: [{
+            name: '오픈',
+            data: [4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        }]
+    }); */
+    setOpenGraph();
+});
+
+function setOpenGraph() {
+	$.ajax({
+		
+		type: 'post',
+		url: 'getOpenGraph',
+		dataType: 'json',
+		data: { 'camId' : "${camId }" },
+		success: function(result) {
+			
+			var pushGraph;
+			var pushGraphOption = {
+				 chart: {
+					 renderTo: 'open_graph_container',
+			         type: 'areaspline'
+			     },
+			     title: {
+			            text: '시간별 오픈 추이'
+		         },
+		         subtitle: {
+		             text: '푸시 발송 후에 경과한 시간별 오픈 그래프'
+		         },
+		         legend: {
+		             layout: 'vertical',
+		             align: 'left',
+		             verticalAlign: 'top',
+		             x: 150,
+		             y: 100,
+		             floating: true,
+		             borderWidth: 1,
+		             backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+		         },
+		         xAxis: {
+		             categories: [
+		                 '1Hour',
+		                 '2Hour',
+		                 '3Hour',
+		                 '4Hour',
+		                 '5Hour',
+		                 '6Hour',
+		                 '7Hour',
+		                 '8Hour',
+		                 '9Hour',
+		                 '10Hour',
+		                 '11Hour',
+		                 '12Hour',
+		             ]
+		         },
+		         yAxis: {
+		            title: {
+		                text: '오픈 수'
+		            },
+		            min: 0,
+		            tickAmount: 5
+		         },
+		         tooltip: {
+		            shared: true,
+		            valueSuffix: ' 건'
+		         },
+		         credits: {
+		            enabled: false
+		         },
+		         plotOptions: {
+		            areaspline: {
+		                fillOpacity: 0.6
+		            }
+		         },
+		         series: []
+			}
+			
+			if( result == null || result ==  "" ) {
+				
+				pushGraph = new Highcharts.Chart(pushGraphOption);
+				pushGraph.showLoading(_BLANK_DATA_MESSAGE_);
+				
+			} else {
+				var pushOpenSeries = {
+						name : '오픈',
+			            data : []
+				};
+				
+				//var openMap = result.openMap;
+				
+				var openValueList = new Array();
+				
+				openValueList.push(Number(result.CNT_1));
+				openValueList.push(Number(result.CNT_2));
+				openValueList.push(Number(result.CNT_3));
+				openValueList.push(Number(result.CNT_4));
+				openValueList.push(Number(result.CNT_5));
+				openValueList.push(Number(result.CNT_6));
+				openValueList.push(Number(result.CNT_7));
+				openValueList.push(Number(result.CNT_8));
+				openValueList.push(Number(result.CNT_9));
+				openValueList.push(Number(result.CNT_10));
+				openValueList.push(Number(result.CNT_11));
+				openValueList.push(Number(result.CNT_12));
+				
+				for( var i = 0; i < openValueList.length; i++ ) {
+					pushOpenSeries.data.push(openValueList[i]);
+				}
+			}
+			
+			pushGraphOption.series.push(pushOpenSeries);
+			
+			pushGraph = new Highcharts.Chart(pushGraphOption);
+			
+		},
+		error: function(xhr, error) {
+			alert(xhr.status + ", " + error);
+			//alert(_ERROR_GET_DATA_MESSAGE_);
+			//reactChartOption.series = [];
+			//reactChart = new Highcharts.Chart(reactChartOption);
+			//reactChart.showLoading(_ERROR_GET_DATA_MESSAGE_);
+			
+		}
+		
+	});
+}
 
 </script>
 
@@ -109,8 +281,7 @@ $(document).ready(function() {
     <!-- 상세 레포트 테이블 시작 -->
 	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
 		<div class="table-responsive">
-			
-
+		
 				<div class="col-md-2" style="padding-left: 1px;">
 					<a style="cursor:pointer; " id="pushView" onclick="popup(this)">
 						<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-primary btn-sm">전문보기</button>
@@ -225,7 +396,16 @@ $(document).ready(function() {
 		
 	</div>
 	<!-- 상세 레포트 테이블 끝 -->
-	<div class="modal fade bs-example-modal-sm" id="editCampModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" ></div>
+	
+	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
+		
+		<div id="open_graph_container" class="col-md-12 table_container" style="padding: 15px;">
+			
+		</div>
+	
+	</div>
+	
+	
 	
 </div>
 
