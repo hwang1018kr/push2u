@@ -131,7 +131,7 @@ public class MybatisUserDao implements UserDao {
 			session = sqlSessionFactory.openSession();
 			UserDao dao = session.getMapper(UserDao.class);
 			
-			dao.checkCust(custId);
+			check = dao.checkCust(custId);
 		} finally {
 			session.close();
 		}
