@@ -122,4 +122,7 @@ public interface PushService {
 	
 	// 그래프 오픈 통계 가져오기
 	public Map<String, Object> getOpenGraph(String camId) throws RuntimeException;
+	
+	// 그래프 클릭 통계 가져오기
+	public Map<String, Object> getClickGraph(String camId) throws RuntimeException;
 }

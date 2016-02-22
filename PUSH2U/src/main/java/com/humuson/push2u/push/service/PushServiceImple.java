@@ -614,5 +614,12 @@ public class PushServiceImple implements PushService {
 		
 		return pushDao.getOpenGraph(Integer.parseInt(camId));
 	}
+	
+	// 그래프 클릭 통계 가져오기
+	@Override
+	public Map<String, Object> getClickGraph(String camId) throws RuntimeException {
+		
+		return pushDao.getClickGraph(Integer.parseInt(camId));
+	}
 
 }
