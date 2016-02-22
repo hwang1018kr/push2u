@@ -119,4 +119,7 @@ public interface PushService {
 	
 	// Click IMG_URL 인서트
 	public void insertImgDetail(int camId, String pushType, int linkSeq, String imgUrl) throws RuntimeException;
+	
+	// 그래프 오픈 통계 가져오기
+	public Map<String, Object> getOpenGraph(String camId) throws RuntimeException;
 }

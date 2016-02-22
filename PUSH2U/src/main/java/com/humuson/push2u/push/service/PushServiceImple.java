@@ -608,4 +608,11 @@ public class PushServiceImple implements PushService {
 		
 	}
 
+	// 그래프 오픈 통계 가져오기
+	@Override
+	public Map<String, Object> getOpenGraph(String camId) throws RuntimeException {
+		
+		return pushDao.getOpenGraph(Integer.parseInt(camId));
+	}
+
 }
