@@ -24,6 +24,12 @@ public interface UserDao {
 	// 회원가입
 	public void join(Map<String, String> joinMap) throws RuntimeException;
 	
+	// custId 체크
+	public int checkCust(String custId) throws RuntimeException;
+	
+	// App User update
+	public void updateAppUser(Map<String, String> appUserMap) throws RuntimeException;
+	
 	// App User insert
 	public void insertAppUser(Map<String, String> appUserMap) throws RuntimeException;
 }
