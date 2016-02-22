@@ -163,13 +163,21 @@ public class UserController {
 		String osVer    = request.getParameter("osVer");
 		String appVer   = request.getParameter("appVer");
 		
+		int check = 0;
+		
 		logger.debug("custId   : " + custId);
 		logger.debug("phoneNum : " + phoneNum);
 		logger.debug("device   : " + device);
 		logger.debug("osVer    : " + osVer);
 		logger.debug("appVer   : " + appVer);
 		
-		userService.insertAppUser(custId, phoneNum, device, osVer, appVer);
+		check = userService.checkCust(custId);
+		
+		if(check == 1) {
+			userService.updateAppUser(custId, phoneNum, device, osVer, appVer);
+		} else {
+			userService.insertAppUser(custId, phoneNum, device, osVer, appVer);
+		}
 		
 		return "success";
 	}
