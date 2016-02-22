@@ -75,7 +75,29 @@ public class UserServiceImple implements UserService {
 		userDao.join(joinMap);
 		
 	}
+	
+	// custId üũ
+	@Override
+	public int checkCust(String custId) throws RuntimeException {
+		return userDao.checkCust(custId);
+	}
 
+	// App User update
+	@Override
+	public void updateAppUser(String custId, String phoneNum, String device, String osVer, String appVer) throws RuntimeException {
+		
+		Map<String, String> appUserMap = new HashMap<String, String>();
+		
+		appUserMap.put("custId", custId);
+		appUserMap.put("phoneNum", phoneNum);
+		appUserMap.put("device", device);
+		appUserMap.put("osVer", osVer);
+		appUserMap.put("appVer", appVer);
+		
+		userDao.updateAppUser(appUserMap);
+		
+	}
+	
 	// App User insert
 	@Override
 	public void insertAppUser(String custId, String phoneNum, String device, String osVer, String appVer) throws RuntimeException {
