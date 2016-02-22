@@ -155,7 +155,7 @@ public class UserController {
 	 * App User Á¤º¸ insert
 	 */
 	@RequestMapping(value="/appUser", method=RequestMethod.GET)
-	public void insertAppUser(HttpServletRequest request) {
+	public String insertAppUser(HttpServletRequest request) {
 		
 		String custId   = request.getParameter("custId");
 		String phoneNum = request.getParameter("phoneNum");
@@ -170,5 +170,7 @@ public class UserController {
 		logger.debug("appVer   : " + appVer);
 		
 		userService.insertAppUser(custId, phoneNum, device, osVer, appVer);
+		
+		return "success";
 	}
 }
