@@ -118,6 +118,44 @@ public class MybatisUserDao implements UserDao {
 		}
 		
 	}
+	
+	// custID üũ
+	@Override
+	public int checkCust(String custId) throws RuntimeException {
+		
+		int check = 0;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			UserDao dao = session.getMapper(UserDao.class);
+			
+			dao.checkCust(custId);
+		} finally {
+			session.close();
+		}
+		
+		return check;
+	}
+	
+	// App User update
+	@Override
+	public void updateAppUser(Map<String, String> appUserMap) throws RuntimeException {
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			UserDao dao = session.getMapper(UserDao.class);
+			
+			dao.updateAppUser(appUserMap);
+			
+		} finally {
+			session.close();
+		}
+		
+	}
 
 	// App User insert
 	@Override
