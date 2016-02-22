@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -728,14 +729,21 @@ public class PushController {
 	 * 그래프 오픈 통계
 	 */
 	@RequestMapping(value="/getOpenGraph", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody Map<String, Object> getOpenGrapgh(String camId) {
+	public @ResponseBody JSONObject getOpenGrapgh(String camId) {
 		
-		Map<String, Object> openMap = null;
+		Map<String, Object> openMap  = null;
+		Map<String, Object> clickMap = null;
 		
-		openMap = pushService.getOpenGraph(camId);
+		openMap  = pushService.getOpenGraph(camId);
+		clickMap = pushService.getClickGraph(camId);
+		
+		JSONObject jsonObj = new JSONObject();
+		
+		jsonObj.put("openMap", openMap);
+		jsonObj.put("clickMap", clickMap);
 		
 		//logger.debug("*******************************************************************   CNT_1 = " + openMap.get("CNT_1"));
 		
-		return openMap;
+		return jsonObj;
 	}
 }
