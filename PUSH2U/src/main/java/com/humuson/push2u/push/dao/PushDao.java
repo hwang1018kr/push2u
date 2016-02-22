@@ -139,4 +139,7 @@ public interface PushDao {
 	
 	// 그래프 오픈 통계 가져오기
 	public Map<String, Object> getOpenGraph(int camId) throws RuntimeException;
+	
+	// 그래프 오픈 통계 가져오기
+	public Map<String, Object> getClickGraph(int camId) throws RuntimeException;
 }
