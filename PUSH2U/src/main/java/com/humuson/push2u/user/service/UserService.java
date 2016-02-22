@@ -22,6 +22,12 @@ public interface UserService {
 	// 회원가입
 	public void join(String userId, String userPasswd, String userName, String phoneNum) throws RuntimeException;
 	
+	// custId 체크
+	public int checkCust(String custId) throws RuntimeException;
+	
+	// App User Update
+	public void updateAppUser(String custId, String phoneNum, String device, String osVer, String appVer) throws RuntimeException;
+	
 	// App User insert
 	public void insertAppUser(String custId, String phoneNum, String device, String osVer, String appVer) throws RuntimeException;
 	
