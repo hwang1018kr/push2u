@@ -21,7 +21,7 @@
 
 <style type="text/css">
 .table_container {
-    border: 2px solid gray;
+    border: 1px solid gray;
     border-radius: 10px;
     position: relative;
 }
@@ -160,11 +160,8 @@ function setOpenGraph() {
 		},
 		error: function(xhr, error) {
 			alert(xhr.status + ", " + error);
-			//alert(_ERROR_GET_DATA_MESSAGE_);
-			//reactChartOption.series = [];
-			//reactChart = new Highcharts.Chart(reactChartOption);
-			//reactChart.showLoading(_ERROR_GET_DATA_MESSAGE_);
-			
+			alert("데이터를 가져오는 도중 오류가 발생했습니다.");
+						
 		}
 		
 	});
@@ -225,21 +222,17 @@ function setOpenGraph() {
 	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
 		<div class="table-responsive">
 		
-				<div class="col-md-2" style="padding-left: 1px;">
-					<a style="cursor:pointer; " id="pushView" onclick="popup(this)">
-						<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-primary btn-sm">전문보기</button>
-					</a>
-				</div>
-				<div class="col-md-8" align="center">
-					<label for="detailReport" style="font-size: 20px; text-align: center;">푸시 제목 : ${detailReport.PUSH_TITLE }</label>
-				</div>
-				<div class="col-md-2" style="padding-right: 1px;" align="right">
-					<a style="cursor:pointer; outline-width: 0;" id="goList" href="reportView?pageNum=${pageNum }">
-						<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-default btn-sm">목록으로</button>
-					
-					</a>
-				</div>
-
+			<div class="col-md-8" style="padding-left: 0px;">
+				<label for="detailReport" style="font-size: 20px; text-align: center;">푸시 제목 : ${detailReport.PUSH_TITLE }</label>
+				<a style="cursor:pointer; " id="pushView" onclick="popup(this)">
+					<button style="margin-bottom: 5px; margin-left:10px; outline:none;" id="sendPush" type="button" class="btn btn-primary btn-sm">전문보기</button>
+				</a>
+			</div>
+			<div class="col-md-4" style="padding-right: 1px;" align="right">
+				<a style="cursor:pointer; outline-width: 0;" id="goList" href="reportView?pageNum=${pageNum }">
+					<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-default btn-sm">목록으로</button>
+				</a>
+			</div>
 			
 			<table id="detailReport" class="table table-hover table-bordered" style="font-size: large;">
 				<tbody>
