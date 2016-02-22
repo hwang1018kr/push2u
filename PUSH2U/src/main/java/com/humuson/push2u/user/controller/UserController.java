@@ -155,7 +155,7 @@ public class UserController {
 	 * App User Á¤º¸ insert
 	 */
 	@RequestMapping(value="/appUser", method=RequestMethod.GET)
-	public String insertAppUser(HttpServletRequest request) {
+	public void insertAppUser(HttpServletRequest request) {
 		
 		String custId   = request.getParameter("custId");
 		String phoneNum = request.getParameter("phoneNum");
@@ -173,12 +173,12 @@ public class UserController {
 		
 		check = userService.checkCust(custId);
 		
-		if(check == 1) {
+		if(check > 0) {
 			userService.updateAppUser(custId, phoneNum, device, osVer, appVer);
 		} else {
 			userService.insertAppUser(custId, phoneNum, device, osVer, appVer);
 		}
 		
-		return "success";
+		//return "success";
 	}
 }
