@@ -40,7 +40,7 @@
 	<!-- App User update -->
 	<update id="updateAppUser" parameterType="java.util.Map">
 	    UPDATE APP_USERS
-		SET PHONE_NUM = #{phoneNum}, REQ_DATE = SYSDATE(), DEVICE = #{device}, #{osVer}, APP_VER = #{appVer}
+		SET PHONE_NUM = #{phoneNum}, REQ_DATE = SYSDATE(), DEVICE = #{device}, OS_VER = #{osVer}, APP_VER = #{appVer}
 		WHERE CUST_ID = #{custId}
 	</update>
 	
