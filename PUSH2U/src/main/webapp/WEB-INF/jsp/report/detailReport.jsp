@@ -126,34 +126,61 @@ function setOpenGraph() {
 				pushGraph.showLoading(_BLANK_DATA_MESSAGE_);
 				
 			} else {
+				
 				var pushOpenSeries = {
 						name : '오픈',
 			            data : []
 				};
 				
-				//var openMap = result.openMap;
+				var pushClickSeries = {
+						name : '클릭',
+			            data : []
+				};
 				
+				var openMap  = result.openMap;
+				var clickMap = result.clickMap;
+			
 				var openValueList = new Array();
 				
-				openValueList.push(Number(result.CNT_1));
-				openValueList.push(Number(result.CNT_2));
-				openValueList.push(Number(result.CNT_3));
-				openValueList.push(Number(result.CNT_4));
-				openValueList.push(Number(result.CNT_5));
-				openValueList.push(Number(result.CNT_6));
-				openValueList.push(Number(result.CNT_7));
-				openValueList.push(Number(result.CNT_8));
-				openValueList.push(Number(result.CNT_9));
-				openValueList.push(Number(result.CNT_10));
-				openValueList.push(Number(result.CNT_11));
-				openValueList.push(Number(result.CNT_12));
+				openValueList.push(Number(openMap.CNT_1));
+				openValueList.push(Number(openMap.CNT_2));
+				openValueList.push(Number(openMap.CNT_3));
+				openValueList.push(Number(openMap.CNT_4));
+				openValueList.push(Number(openMap.CNT_5));
+				openValueList.push(Number(openMap.CNT_6));
+				openValueList.push(Number(openMap.CNT_7));
+				openValueList.push(Number(openMap.CNT_8));
+				openValueList.push(Number(openMap.CNT_9));
+				openValueList.push(Number(openMap.CNT_10));
+				openValueList.push(Number(openMap.CNT_11));
+				openValueList.push(Number(openMap.CNT_12));
 				
 				for( var i = 0; i < openValueList.length; i++ ) {
 					pushOpenSeries.data.push(openValueList[i]);
 				}
+				
+				var clickValueList = new Array();
+				
+				clickValueList.push(Number(clickMap.CNT_1));
+				clickValueList.push(Number(clickMap.CNT_2));
+				clickValueList.push(Number(clickMap.CNT_3));
+				clickValueList.push(Number(clickMap.CNT_4));
+				clickValueList.push(Number(clickMap.CNT_5));
+				clickValueList.push(Number(clickMap.CNT_6));
+				clickValueList.push(Number(clickMap.CNT_7));
+				clickValueList.push(Number(clickMap.CNT_8));
+				clickValueList.push(Number(clickMap.CNT_9));
+				clickValueList.push(Number(clickMap.CNT_10));
+				clickValueList.push(Number(clickMap.CNT_11));
+				clickValueList.push(Number(clickMap.CNT_12));
+				
+				for( var i = 0; i < clickValueList.length; i++ ) {
+					pushClickSeries.data.push(clickValueList[i]);
+				}
 			}
 			
 			pushGraphOption.series.push(pushOpenSeries);
+			pushGraphOption.series.push(pushClickSeries);
 			
 			pushGraph = new Highcharts.Chart(pushGraphOption);
 			
