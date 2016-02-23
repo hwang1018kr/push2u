@@ -67,10 +67,10 @@ function setOpenGraph() {
 			         type: 'areaspline'
 			     },
 			     title: {
-			            text: '시간별 오픈 추이'
+			            text: '발송후 오픈/클릭 통계'
 		         },
 		         subtitle: {
-		             text: '푸시 발송 후에 경과한 시간별 오픈 그래프'
+		             text: '푸시 발송 후에 경과한 시간별 오픈/클릭 그래프'
 		         },
 		         legend: {
 		             layout: 'vertical',
@@ -100,7 +100,7 @@ function setOpenGraph() {
 		         },
 		         yAxis: {
 		            title: {
-		                text: '오픈 수'
+		                text: '오픈/클릭 수'
 		            },
 		            min: 0,
 		            tickAmount: 5
