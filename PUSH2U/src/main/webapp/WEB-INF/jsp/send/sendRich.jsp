@@ -291,11 +291,13 @@ $(function(){
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         	<ul class="nav navbar-nav">
-		        <li class="dropdown">
+            	
+            	<li><a href="/push/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  홈</a></li>
+            	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="/push/sendView">Text Push 발송</a></li>
-		            <li><a href="/push/sendRich">Rich Push 발송</a></li>
+		            <li><a href="/push/sendView">Text Push</a></li>
+		            <li><a href="/push/sendRich">Rich Push</a></li>
 		          </ul>
 		        </li>
             	<li><a href="/push/reportView"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  레포트</a></li>
@@ -308,6 +310,7 @@ $(function(){
       </div>
     </nav>
 </div>
+
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 70%">
