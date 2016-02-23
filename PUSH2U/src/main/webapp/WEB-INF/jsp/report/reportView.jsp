@@ -74,7 +74,7 @@
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 30%">
-	<div class="page-header col-md-8 col-md-offset-2">
+	<div class="page-header col-md-10 col-md-offset-1">
           <h2>레포트</h2>
     </div>
     
