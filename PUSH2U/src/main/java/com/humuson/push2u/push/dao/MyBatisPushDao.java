@@ -730,5 +730,52 @@ public class MyBatisPushDao implements PushDao {
 		
 		return map;
 	}
+	
+	
+	// 그래프 전체 오픈 통계 가져오기
+		@Override
+		public Map<String, Object> getTotalOpenGraph(String userId) throws RuntimeException {
+			
+			Map<String, Object> map = null;
+			
+			SqlSession session = null;
+			
+			try {
+				session = sqlSessionFactory.openSession();
+				PushDao dao = session.getMapper(PushDao.class);
+				
+				map = dao.getTotalOpenGraph(userId);
+				
+			//	logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
+				
+			} finally {
+				session.close();
+			}
+			
+			return map;
+		}
+		
+		// 그래프 전체 클릭 통계 가져오기
+		@Override
+		public Map<String, Object> getTotalClickGraph(String userId) throws RuntimeException {
+			
+			Map<String, Object> map = null;
+			
+			SqlSession session = null;
+			
+			try {
+				session = sqlSessionFactory.openSession();
+				PushDao dao = session.getMapper(PushDao.class);
+				
+				map = dao.getTotalClickGraph(userId);
+				
+		//		logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
+				
+			} finally {
+				session.close();
+			}
+			
+			return map;
+		}
 
 }
