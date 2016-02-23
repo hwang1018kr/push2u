@@ -59,7 +59,7 @@ public class UserController {
 			session.setAttribute("userId", loginUser.getUserId());
 			session.setAttribute("phoneNum", loginUser.getPhoneNum());
 			
-			response.sendRedirect("/push/sendView");
+			response.sendRedirect("/push/home");
 			
 		} else {
 			
