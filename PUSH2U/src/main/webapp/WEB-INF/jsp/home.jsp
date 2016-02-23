@@ -253,8 +253,23 @@ function setOpenGraph() {
 <!-- 			  <li class="active">상세 레포트</li> -->
 <!-- 		  </ol> -->
 <!--     </div> -->
- 
-	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
+ 	
+ 	<!-- jumbotron -->
+ 	<div class="jumbotron col-md-8 col-md-offset-2" >
+		<div class="container">	
+			<p class="lead"></p>
+			<h3 align="center"> PUSH2U 에 오신것을 환영합니다. </h3>
+	
+			</br>
+			<div class="row" align="center">
+				<a href="/push/sendView" class="btn btn-primary btn-lg">TEXT PUSH 전송</a>
+				<a href="/push/sendRich" class="btn btn-info btn-lg">RICH PUSH 전송</a>
+			</div>
+		</div>	
+	</div>
+ 	
+ 	<!-- graph -->
+	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px; padding-left: 0px; padding-right: 0px;">
 		<div id="open_graph_container" class="col-md-12 table_container" style="padding: 15px;">
 		</div>
 	</div>	
