@@ -217,6 +217,8 @@ function setOpenGraph() {
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         	<ul class="nav navbar-nav">
+            	
+            	<li><a href="/push/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  홈</a></li>
             	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
@@ -234,6 +236,7 @@ function setOpenGraph() {
       </div>
     </nav>
 </div>
+
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 30%">
