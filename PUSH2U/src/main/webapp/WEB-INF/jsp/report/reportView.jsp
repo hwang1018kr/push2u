@@ -51,6 +51,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
         	<ul class="nav navbar-nav">
+            	
+            	<li><a href="/push/home"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>  홈</a></li>
             	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
@@ -68,6 +70,7 @@
       </div>
     </nav>
 </div>
+
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 30%">
@@ -76,17 +79,19 @@
     </div>
     
     <!-- 캠페인 리스트 테이블 시작 -->
-	<div class="col-md-8 col-md-offset-2" style="margin-bottom: 20px;">
+	<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px;">
 		<div class="table-responsive">
 			<table class="table table-hover" style="font-size: large;">
 				<thead>
 					<tr class="active">
 						<!-- <th style="width: 15%">진행 상태</th> -->
-						<th style="width: 38%;">푸시 제목</th>
-						<th style="width: 10%; text-align: center;">타겟</th>
-						<th style="width: 10%; text-align: center;">성공</th>
-						<th style="width: 10%; text-align: center;">오픈</th>
-						<th style="width: 10%; text-align: center;">클릭</th>
+						<th style="width: 5%;text-align: center;">타입</th>
+						<th style="width: 35%;">푸시 제목</th>
+						<th style="width: 20%;text-align: center;">발송 날짜</th>
+						<th style="width: 7%; text-align: center;">타겟</th>
+						<th style="width: 7%; text-align: center;">성공</th>
+						<th style="width: 7%; text-align: center;">오픈</th>
+						<th style="width: 7%; text-align: center;">클릭</th>
 						<th style="width: 12%; text-align: center;">SMS 발송</th>
 					</tr>
 				</thead>
@@ -94,7 +99,19 @@
 				
 				<c:forEach var="report" items="${reportList }">
 					<tr>
+						<td style="text-align: center;"> 
+							<c:choose>
+							    <c:when test="${report.MSG_TYPE eq 'H'}">
+							        <img src="/resources/images/rich.png" style="width:37px;height:22px;" align="middle" >
+							    </c:when>
+						
+							    <c:otherwise>
+							       <img src="/resources/images/text.png" style="width:37px;height:22px;" align="middle" >
+							    </c:otherwise>
+							</c:choose>
+						</td>
 						<td style="white-space: nowrap;"><a href="/push/detailReport?camId=${report.CAM_ID }&pageNum=${pageNum }" id="detailReport" class="detailReportBtn">${report.PUSH_TITLE }</a></td>
+						<td style="text-align: center;">${report.REQ_DATE }</td>
 						<td style="text-align: center;">${report.TARGET_CNT }</td>
 						<td style="text-align: center;">${report.SUCCESS_CNT }</td>
 						<td style="text-align: center;">${report.OPEN_CNT } </td>
