@@ -746,4 +746,43 @@ public class PushController {
 		
 		return jsonObj;
 	}
+
+
+	/*
+	 * 그래프 전체 오픈 통계
+	 */
+	@RequestMapping(value="/getTotalOpenGrapgh", produces={MediaType.APPLICATION_JSON_VALUE})
+	public @ResponseBody JSONObject getTotalOpenGrapgh(String userId) {
+		
+		Map<String, Object> openMap  = null;
+		Map<String, Object> clickMap = null;
+		
+		openMap  = pushService.getTotalOpenGraph(userId);
+		clickMap = pushService.getTotalClickGraph(userId);
+		
+		JSONObject jsonObj = new JSONObject();
+		
+		jsonObj.put("openMap", openMap);
+		jsonObj.put("clickMap", clickMap);
+		//logger.debug("*******************************************************************   userId = " + userId);
+		logger.debug("*******************************************************************   CNT_00 = " + openMap.get("CNT_00"));
+		
+		return jsonObj;
+	}
+	
+	/*
+	 * home 화면 요청
+	 */
+	@RequestMapping(value = "/home")
+	public String home(Model model, HttpSession session, HttpServletRequest request) {
+
+		String userId = String.valueOf(session.getAttribute("userId"));
+
+//		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
+//		logger.debug("*******************************************************************   userId = " + userId);
+		model.addAttribute("userId", userId);
+
+		return "home";
+	}
+	
 }
