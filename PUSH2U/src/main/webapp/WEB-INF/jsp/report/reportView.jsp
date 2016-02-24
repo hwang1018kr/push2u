@@ -16,7 +16,7 @@
 
 <!-- 부가적인 테마 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style type="text/css">
 .table_container {
@@ -56,8 +56,8 @@
             	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="/push/sendView">Text Push</a></li>
-		            <li><a href="/push/sendRich">Rich Push</a></li>
+		            <li><a href="/push/sendView"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>  Text Push</a></li>
+		            <li><a href="/push/sendRich"><span class="glyphicon glyphicon-header" aria-hidden="true"></span>  Rich Push</a></li>
 		          </ul>
 		        </li>
             	<li><a href="/push/reportView"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  레포트</a></li>

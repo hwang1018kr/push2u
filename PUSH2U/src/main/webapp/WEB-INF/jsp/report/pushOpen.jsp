@@ -64,9 +64,9 @@
 						<th style="width: 15%; text-align: center;">User ID</th>
 						<th style="width: 25%; text-align: center;">Send Time</th>
 						<th style="width: 25%; text-align: center;">Read Time</th>
-						<th style="width: 7%; text-align: center;">OS</th>
+						<th style="width: 7%; text-align: center;">OS Ver</th>
 						<th style="width: 14%; text-align: center;">Device</th>
-						<th style="width: 14%; text-align: center;">App Ver.</th>
+						<th style="width: 14%; text-align: center;">App Ver</th>
 					</tr>
 				</thead>
 				<tbody>
