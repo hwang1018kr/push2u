@@ -32,6 +32,35 @@
 <script type="text/javascript">
 $(function () {
 	
+	if("${resendcamId }") {
+		
+		$.ajax({
+			
+			type     : "post",
+			url      : "getRecentTemplete",
+			data     : {"camId" : "${resendcamId }"},
+			dataType : "json",//text,xml, json
+			success  : function(result) {
+				
+				$("#push_title").val(result.PUSH_TITLE);
+				$("#popup_contents").val(result.PUSH_MSG);
+				$("#inapp_contents").val(result.INAPP_CONTENT);
+				
+				$("#preview_title").val(result.PUSH_TITLE);
+				$("#push_preview").val(result.PUSH_MSG);
+				$("#popup_preview").val(result.PUSH_MSG);
+				$("#inapp_preview").val(result.INAPP_CONTENT);
+				
+			},
+		    error : function(xhr, error){
+		    	alert(xhr.status + ", " + error);
+		    	alert(xhr.responseText);
+		    }
+		});
+		
+		//return false;
+	}
+	
 	//최근 메시지 제목 클릭시
 	$("#recent_push").change(function(){
 		
@@ -77,7 +106,14 @@ $(function () {
 		});
 		
 		return false;
+		
 	});
+	
+	// 템플릿 가져오는 함수
+	function getTemplete(camId) {
+		
+		
+	}
 	
 	// 미리보기 토글 시작
 	$("#toggle_status").click(function() {
