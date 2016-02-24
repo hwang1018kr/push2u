@@ -41,6 +41,7 @@
 
 $(function(){
 	
+	// 재발송 됐을 경우 실행
 	if("${resendcamId }") {
 		
 		$.ajax({
@@ -58,6 +59,14 @@ $(function(){
 				
 				$("#preview_title").val(result.PUSH_TITLE);
 				$("#status_preview").val(result.PUSH_MSG);
+				
+				$("#rich_popup").html("");
+	        	$("#rich_popup").html(result.POPUP_CONTENT);
+	        	
+	        	$("#rich_popup").append('<button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:70px; height:30px; width: 60px;" disabled="disabled">닫기</button><button class="popup_button" style="position: absolute; background-color: gray; color: white; font-size : 13px; left:140px; height:30px; width: 60px;" disabled="disabled">보기</button>');
+
+	        	$("#rich_inapp").html("");
+	        	$("#rich_inapp").html(result.INAPP_CONTENT);
 				
 			},
 		    error : function(xhr, error){
