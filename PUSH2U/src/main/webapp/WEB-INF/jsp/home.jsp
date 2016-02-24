@@ -126,6 +126,7 @@ function setOpenGraph() {
 				
 				var pushClickSeries = {
 						name : '클릭',
+						color: '#FF8080',
 			            data : []
 				};
 				
