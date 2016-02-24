@@ -322,7 +322,7 @@ $(function() {
 
 <div id="login" class="col-md-12" style="height: 60%">
 
-	<div id="login_box" class="col-md-4 col-md-offset-4 table_container form-group" style="height: 370px;">
+	<div id="login_box" class="col-md-4 col-md-offset-4 table_container form-group" style="height: 350px; padding-top: 25px;">
 		<div style="text-align: center; margin-bottom: 20px;">
 			<h1><i class="fa fa-envelope"></i>PUSH2U</h1>
 		</div>
