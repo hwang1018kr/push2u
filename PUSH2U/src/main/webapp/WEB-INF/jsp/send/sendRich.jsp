@@ -276,8 +276,30 @@ $(function(){
     //전송버튼 클릭이벤트
     $("#sendPush").click(function(){
         
-    	CKEDITOR.instances.pushEditor.getData();
-    	CKEDITOR.instances.inappEditor.getData();
+    	var pushContent  = CKEDITOR.instances.pushEditor.getData();
+    	var inappContent = CKEDITOR.instances.inappEditor.getData();
+    	
+    	if($("#push_title").val() == null || $("#push_title").val() == "") {
+    		
+			alert("푸시 타이틀을 입력해주세요!");
+			return false;
+			
+		} else if($("#status_contents").val() == null || $("#status_contents").val() == "") {
+			
+			alert("푸시 상태창 내용을 입력해주세요!");
+			return false;
+			
+		} else if(pushContent == null || pushContent =="") {
+			
+			alert("푸시 팝업 내용을 입력해주세요!");
+			return false;
+			
+		} else if(inappContent == null || inappContent =="") {
+			
+			alert("앱 내 메시지 내용을 입력해주세요!");
+			return false;
+			
+		}
     	
         var chk = $("#smsYN_checkbox").prop("checked");
 		
