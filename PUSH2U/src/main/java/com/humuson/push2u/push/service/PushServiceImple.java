@@ -624,16 +624,16 @@ public class PushServiceImple implements PushService {
 	
 	// 그래프 전체 오픈 통계 가져오기
 	@Override
-	public Map<String, Object> getTotalOpenGraph(String userId) throws RuntimeException {
+	public Map<String, Object> getTotalOpenGraph() throws RuntimeException {
 		
-		return pushDao.getTotalOpenGraph(userId);
+		return pushDao.getTotalOpenGraph();
 	}
 	
 	// 그래프 전체 클릭 통계 가져오기
 	@Override
-	public Map<String, Object> getTotalClickGraph(String userId) throws RuntimeException {
+	public Map<String, Object> getTotalClickGraph() throws RuntimeException {
 		
-		return pushDao.getTotalClickGraph(userId);
+		return pushDao.getTotalClickGraph();
 	}
 
 }
