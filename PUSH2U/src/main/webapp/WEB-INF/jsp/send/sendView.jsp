@@ -366,10 +366,10 @@ $(function () {
 					<div id="status_preview_ui" style="display: block;">
 						<div id="preview_background">
 							<img src="/resources/images/android_noti.png">
-							<div style="position:absolute; left:80px; top:265px; height:15px; width: 370px;">
+							<div style="position:absolute; left:90px; top:270px; height:15px; width: 350px;">
 								<input type="text" id="preview_title" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; " disabled="disabled">
 							</div>
-							<div style="position:absolute; left:80px; top:290px; height:15px; width:370px;">
+							<div style="position:absolute; left:90px; top:295px; height:15px; width:350px;">
 								<input type="text" id="popup_preview" value="" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
 							</div>
 						</div>
