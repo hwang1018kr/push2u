@@ -275,8 +275,8 @@ function setOpenGraph() {
 						<td colspan="3">${detailReport.REQ_DATE }</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">
-							TARGET</br>총 발송 수
+						<td class="active" style="width: 20%; background-color: #e8e8e8">
+							TARGET<br><span style="font-size: 14px;">총 발송 수</span>
 						</td>
 						
 						<td style="width: 30%;"> 
@@ -285,7 +285,7 @@ function setOpenGraph() {
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a>
 						</td>
-						<td class="active" style="width: 20%;">OPEN</td>
+						<td class="active" style="width: 20%; background-color: #e8e8e8">OPEN</td>
 						<td> 
 							${detailReport.OPEN_CNT } 건 
 							<a style="cursor:pointer" id="pushOpen" onclick="popup(this)">
@@ -294,8 +294,8 @@ function setOpenGraph() {
 						</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">
-							SENT(성공/발송)</br>성공 발송 수
+						<td class="active" style="width: 20%; background-color: #e8e8e8" >
+							SENT(성공/발송)<br><span style="font-size: 14px;">성공 발송 수</span>
 						</td>
 						<td> 
 							${detailReport.SUCCESS_CNT } 건 / ${detailReport.TARGET_CNT } 건
@@ -303,7 +303,7 @@ function setOpenGraph() {
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a>
 						</td>
-						<td class="active" style="width: 20%;">NO OPEN</td>
+						<td class="active" style="width: 20%; background-color: #e8e8e8">NO OPEN</td>
 						<td> 
 							${detailReport.NOOPEN_CNT } 건 
 							<a style="cursor:pointer" id="pushNoOpen" onclick="popup(this)">
@@ -312,8 +312,8 @@ function setOpenGraph() {
 						</td>
 					</tr>
 					<tr>
-						<td class="active" style="width: 20%;">
-							FAIL</br> 실패 건수
+						<td class="active" style="width: 20%; background-color: #e8e8e8">
+							FAIL<br><span style="font-size: 14px;">실패 건수</span>
 						</td>
 						<td>
 							${detailReport.FAIL_CNT } 건 
@@ -321,8 +321,8 @@ function setOpenGraph() {
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a> 
 						</td>
-						<td class="active" style="width: 20%;">
-							CLICK</br>클릭 건수
+						<td class="active" style="width: 20%; background-color: #e8e8e8">
+							CLICK<br><span style="font-size: 14px;">클릭 건수</span>
 						</td>
 						<td> 
 							${detailReport.CLICK_CNT } 건
