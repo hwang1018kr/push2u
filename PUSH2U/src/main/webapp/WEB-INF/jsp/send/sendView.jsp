@@ -234,6 +234,22 @@ $(function () {
 	// 푸시 발송하기 버튼 클릭시
 	$("#sendPush").click(function() {
 		
+		if($("#push_title").val() == null || $("#push_title").val() == "") {
+			
+			alert("푸시 타이틀을 입력해주세요!");
+			return false;
+			
+		} else if($("#popup_contents").val() == null || $("#popup_contents").val() == "") {
+			
+			alert("푸시 팝업 내용을 입력해주세요!");
+			return false;
+			
+		} else if($("#inapp_contents").val() == null || $("#inapp_contents").val() =="") {
+			
+			alert("앱 내 메시지를 입력해주세요!");
+			return false;
+		}
+		
 		var chk = $("#smsYN_checkbox").prop("checked");
 		
 		if(chk) {
