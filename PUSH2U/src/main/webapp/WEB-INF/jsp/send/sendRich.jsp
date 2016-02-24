@@ -372,18 +372,7 @@ $(function(){
 				  <li class="active">Rich Push 발송</li>
 			  </ol>
 	    </div>
-	    <%-- <div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
-	    	
-	    	<div class="col-md-6  col-md-offset-1 ">
-		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
-		    	<select id="recent_push" class="form-control" >
-		    		<option value="no-use" id="no-use" selected>미사용</option>
-		    		<c:forEach var="list" items="${recentList }">
-		    			<option class="recent_list" id="${list.CAM_ID }">${list.PUSH_TITLE }</option>
-		    		</c:forEach>
-		    	</select>
-	    	</div>
-	    </div> --%>
+	   
 		<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px; ">
 		    <div class="col-md-6  col-md-offset-1 " style="margin-bottom: 20px; ">
 		    	<label for="recent_push" style="font-size: 20px">최근 메시지 불러오기</label>
