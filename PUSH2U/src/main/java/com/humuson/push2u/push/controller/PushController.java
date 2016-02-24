@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -53,9 +54,9 @@ public class PushController {
 	 * push 발송화면 요청
 	 */
 	@RequestMapping(value="/sendView")
-	public String sendView(Model model, HttpSession session) {
+	public String sendView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		String userId = String.valueOf(session.getAttribute("userId"));
+		String userId   = String.valueOf(session.getAttribute("userId"));
 		
 		List<Map<String, Object>> recentList = null;
 		
@@ -423,7 +424,30 @@ public class PushController {
 		
 		return "report/detailReport";
 	}
+	
+	/*
+	 * 푸시 재발송
+	 */
+	@RequestMapping(value="/reSend")
+	public String pushReSend(Model model, HttpServletRequest request) {
+		
+		String resendcamId = request.getParameter("camId");
 
+		Map<String, String> reSendMap = null;
+		
+		reSendMap = pushService.getRecentTemplete(resendcamId);
+		
+		model.addAttribute("resendcamId", resendcamId);
+		
+		logger.debug("=============================================           resendMap : " + reSendMap.toString());
+		
+		if(reSendMap.get("MSG_TYPE").equals("T")) {
+			return "send/sendView";
+		} else {
+			return "send/sendRich";
+		}
+		
+	}
 	
 	/*
 	 * report push target 화면 요청
