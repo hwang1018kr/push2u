@@ -752,13 +752,13 @@ public class PushController {
 	 * 그래프 전체 오픈 통계
 	 */
 	@RequestMapping(value="/getTotalOpenGrapgh", produces={MediaType.APPLICATION_JSON_VALUE})
-	public @ResponseBody JSONObject getTotalOpenGrapgh(String userId) {
+	public @ResponseBody JSONObject getTotalOpenGrapgh() {
 		
 		Map<String, Object> openMap  = null;
 		Map<String, Object> clickMap = null;
 		
-		openMap  = pushService.getTotalOpenGraph(userId);
-		clickMap = pushService.getTotalClickGraph(userId);
+		openMap  = pushService.getTotalOpenGraph();
+		clickMap = pushService.getTotalClickGraph();
 		
 		JSONObject jsonObj = new JSONObject();
 		
@@ -780,7 +780,7 @@ public class PushController {
 
 //		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
 //		logger.debug("*******************************************************************   userId = " + userId);
-		model.addAttribute("userId", userId);
+//		model.addAttribute("userId", userId);
 
 		return "home";
 	}
