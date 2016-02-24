@@ -203,7 +203,7 @@ function setOpenGraph() {
 
 </script>
 
-<title>PUSH2U - 레포트</title>
+<title>PUSH2U - 홈</title>
 </head>
 <body>
 
