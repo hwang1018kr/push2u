@@ -1,0 +1,637 @@
+02-24 12:55:51 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@61bbbcfe] 
+02-24 12:55:51 [DEBUG] [org.apache.ibatis.logging.LogFactory : 128] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter. 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:55:52 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:55:54 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  
+02-24 12:55:54 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  'taskScheduler' 
+02-24 12:55:54 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@18a062f6] 
+02-24 12:55:54 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:55:54 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 21] ===================================     START     =================================== 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 22] public java.lang.String com.humuson.push2u.HomeController.home(java.util.Locale,org.springframework.ui.Model) ì‹¤í–‰... 
+02-24 12:55:55 [INFO ] [com.humuson.push2u.HomeController : 27] Welcome home! The client locale is ko_KR. 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 29] ===================================      END      =================================== 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 368] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í´ë¦­ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT IFNULL(MAX(CLICK_ID), 0) FROM push_click_detail  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, LINK_SEQ, LINK, MSG_PUSH_TYPE FROM TB_CLICK WHERE ID > ? AND APP_ID = 344 ORDER BY ID  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 2556(Integer) 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 389] ==========================     MAX í´ë¦­ ì•„ì´ë”” : 2556 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 390] ==========================     ê°€ì ¸ì˜¨ CLICK LIST ê°œìˆ˜ : 0 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:55:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:55:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:55:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:55:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:15 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:15 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:15 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:15 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:15 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:56:15 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:56:15 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:15 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:35 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:35 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:35 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:35 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:35 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:56:35 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:56:35 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:35 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 368] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í´ë¦­ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT IFNULL(MAX(CLICK_ID), 0) FROM push_click_detail  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, LINK_SEQ, LINK, MSG_PUSH_TYPE FROM TB_CLICK WHERE ID > ? AND APP_ID = 344 ORDER BY ID  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 2556(Integer) 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 389] ==========================     MAX í´ë¦­ ì•„ì´ë”” : 2556 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 390] ==========================     ê°€ì ¸ì˜¨ CLICK LIST ê°œìˆ˜ : 0 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:56:55 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:56:55 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:56:55 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:56:55 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:02 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 150] Shutting down ExecutorService 'taskScheduler' 
+02-24 12:57:02 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 150] Shutting down ExecutorService 
+02-24 12:57:07 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@49d32c46] 
+02-24 12:57:07 [DEBUG] [org.apache.ibatis.logging.LogFactory : 128] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter. 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:57:08 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:57:09 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  
+02-24 12:57:09 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  'taskScheduler' 
+02-24 12:57:09 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@3a77ef2e] 
+02-24 12:57:10 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:10 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:10 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 21] ===================================     START     =================================== 
+02-24 12:57:10 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 22] public java.lang.String com.humuson.push2u.HomeController.home(java.util.Locale,org.springframework.ui.Model) ì‹¤í–‰... 
+02-24 12:57:10 [INFO ] [com.humuson.push2u.HomeController : 27] Welcome home! The client locale is ko_KR. 
+02-24 12:57:10 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 29] ===================================      END      =================================== 
+02-24 12:57:10 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:10 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 368] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í´ë¦­ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT IFNULL(MAX(CLICK_ID), 0) FROM push_click_detail  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, LINK_SEQ, LINK, MSG_PUSH_TYPE FROM TB_CLICK WHERE ID > ? AND APP_ID = 344 ORDER BY ID  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 2556(Integer) 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 389] ==========================     MAX í´ë¦­ ì•„ì´ë”” : 2556 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 390] ==========================     ê°€ì ¸ì˜¨ CLICK LIST ê°œìˆ˜ : 0 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:11 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:57:11 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:57:11 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:57:11 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:31 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:31 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:31 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:31 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:31 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:57:31 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:57:31 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:57:31 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:51 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:51 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ë©”ì„¸ì§€ ì•„ì´ë”” : 6904 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     ê°€ì ¸ì˜¨ SMS LIST ê°œìˆ˜ : 0 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   í‘¸ì‹œ ë¡œê·¸ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:51 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:51 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX í‘¸ì‹œ ì•„ì´ë”” : 40500579 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     ê°€ì ¸ì˜¨ í‘¸ì‹œ LOG ê°œìˆ˜ : 0 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ë¬¸ìž ë°œì†¡ ìŠ¤ì¼€ì¤„ëŸ¬ ì‹¤í–‰   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:57:51 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:57:51 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX ë””í…Œì¼ ì•„ì´ë”” : 4149 
+02-24 12:57:51 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ë°œì†¡í•  SMS ê°œìˆ˜ : 0 
+02-24 12:57:51 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:03 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 150] Shutting down ExecutorService 'taskScheduler' 
+02-24 12:58:03 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 150] Shutting down ExecutorService 
+02-24 12:58:09 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.ResourceBundleThemeSource@1f502455] 
+02-24 12:58:09 [DEBUG] [org.apache.ibatis.logging.LogFactory : 128] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter. 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 431] Parsed configuration file: 'class path resource [config/mybatis-config.xml]' 
+02-24 12:58:09 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/user/dao/UserDao.xml]' 
+02-24 12:58:10 [DEBUG] [org.mybatis.spring.SqlSessionFactoryBean : 472] Parsed mapper file: 'class path resource [com/humuson/push2u/push/dao/PushDao.xml]' 
+02-24 12:58:11 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  
+02-24 12:58:11 [INFO ] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport : 115] Initializing ExecutorService  'taskScheduler' 
+02-24 12:58:11 [DEBUG] [org.springframework.ui.context.support.UiApplicationContextUtils : 85] Unable to locate ThemeSource with name 'themeSource': using default [org.springframework.ui.context.support.DelegatingThemeSource@66a01572] 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ¹ß¼Û ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 21] ===================================     START     =================================== 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 22] public java.lang.String com.humuson.push2u.HomeController.home(java.util.Locale,org.springframework.ui.Model) ½ÇÇà... 
+02-24 12:58:12 [INFO ] [com.humuson.push2u.HomeController : 27] Welcome home! The client locale is ko_KR. 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.interceptor.LoggerInterceptor : 29] ===================================      END      =================================== 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX µðÅ×ÀÏ ¾ÆÀÌµð : 4149 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ¹ß¼ÛÇÒ SMS °³¼ö : 0 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 368] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Å¬¸¯ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT IFNULL(MAX(CLICK_ID), 0) FROM push_click_detail  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, LINK_SEQ, LINK, MSG_PUSH_TYPE FROM TB_CLICK WHERE ID > ? AND APP_ID = 344 ORDER BY ID  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 2556(Integer) 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 389] ==========================     MAX Å¬¸¯ ¾ÆÀÌµð : 2556 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 390] ==========================     °¡Á®¿Â CLICK LIST °³¼ö : 0 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ¸Þ¼¼Áö ¾ÆÀÌµð : 6904 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     °¡Á®¿Â SMS LIST °³¼ö : 0 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Çª½Ã ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:58:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX Çª½Ã ¾ÆÀÌµð : 40500579 
+02-24 12:58:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     °¡Á®¿Â Çª½Ã LOG °³¼ö : 0 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ¹ß¼Û ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX µðÅ×ÀÏ ¾ÆÀÌµð : 4149 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ¹ß¼ÛÇÒ SMS °³¼ö : 0 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ¸Þ¼¼Áö ¾ÆÀÌµð : 6904 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     °¡Á®¿Â SMS LIST °³¼ö : 0 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Çª½Ã ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:58:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX Çª½Ã ¾ÆÀÌµð : 40500579 
+02-24 12:58:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     °¡Á®¿Â Çª½Ã LOG °³¼ö : 0 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ¹ß¼Û ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:52 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX µðÅ×ÀÏ ¾ÆÀÌµð : 4149 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ¹ß¼ÛÇÒ SMS °³¼ö : 0 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:52 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:52 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ¸Þ¼¼Áö ¾ÆÀÌµð : 6904 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     °¡Á®¿Â SMS LIST °³¼ö : 0 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Çª½Ã ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:52 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:58:52 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:58:52 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX Çª½Ã ¾ÆÀÌµð : 40500579 
+02-24 12:58:52 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     °¡Á®¿Â Çª½Ã LOG °³¼ö : 0 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:58:52 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 368] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Å¬¸¯ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT IFNULL(MAX(CLICK_ID), 0) FROM push_click_detail  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, LINK_SEQ, LINK, MSG_PUSH_TYPE FROM TB_CLICK WHERE ID > ? AND APP_ID = 344 ORDER BY ID  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 2556(Integer) 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 389] ==========================     MAX Å¬¸¯ ¾ÆÀÌµð : 2556 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 390] ==========================     °¡Á®¿Â CLICK LIST °³¼ö : 0 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ¹ß¼Û ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX µðÅ×ÀÏ ¾ÆÀÌµð : 4149 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ¹ß¼ÛÇÒ SMS °³¼ö : 0 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ¸Þ¼¼Áö ¾ÆÀÌµð : 6904 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     °¡Á®¿Â SMS LIST °³¼ö : 0 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Çª½Ã ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:12 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:59:12 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX Çª½Ã ¾ÆÀÌµð : 40500579 
+02-24 12:59:12 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     °¡Á®¿Â Çª½Ã LOG °³¼ö : 0 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:12 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 248] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ¹ß¼Û ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(DETAIL_ID) FROM SMS_DETAIL;  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT DISTINCT P.CAM_ID, P.DETAIL_ID, A.PHONE_NUM 'SEND_TO', P.CUST_ID, P.SMS_CONTENT, P.PHONE_NUM 'SEND_FROM' FROM APP_USERS A RIGHT JOIN (SELECT PD.CAM_ID, PD.DETAIL_ID, PD.CUST_ID, PC.SMS_CONTENT, PC.PHONE_NUM FROM PUSH_CAMPAIGNS PC RIGHT JOIN PUSH_DETAIL PD ON PC.CAM_ID = PD.CAM_ID WHERE PD.DETAIL_ID > ? AND PC.SMS_YN = 'Y' AND PD.SMS_SEND_YN = 'N' AND PD.RES_CD != '1000') P ON A.CUST_ID = P.CUST_ID  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 4149(Integer) 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 269] ==========================     MAX µðÅ×ÀÏ ¾ÆÀÌµð : 4149 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 270] ==========================     ¹ß¼ÛÇÒ SMS °³¼ö : 0 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 301] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   ¹®ÀÚ ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(MSG_ID) FROM sms_detail  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.16:3306/test2016, UserName=test2016, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MSG_SEQ, RSLT_CODE, RSLT_CODE2, CALL_TO, CALL_FROM, MSG_ETC2, MSG_ETC3 FROM MSG_LOG_201602 WHERE MSG_ETC1 = 'push2u' AND MSG_SEQ > ? ORDER BY MSG_SEQ  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 6904(Integer) 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 322] ==========================     MAX ¸Þ¼¼Áö ¾ÆÀÌµð : 6904 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 323] ==========================     °¡Á®¿Â SMS LIST °³¼ö : 0 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 142] @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   Çª½Ã ·Î±× ½ºÄÉÁÙ·¯ ½ÇÇà   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://192.168.0.13:3306/push2u, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT MAX(PUSH_ID) FROM push_detail;  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters:  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 1 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 110] Fetching JDBC Connection from DataSource 
+02-24 12:59:32 [DEBUG] [org.mybatis.spring.transaction.SpringManagedTransaction : 86] JDBC Connection [jdbc:mysql://211.48.18.189:3306/pms, UserName=root, mariadb-jdbc] will not be managed by Spring 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==>  Preparing: SELECT ID, REQ_UID, CUST_ID, RTN_TYPE, RES_CD, RES_DATE, DATA FROM TB_SEND_QUE_LOG WHERE BIZ_ID = '2fa2cd24481642f190919a4edf64f653' AND ID > ?;  
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] ==> Parameters: 40500579(Integer) 
+02-24 12:59:32 [DEBUG] [org.apache.ibatis.logging.jdbc.BaseJdbcLogger : 139] <==      Total: 0 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 178] ==========================     MAX Çª½Ã ¾ÆÀÌµð : 40500579 
+02-24 12:59:32 [DEBUG] [com.humuson.push2u.push.service.PushServiceImple : 179] ==========================     °¡Á®¿Â Çª½Ã LOG °³¼ö : 0 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
+02-24 12:59:32 [DEBUG] [org.springframework.jdbc.datasource.DataSourceUtils : 332] Returning JDBC Connection to DataSource 
