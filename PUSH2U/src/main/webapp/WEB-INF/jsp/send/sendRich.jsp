@@ -355,8 +355,8 @@ $(function(){
             	<li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  PUSH 발송<span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="/push/sendView">Text Push</a></li>
-		            <li><a href="/push/sendRich">Rich Push</a></li>
+		            <li><a href="/push/sendView"><span class="glyphicon glyphicon-text-size" aria-hidden="true"></span>  Text Push</a></li>
+		            <li><a href="/push/sendRich"><span class="glyphicon glyphicon-header" aria-hidden="true"></span>  Rich Push</a></li>
 		          </ul>
 		        </li>
             	<li><a href="/push/reportView"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  레포트</a></li>
@@ -397,8 +397,8 @@ $(function(){
 			<div class="col-md-6  col-md-offset-1">
 				<label for="push_popup" style="font-size: 20px">푸시 팝업 / 상태창</label>
 				<div id="push_popup" style="margin-bottom: 20px;">
-					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;">
-					<textarea id="status_contents" name="status_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용"></textarea>
+					<input type="text" class="form-control" id="push_title" name="push_title" placeholder="타이틀 입력" style="margin-bottom: 10px;" maxlength="20">
+					<textarea id="status_contents" name="status_contents" class="form-control" style="resize:none;" rows="3" placeholder="상태창 내용" maxlength="80"></textarea>
 					<span id="status_byteInfo">0</span>/80Bytes
 				</div>
 				
