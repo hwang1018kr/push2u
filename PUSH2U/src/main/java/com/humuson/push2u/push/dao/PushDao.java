@@ -144,8 +144,8 @@ public interface PushDao {
 	public Map<String, Object> getClickGraph(int camId) throws RuntimeException;
 	
 	// 그래프 전체 오픈 통계 가져오기
-	public Map<String, Object> getTotalOpenGraph(String userId) throws RuntimeException;
+	public Map<String, Object> getTotalOpenGraph() throws RuntimeException;
 	
 	// 그래프 전체 클릭 통계 가져오기
-	public Map<String, Object> getTotalClickGraph(String userId) throws RuntimeException;
+	public Map<String, Object> getTotalClickGraph() throws RuntimeException;
 }

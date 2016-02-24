@@ -734,7 +734,7 @@ public class MyBatisPushDao implements PushDao {
 	
 	// 그래프 전체 오픈 통계 가져오기
 		@Override
-		public Map<String, Object> getTotalOpenGraph(String userId) throws RuntimeException {
+		public Map<String, Object> getTotalOpenGraph() throws RuntimeException {
 			
 			Map<String, Object> map = null;
 			
@@ -744,7 +744,7 @@ public class MyBatisPushDao implements PushDao {
 				session = sqlSessionFactory.openSession();
 				PushDao dao = session.getMapper(PushDao.class);
 				
-				map = dao.getTotalOpenGraph(userId);
+				map = dao.getTotalOpenGraph();
 				
 			//	logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
 				
@@ -757,7 +757,7 @@ public class MyBatisPushDao implements PushDao {
 		
 		// 그래프 전체 클릭 통계 가져오기
 		@Override
-		public Map<String, Object> getTotalClickGraph(String userId) throws RuntimeException {
+		public Map<String, Object> getTotalClickGraph() throws RuntimeException {
 			
 			Map<String, Object> map = null;
 			
@@ -767,7 +767,7 @@ public class MyBatisPushDao implements PushDao {
 				session = sqlSessionFactory.openSession();
 				PushDao dao = session.getMapper(PushDao.class);
 				
-				map = dao.getTotalClickGraph(userId);
+				map = dao.getTotalClickGraph();
 				
 		//		logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
 				

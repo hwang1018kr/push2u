@@ -531,7 +531,7 @@
 	</select>
 	
 	<!-- 그래프 전체 오픈 통계 가져오기 -->
-	<select id="getTotalOpenGraph" parameterType="java.lang.String" resultType="java.util.Map">
+	<select id="getTotalOpenGraph" resultType="java.util.Map">
 	    <![CDATA[
 		    SELECT 
 				 COUNT(*) 'CNT_SUM',
@@ -562,8 +562,8 @@
 			FROM PUSH_DETAIL PD
 			JOIN PUSH_CAMPAIGNS PC
 			ON PD.CAM_ID = PC.CAM_ID
-			WHERE PC.USER_ID = #{userId}
-			AND PD.RTN_TYPE = 'R'
+			WHERE PD.RTN_TYPE = 'R'
+			AND  PD.RES_DATE > date_add(SYSDATE(), interval -30 DAY)
 	    ]]>
 	</select>
 	
@@ -599,8 +599,8 @@
 			FROM PUSH_DETAIL PD
 			JOIN PUSH_CAMPAIGNS PC
 			ON PD.CAM_ID = PC.CAM_ID
-			WHERE PC.USER_ID = #{userId}
-			AND PD.RTN_TYPE = 'C'
+			WHERE PD.RTN_TYPE = 'C'
+			AND  PD.RES_DATE > date_add(SYSDATE(), interval -30 DAY)
 	    ]]>
 	</select>
 </mapper>
