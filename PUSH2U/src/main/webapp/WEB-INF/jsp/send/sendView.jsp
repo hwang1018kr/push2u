@@ -32,6 +32,7 @@
 <script type="text/javascript">
 $(function () {
 	
+	// 재발송 됐을 경우 실행
 	if("${resendcamId }") {
 		
 		$.ajax({
