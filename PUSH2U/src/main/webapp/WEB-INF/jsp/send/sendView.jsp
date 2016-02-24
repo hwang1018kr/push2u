@@ -110,12 +110,6 @@ $(function () {
 		
 	});
 	
-	// 템플릿 가져오는 함수
-	function getTemplete(camId) {
-		
-		
-	}
-	
 	// 미리보기 토글 시작
 	$("#toggle_status").click(function() {
 		$("#push_preview_ui").hide();
