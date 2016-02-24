@@ -16,7 +16,7 @@
     
     <!-- 푸시 템플릿 가져오기 -->
     <select id="getRecentTemplete" parameterType="int" resultType="java.util.Map">
-        SELECT PUSH_TITLE, PUSH_MSG, POPUP_CONTENT, INAPP_CONTENT
+        SELECT PUSH_TITLE, PUSH_MSG, POPUP_CONTENT, INAPP_CONTENT, MSG_TYPE
 		FROM PUSH_CAMPAIGNS
 		WHERE CAM_ID = #{camId}
     </select>
