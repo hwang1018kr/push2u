@@ -97,10 +97,10 @@ $(function(){
 			<div id="status_preview_ui" style="display: block;">
 				<div id="preview_background">
 					<img src="/resources/images/android_rich_status.png">
-					<div style="position:absolute; left:90px; top:217px; height:15px; width: 330px;">
+					<div style="position:absolute; left:90px; top:220px; height:15px; width: 330px;">
 						<input type="text" id="preview_title" value="${detailReport.PUSH_TITLE}" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; " disabled="disabled">
 					</div>
-					<div style="position:absolute; left:90px; top:240px; height:15px; width:330px;">
+					<div style="position:absolute; left:90px; top:245px; height:15px; width:330px;">
 						<input type="text" id="status_preview" value="${detailReport.PUSH_MSG}" style="background-color: black; color: white; border-color: black; font-size: 12px; width: 80%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" disabled="disabled">
 					</div>
 				</div>
