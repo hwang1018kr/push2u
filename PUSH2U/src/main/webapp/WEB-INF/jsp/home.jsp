@@ -95,7 +95,7 @@ function setOpenGraph() {
 		                text: '오픈/클릭률'
 		            },
 		            min: 0,
-		            tickAmount: 5
+		            tickAmount: 10
 		         },
 		         tooltip: {
 		            shared: true,
