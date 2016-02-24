@@ -274,14 +274,6 @@ $(function() {
 			
 			return false;
 			
-		} else if(!$("#input_name").val() || !RegexName.test($.trim($("#input_name").val())) ) {
-			
-			alert("이름은 한글, 영문 2~30자 이어야 합니다.");
-			
-			$("#input_name").focus();
-			
-			return false;
-			
 		} else if($("#input_passwd1").val() != $("#input_passwd2").val()) {
 			
 			alert("비밀번호 확인을 다시 해주세요.");
@@ -290,7 +282,15 @@ $(function() {
 			
 			return false;
 			
-		} else if(authFlag != "Y") {
+		} else if(!$("#input_name").val() || !RegexName.test($.trim($("#input_name").val())) ) {
+			
+			alert("이름은 한글, 영문 2~30자 이어야 합니다.");
+			
+			$("#input_name").focus();
+			
+			return false;
+			
+		}  else if(authFlag != "Y") {
 			
 			alert("휴대폰 인증을 해주세요.");
 			
