@@ -231,16 +231,22 @@ $(function () {
 		if($("#push_title").val() == null || $("#push_title").val() == "") {
 			
 			alert("푸시 타이틀을 입력해주세요!");
+			$("#push_title").focus();
+			
 			return false;
 			
 		} else if($("#popup_contents").val() == null || $("#popup_contents").val() == "") {
 			
 			alert("푸시 팝업 내용을 입력해주세요!");
+			$("#popup_contents").focus();
+			
 			return false;
 			
 		} else if($("#inapp_contents").val() == null || $("#inapp_contents").val() =="") {
 			
 			alert("앱 내 메시지를 입력해주세요!");
+			$("#inapp_contents").focus();
+			
 			return false;
 		}
 		
@@ -251,6 +257,8 @@ $(function () {
 			
 			if($("#sms_contents").val() == null || $("#sms_contents").val() == "") {
 				alert("SMS 내용을 작성해주세요.");
+				$("#sms_contents").focus();
+				
 				return false;
 			}
 			
