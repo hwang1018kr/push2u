@@ -318,6 +318,7 @@ $(function(){
 		<div class="page-header col-md-8 col-md-offset-2" style="margin-top: 0px;">
 	          <h2>Rich Push 발송</h2>
 	          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
+	          	  <li class="active">홈</li>
 				  <li class="active">PUSH 발송</li>
 				  <li class="active">Rich Push 발송</li>
 			  </ol>
