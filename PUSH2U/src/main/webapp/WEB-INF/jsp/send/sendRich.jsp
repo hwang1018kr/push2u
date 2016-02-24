@@ -38,18 +38,36 @@
 </style>
 
 <script type="text/javascript">
-$("document").ready(function() {  
-	  
-    /* var currentPosition = parseInt($("#preview_div").css("top"));  
-  
-    $(window).scroll(function() {  
-            var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.  
-            $("#preview_div").stop().animate({"top":position+currentPosition+"px"},500);  
-    }); */   
-      
-});  
 
 $(function(){
+	
+	if("${resendcamId }") {
+		
+		$.ajax({
+			
+			type     : "post",
+			url      : "getRecentTemplete",
+			data     : {"camId" : "${resendcamId }"},
+			dataType : "json",//text,xml, json
+			success  : function(result) {
+				
+				$("#push_title").val(result.PUSH_TITLE);
+				$("#status_contents").val(result.PUSH_MSG);
+				CKEDITOR.instances.pushEditor.setData(result.POPUP_CONTENT);
+				CKEDITOR.instances.inappEditor.setData(result.INAPP_CONTENT);
+				
+				$("#preview_title").val(result.PUSH_TITLE);
+				$("#status_preview").val(result.PUSH_MSG);
+				
+			},
+		    error : function(xhr, error){
+		    	alert(xhr.status + ", " + error);
+		    	alert(xhr.responseText);
+		    }
+		});
+		
+		//return false;
+	}
 	
 	//최근 메시지 제목 클릭시
 	$("#recent_push").change(function(){
@@ -97,6 +115,12 @@ $(function(){
 		
 		return false;
 	});
+	
+	// 템플릿 가져오는 함수
+	function getTemplete(camId) {
+		
+		
+	}
 	
 	// 미리보기 토글 시작
 	$("#toggle_status").click(function() {
