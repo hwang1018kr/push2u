@@ -35,6 +35,8 @@ $(function() {
 	var authFlag    = "N";
 	var idCheckFlag = "N";
 	
+	
+	
 	if(document.location.href == (parent.document.referrer+"?code=loginFail") || document.location.href == "http://localhost:8080/?code=loginFail") {
 		alert("아이디와 비밀번호를 확인해주세요.");
 	}
@@ -329,8 +331,8 @@ $(function() {
 		
 		<form id="login_form" action="user/login" method="post">
 			<div id="login_form" class="col-md-12" style="margin-bottom: 20px;">
-				<input type="text" id="id" name="userId" class="form-control center-block" style="margin-bottom: 20px; width: 65%" placeholder="ID">
-				<input type="password" id="passwd" name="userPasswd" class="form-control center-block" style="width: 65%" placeholder="PASSWORD">
+				<input type="text" id="id" name="userId" class="form-control center-block" style="margin-bottom: 20px; width: 65%" placeholder="ID" maxlength="15" autofocus>
+				<input type="password" id="passwd" name="userPasswd" class="form-control center-block" style="width: 65%" placeholder="PASSWORD" maxlength="15">
 			</div>
 			
 			<div id="btn_group" class="col-md-12">
@@ -367,7 +369,7 @@ $(function() {
 					<div class="col-md-10 col-md-offset-1">
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control" id="input_id" name="userId" placeholder="아이디 (소문자, 숫자 조합 8~15자)">
+								<input type="text" class="form-control" id="input_id" name="userId" placeholder="아이디 (소문자, 숫자 조합 8~15자)" maxlength="15">
 								<span class="input-group-btn">
 									<button id="idCheck_btn" class="btn btn-warning">
 										중복 검사<i class="fa fa-mail-forward spaceLeft"></i>
@@ -376,21 +378,21 @@ $(function() {
 							</div>
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control" id="input_passwd1" name="userPasswd" placeholder="비밀번호 (영문, 숫자, 특수기호 조합 8~15)">
+							<input type="password" class="form-control" id="input_passwd1" name="userPasswd" placeholder="비밀번호 (영문, 숫자, 특수기호 조합 8~15)" maxlength="15">
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control" id="input_passwd2" placeholder="비밀번호 확인">
 							<p class="help-block">비밀번호 확인을 위해 다시한번 입력 해 주세요</p>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" id="input_name" name="userName" placeholder="이름 (한글, 영문 2~30자)">
+							<input type="text" class="form-control" id="input_name" name="userName" placeholder="이름 (한글, 영문 2~30자)" maxlength="30">
 						</div>
 						<div class="form-group">
 							<label for="username">휴대폰 인증</label>
 							<div class="input-group">
 								<input type="tel" class="form-control" id="phone_num" name="phoneNum"
-									placeholder="- 없이 입력해 주세요"> <span
-									class="input-group-btn">
+									placeholder="- 없이 입력해 주세요" maxlength="11"> <span
+									class="input-group-btn" >
 									<button id="auth_btn" class="btn btn-warning">
 										인증번호 전송<i class="fa fa-mail-forward spaceLeft"></i>
 									</button>
@@ -401,7 +403,7 @@ $(function() {
 							<label for="username">인증번호 입력</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="user_auth"
-									placeholder="인증번호 4자리"> <span class="input-group-btn">
+									placeholder="인증번호 4자리" maxlength="4"> <span class="input-group-btn">
 									<button id="authCheck_btn" class="btn btn-info">
 										인증번호 입력<i class="fa fa-edit spaceLeft"></i>
 									</button>
