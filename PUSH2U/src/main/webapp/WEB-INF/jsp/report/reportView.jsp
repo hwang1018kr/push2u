@@ -76,6 +76,10 @@
 <div class="col-md-12" style="height: 30%">
 	<div class="page-header col-md-10 col-md-offset-1">
           <h2>레포트</h2>
+          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
+          	  <li class="active">홈</li>
+			  <li class="active">레포트</li>
+		  </ol>
     </div>
     
     <!-- 캠페인 리스트 테이블 시작 -->
