@@ -78,7 +78,7 @@
 				
 					<c:if test="${fn:length(reportList) == 0 }">
 						<tr>
-							<td colspan="5" style="text-align: center">캠페인 데이터가 존재하지 않습니다.</td>
+							<td colspan="3" style="text-align: center">SMS 성공 데이터가 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
 				</tbody>
