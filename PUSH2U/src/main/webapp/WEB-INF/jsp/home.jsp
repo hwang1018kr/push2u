@@ -41,7 +41,7 @@ function setOpenGraph() {
 		type: 'post',
 		url: 'getTotalOpenGrapgh',
 		dataType: 'json',
-		data: { 'userId' : "${userId }" },
+		data: { 'userId' : "" },
 		success: function(result) {
 			
 			var pushGraph;
@@ -53,9 +53,9 @@ function setOpenGraph() {
 			     title: {
 			            text: '시간대별 오픈/클릭률 '
 		         },
-		         subtitle: {
-		             text: '${userId }님의 푸시발송에 대한 시간별 오픈/클릭 그래프'
-		         },
+// 		         subtitle: {
+// 		             text: '${userId }님의 푸시발송에 대한 시간별 오픈/클릭 그래프'
+// 		         },
 		         legend: {
 		             layout: 'vertical',
 		             align: 'left',
