@@ -11,8 +11,8 @@
 	</appender>
     
 	<appender name="rolling" class="org.apache.log4j.DailyRollingFileAppender">
-		<param name="File" value="C:/workspace/SMS_Manager/src/main/logs/SMS_Manager.log" />
-		<param name="encoding" value="utf-8" />
+		<param name="File" value="C:/workspace/PUSH2U/src/main/logs/PUSH2U.log" />
+		<param name="encoding" value="euc-kr" />
 		<param name="DatePattern" value="'.'yyyy-MM-dd" /><!-- 매일 자정에 날짜가 붙은 로그파일 생성 -->
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{MM-dd HH:mm:ss} [%-5p] [%C : %L] %m %n" />
