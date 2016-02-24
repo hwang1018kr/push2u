@@ -260,8 +260,11 @@ function setOpenGraph() {
 				</a>
 			</div>
 			<div class="col-md-4" style="padding-right: 1px;" align="right">
+				<a style="cursor:pointer; outline-width: 0;" id="re_send" href="reSend?camId=${detailReport.CAM_ID }">
+					<button style="margin-bottom: 5px; outline:none;" id="re_send_btn" type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>  재발송</button>
+				</a>
 				<a style="cursor:pointer; outline-width: 0;" id="goList" href="reportView?pageNum=${pageNum }">
-					<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-default btn-sm">목록으로</button>
+					<button style="margin-bottom: 5px; outline:none;" id="sendPush" type="button" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>  목록</button>
 				</a>
 			</div>
 			
@@ -281,15 +284,6 @@ function setOpenGraph() {
 							<a style="cursor:pointer" id="pushTarget" onclick="popup(this)">
 								<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
 							</a>
-						<%--  폼전송
-							<form id="pushTarget" action="pushTarget" name="pushTarget" method="post">
-								<input type="hidden" class="form-control" id="camId" name="camId" value="${detailReport.CAM_ID }">	
-								${detailReport.TARGET_CNT } 건 	
-								<a style="cursor:pointer" onclick="document.forms['pushTarget'].submit(); return false;">
-									<img src="/resources/images/detail.png" style="width:20px;height:20px;" align="right" > 
-								</a>
-							</form>
-						--%>
 						</td>
 						<td class="active" style="width: 20%;">OPEN</td>
 						<td> 
@@ -357,9 +351,7 @@ function setOpenGraph() {
 					</c:if>
 				</tbody>
 			</table>
-
 		</div>
-		
 		
 	</div>
 	<!-- 상세 레포트 테이블 끝 -->
