@@ -276,21 +276,29 @@ $(function(){
     	if($("#push_title").val() == null || $("#push_title").val() == "") {
     		
 			alert("푸시 타이틀을 입력해주세요!");
+			$("#push_title").focus();
+			
 			return false;
 			
 		} else if($("#status_contents").val() == null || $("#status_contents").val() == "") {
 			
 			alert("푸시 상태창 내용을 입력해주세요!");
+			$("#status_contents").focus();
+			
 			return false;
 			
 		} else if(pushContent == null || pushContent =="") {
 			
 			alert("푸시 팝업 내용을 입력해주세요!");
+			CKEDITOR.instances.pushEditor.focus();
+			
 			return false;
 			
 		} else if(inappContent == null || inappContent =="") {
 			
 			alert("앱 내 메시지 내용을 입력해주세요!");
+			CKEDITOR.instances.inappEditor.focus();
+			
 			return false;
 			
 		}
@@ -302,6 +310,8 @@ $(function(){
 			
 			if($("#sms_contents").val() == null || $("#sms_contents").val() == "") {
 				alert("SMS 내용을 작성해주세요.");
+				$("#sms_contents").focus();
+				
 				return false;
 			}
 			
