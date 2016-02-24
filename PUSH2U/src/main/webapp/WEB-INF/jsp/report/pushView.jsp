@@ -73,6 +73,12 @@ $(function(){
 	<form id="pushRichSendForm" action="sendPushRich" method="post">
 		<div class="page-header col-md-12"  style="margin-top: 10px; ">
           <h2>전문 보기</h2>
+          <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;">
+             <li class="active">홈</li>
+		     <li class="active">레포트</li>
+		     <li class="active">상세 레포트</li>
+		     <li class="active">전문보기</li>
+		  </ol>
     	</div>
     	
 		<div class="col-md-6 col-md-offset-4 " style="margin-bottom: 20px; "id="preview">
