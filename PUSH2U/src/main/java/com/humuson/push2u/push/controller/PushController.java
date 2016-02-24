@@ -766,8 +766,6 @@ public class PushController {
 		jsonObj.put("openMap", openMap);
 		jsonObj.put("clickMap", clickMap);
 		
-		//logger.debug("*******************************************************************   CNT_1 = " + openMap.get("CNT_1"));
-		
 		return jsonObj;
 	}
 
