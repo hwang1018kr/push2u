@@ -29,7 +29,6 @@
 <script type="text/javascript">
 
 $("#btnSearch").click(function(){
-	
 	 $("#reportSearchForm").submit();
 });
 

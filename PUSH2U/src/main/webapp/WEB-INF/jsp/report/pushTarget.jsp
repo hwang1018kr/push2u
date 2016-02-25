@@ -28,6 +28,9 @@
 
 <script type="text/javascript">
 
+$("#btnSearch").click(function(){
+	 $("#reportSearchForm").submit();
+});
 
 </script>
 
@@ -48,11 +51,24 @@
 		  </ol>
     </div>
     
-    
     <div class="col-md-12">
-          <p>타게팅 결과 : 전체 ${reportSize } 명</p>
+    	<div class ="col-md-6">
+        	<p>타게팅 결과 : 전체 ${reportSize } 명</p>
+    	</div>
+    	
+    	<!-- 검색 -->
+	    <div class="col-md-4 col-md-offset-2">
+		    <form id="reportSearchForm" action="/push/pushTarget" method="get" >
+			    <div class="input-group">
+			    	<input type="hidden" name="camId" class="form-control" value="${camId }" >
+			    	<input type="text" name="searchValue" class="form-control" placeholder="고객 ID ..." >
+			    		<span class="input-group-btn">
+			    			<button id="btnSearch" class="btn btn-default" type="submit">Search</button>
+			      		</span>
+			    </div><!-- /input-group -->
+		    </form>
+		</div><!-- /.col-lg-6 -->
     </div>
-    
     
     <!-- 캠페인 리스트 테이블 시작 -->
 	<div class="col-md-12" style="margin-bottom: 20px;">
@@ -61,7 +77,7 @@
 				<thead>
 					<tr class="active">
 						<!-- <th style="width: 15%">진행 상태</th> -->
-						<th style="width: 20%; text-align: center;">User ID</th>
+						<th style="width: 20%; text-align: center;">고객 ID</th>
 						<th style="width: 20%; text-align: center;">Phone</th>
 						<th style="width: 20%; text-align: center;">OS Ver</th>
 						<th style="width: 20%; text-align: center;">Device</th>
@@ -79,7 +95,6 @@
 						<td style="text-align: center;">${report.APP_VER } </td>
 					</tr>
 				</c:forEach>
-
 				
 				<c:if test="${fn:length(reportList) == 0 }">
 					<tr>
