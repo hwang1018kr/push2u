@@ -89,9 +89,9 @@ $("#btnSearch").click(function(){
     <div class="col-md-2 col-md-offset-1" style="margin-bottom: 20px;">
 	    <form id="reportSearchForm" action="/push/reportView" method="get" >
 		    <div class="input-group">
-		    	<input type="text" name="searchValue" class="form-control" placeholder="Title..." >
+		    	<input type="text" name="searchValue" class="form-control" placeholder="푸시 제목" >
 		    		<span class="input-group-btn">
-		    			<button id="btnSearch" class="btn btn-default" type="submit">Search</button>
+		    			<button id="btnSearch" class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  검색</button>
 		      		</span>
 		    </div><!-- /input-group -->
 	    </form>
