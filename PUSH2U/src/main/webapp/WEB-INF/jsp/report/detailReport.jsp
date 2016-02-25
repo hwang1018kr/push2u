@@ -32,7 +32,7 @@ function popup(el){
 
 	var url = "/push/" + el.id + "?camId=" + ${detailReport.CAM_ID };
 	var name = "popup";
-	var height = 500;
+	var height = 600;
 	var width = 1000;
 	
 	if (el.id == "pushView"){
