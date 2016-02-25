@@ -43,10 +43,10 @@ public interface PushService {
 	public Map<String, Object> getDetailReport(String userId, int camId) throws RuntimeException;
 	
 	// report 타겟 대상자 가져오기
-	public List<Map<String, Object>> getTargetList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getTargetList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report 타겟 대상자 총 개수 
-	public int allTargetSize(String userId, int camId) throws RuntimeException;
+	public int allTargetSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// SMS 발송 스케줄러
 	public void sendSmsScheduler() throws RuntimeException;
@@ -55,40 +55,40 @@ public interface PushService {
 	public void getSmsLogScheduler() throws RuntimeException;
 	
 	// report 성공 대상자 가져오기
-	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report 성공 대상자 총 개수 
-	public int allSuccessSize(String userId, int camId) throws RuntimeException;
+	public int allSuccessSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// report 실패 대상자 가져오기
-	public List<Map<String, Object>> getFailList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getFailList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report 실패 대상자 총 개수
-	public int allFailSize(String userId, int camId) throws RuntimeException;
+	public int allFailSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// report 오픈 대상자 가져오기
-	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report 오픈 대상자 총 개수 
-	public int allOpenSize(String userId, int camId) throws RuntimeException;
+	public int allOpenSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// report 미 오픈 대상자 가져오기
-	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report 미 오픈 대상자 총 개수 
-	public int allNoOpenSize(String userId, int camId) throws RuntimeException;
+	public int allNoOpenSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// report SMS 성공 대상자 가져오기
-	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report SMS 성공 대상자 가져오기
-	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit, String searchValue) throws RuntimeException;
 	
 	// report SMS 성공 대상자 총 개수
-	public int smsSuccessSize(String userId, int camId) throws RuntimeException;
+	public int smsSuccessSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// report SMS 실패 대상자 총 개수
-	public int smsFailSize(String userId, int camId) throws RuntimeException;
+	public int smsFailSize(String userId, int camId, String searchValue) throws RuntimeException;
 	
 	// 로컬 sms_detail MAX MSG_ID 아이디 가져오기
 	public int getMaxMsgId() throws RuntimeException;
