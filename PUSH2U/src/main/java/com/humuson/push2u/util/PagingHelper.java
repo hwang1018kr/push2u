@@ -2,7 +2,7 @@ package com.humuson.push2u.util;
 
 /**
  * 웹페이지 페이징 처리 관련 정보 제공
- * @author 황집중
+ * @author 황집중, 권세희
  */
 public class PagingHelper {
 	
@@ -217,11 +217,6 @@ public class PagingHelper {
 			camIdString = "&camId=" + camId;
 		}
 		
-		// 전체검색이 아닌경우 쿼리스트링 추가
-//		if(!searchType.equals("")){
-//			searchQuery = "&searchType=" + searchType + "&searchValue=" + searchValue;
-//		}
-		
 		if(!searchValue.equals("")){
 			searchQuery = "&searchValue=" + searchValue;
 		}
@@ -242,7 +237,6 @@ public class PagingHelper {
 
 		// 다음 목록 보여주기 여부
 		if(isShowNextList()){
-			//pageListhtml += "<span><a href='?page=" + startNoOfNextList + searchQuery + "'>다음목록</a></span>";
 			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfNextList + camIdString + searchQuery + "' aria-label='Previous'><span aria-hidden='true'>》</span></a></li>";;
 			 
 		}
@@ -257,6 +251,5 @@ public class PagingHelper {
 		System.out.println("전체게시물수: " + pagingHelper.getTotalRowCount());
 		System.out.println("현재페이지: " + pagingHelper.getRequestPage());
 		System.out.println("전체페이지: " + pagingHelper.getTotalPageCount());
-		//System.out.println(pagingHelper.toHtml("", ""));//전체검색
 	}
 }
