@@ -370,21 +370,27 @@ public class PushController {
 	public String reportView(Model model, HttpSession session, HttpServletRequest request) {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
+		String searchValue	= request.getParameter("searchValue");
 		String pagerHtml  	= null;
-		int reportSize    	= pushService.allReportSize(userId);
-		int limit  	      	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
 		String reportString = "reportView";
+		int reportSize    	= 0;
+		int limit  	      	= 0;
+		int pageNum 		= 1;
+		
+		if (searchValue == null){
+			searchValue = "";
+		}
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
-
+		
+		reportSize = pushService.allReportSize(userId, searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
 		
-		pagerHtml = pagingHelper.toHtml("", "", reportString, 0);
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, 0);
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -392,7 +398,7 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getReportList(userId, limit);
+		List<Map<String, Object>> reportList = pushService.getReportList(userId, limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
