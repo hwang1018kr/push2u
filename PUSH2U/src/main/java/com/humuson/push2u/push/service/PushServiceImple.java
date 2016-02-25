@@ -187,20 +187,27 @@ public class PushServiceImple implements PushService {
 	
 	// report 리스트 가져오기
 	@Override
-	public List<Map<String, Object>> getReportList(String userId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getReportList(String userId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getReportList(map);
 	}
 	
 	// report 총 개수
 	@Override
-	public int allReportSize(String userId) throws RuntimeException {
-		return pushDao.allReportSize(userId);
+	public int allReportSize(String userId, String searchValue) throws RuntimeException {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("userId", userId);
+		map.put("searchValue", searchValue);
+		
+		return pushDao.allReportSize(map);
 	}
 	
 	// report Detail 가져오기

@@ -34,10 +34,10 @@ public interface PushService {
 	public void getPushLogSchedular() throws RuntimeException;
 	
 	// report 리스트 가져오기
-	public List<Map<String, Object>> getReportList(String userId, int limit) throws RuntimeException;
+	public List<Map<String, Object>> getReportList(String userId, int limit, String searchValue) throws RuntimeException;
 		
 	// report 총 개수 
-	public int allReportSize(String userId) throws RuntimeException;
+	public int allReportSize(String userId, String searchValue) throws RuntimeException;
 	
 	// report Detail 가져오기
 	public Map<String, Object> getDetailReport(String userId, int camId) throws RuntimeException;
