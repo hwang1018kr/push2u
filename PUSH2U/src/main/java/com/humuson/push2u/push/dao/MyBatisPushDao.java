@@ -110,7 +110,6 @@ public class MyBatisPushDao implements PushDao {
 	// MAX 푸시 아이디 가져오기
 	@Override
 	public int getMaxPushId() throws RuntimeException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -141,17 +140,14 @@ public class MyBatisPushDao implements PushDao {
 	// 푸시 로그 가져오기
 	@Override
 	public List<Map<String, Object>> getPushDetailList(int maxPushId) throws RuntimeException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	// 로컬 DB로 푸시 로그 INSERT
 	@Override
 	public void insertPushLog(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
-	
 	
 	// report 리스트 가져오기
 	@Override
@@ -218,7 +214,6 @@ public class MyBatisPushDao implements PushDao {
 	// MAX detail_id 가져오기
 	@Override
 	public int getMaxDetailId() throws RuntimeException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -266,35 +261,30 @@ public class MyBatisPushDao implements PushDao {
 	// 캠페인 결과값 카운트 증가
 	@Override
 	public void plusResultCnt(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	// SMS 발송할 정보 가져오기
 	@Override
 	public List<Map<String, Object>> getSMSInfo(int maxDetailId) throws RuntimeException {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	// SMS 발송DB INSERT
 	@Override
 	public void insertSMS(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	// SMS DETAIL INSERT
 	@Override
 	public void insertSmsDetail(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
 
 	// SMS 푸시 플래그 UPDATE
 	@Override
 	public void updateSmsFlag(int detailId) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -548,7 +538,7 @@ public class MyBatisPushDao implements PushDao {
 	// 로컬 sms_detail MAX MSG_ID 가져오기
 	@Override
 	public int getMaxMsgId() throws RuntimeException {
-		// TODO Auto-generated method stub
+		
 		int maxMsgId = 0;
 		
 		SqlSession session = null;
@@ -570,21 +560,18 @@ public class MyBatisPushDao implements PushDao {
 	// 아이하트 SMS 로그 가져오기
 	@Override
 	public List<Map<String, Object>> getSmsLogList(int maxMsgId) throws RuntimeException {
-		// TODO Auto-generated method stub
-
 		return null;
 	}
 	
 	// 로컬 sms_detail 로그 업데이트
 	@Override
 	public void updateSmsDetail(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 	}
 	
 	// 로컬 click_detail_id MAX Click_ID 가져오기
 	@Override
 	public int getMaxClickId() throws RuntimeException {
-		// TODO Auto-generated method stub
+		
 		int maxClickId = 0;
 		
 		SqlSession session = null;
@@ -606,7 +593,6 @@ public class MyBatisPushDao implements PushDao {
 	// PMS CLICK 로그 가져오기
 	@Override
 	public List<Map<String, Object>> getClickLogList(int maxMsgId) throws RuntimeException {
-		// TODO Auto-generated method stub
 
 		return null;
 	}
@@ -614,20 +600,19 @@ public class MyBatisPushDao implements PushDao {
 	// 로컬 push_click_detail 로그 인서트
 	@Override
 	public void insertClickDetail(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
+
 	}
 
 	// sms 결과 카운트 UPDATE
 	@Override
 	public void plusSmsCnt(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
 		
 	}
 	
 	// Click 인앱메세지 상세 가져오기
 	@Override
 	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException {
-		// TODO Auto-generated method stub
+		
 		List<Map<String, Object>> clickList = null;
 		
 		SqlSession session = null;
@@ -649,7 +634,7 @@ public class MyBatisPushDao implements PushDao {
 	// Click 팝업 상세 가져오기
 	@Override
 	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException {
-		// TODO Auto-generated method stub
+		
 		List<Map<String, Object>> clickList = null;
 		
 		SqlSession session = null;
@@ -671,7 +656,7 @@ public class MyBatisPushDao implements PushDao {
 	// CLICK IMG URL INSERT
 	@Override
 	public void insertImgDetail(Map<String, Object> map) throws RuntimeException {
-		// TODO Auto-generated method stub
+	
 		SqlSession session = null;
 		
 		try {
@@ -733,49 +718,47 @@ public class MyBatisPushDao implements PushDao {
 	
 	
 	// 그래프 전체 오픈 통계 가져오기
-		@Override
-		public Map<String, Object> getTotalOpenGraph() throws RuntimeException {
+	@Override
+	public Map<String, Object> getTotalOpenGraph() throws RuntimeException {
+		
+		Map<String, Object> map = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
 			
-			Map<String, Object> map = null;
+			map = dao.getTotalOpenGraph();
 			
-			SqlSession session = null;
+		//	logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
 			
-			try {
-				session = sqlSessionFactory.openSession();
-				PushDao dao = session.getMapper(PushDao.class);
-				
-				map = dao.getTotalOpenGraph();
-				
-			//	logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
-				
-			} finally {
-				session.close();
-			}
-			
-			return map;
+		} finally {
+			session.close();
 		}
 		
-		// 그래프 전체 클릭 통계 가져오기
-		@Override
-		public Map<String, Object> getTotalClickGraph() throws RuntimeException {
+		return map;
+	}
+	
+	// 그래프 전체 클릭 통계 가져오기
+	@Override
+	public Map<String, Object> getTotalClickGraph() throws RuntimeException {
+		
+		Map<String, Object> map = null;
+		
+		SqlSession session = null;
+		
+		try {
+			session = sqlSessionFactory.openSession();
+			PushDao dao = session.getMapper(PushDao.class);
 			
-			Map<String, Object> map = null;
+			map = dao.getTotalClickGraph();
 			
-			SqlSession session = null;
-			
-			try {
-				session = sqlSessionFactory.openSession();
-				PushDao dao = session.getMapper(PushDao.class);
-				
-				map = dao.getTotalClickGraph();
-				
-		//		logger.debug("*******************************************************************   CNT_1 = " + map.get("CNT_1"));
-				
-			} finally {
-				session.close();
-			}
-			
-			return map;
+		} finally {
+			session.close();
 		}
+		
+		return map;
+	}
 
 }
