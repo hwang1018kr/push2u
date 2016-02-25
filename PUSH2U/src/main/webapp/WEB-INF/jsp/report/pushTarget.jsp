@@ -61,9 +61,9 @@ $("#btnSearch").click(function(){
 		    <form id="reportSearchForm" action="/push/pushTarget" method="get" >
 			    <div class="input-group">
 			    	<input type="hidden" name="camId" class="form-control" value="${camId }" >
-			    	<input type="text" name="searchValue" class="form-control" placeholder="고객 ID ..." >
+			    	<input type="text" name="searchValue" class="form-control" placeholder="고객 ID " >
 			    		<span class="input-group-btn">
-			    			<button id="btnSearch" class="btn btn-default" type="submit">Search</button>
+			    			<button id="btnSearch" class="btn btn-info" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>  검색</button>
 			      		</span>
 			    </div><!-- /input-group -->
 		    </form>
