@@ -135,7 +135,7 @@ public class PushServiceImple implements PushService {
 	}
 
 	// 푸시 로그 스케줄러
-	@Scheduled(fixedDelay = 26000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void getPushLogSchedular() throws RuntimeException {
 		
@@ -224,31 +224,33 @@ public class PushServiceImple implements PushService {
 	
 	// report 타겟 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getTargetList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getTargetList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getTargetList(map);
 	}
 	
 	// report 총 개수
 	@Override
-	public int allTargetSize(String userId, int camId) throws RuntimeException {
+	public int allTargetSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.allTargetSize(map);
 	}
 
 	// SMS 발송 스케줄러
-	@Scheduled(fixedDelay = 26000)
+	@Scheduled(fixedDelay = 20000)
 	@Override
 	public void sendSmsScheduler() throws RuntimeException {
 		
@@ -301,7 +303,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// SMS 로그 스케줄러
-	@Scheduled(fixedDelay = 26000)
+	@Scheduled(fixedDelay = 20000)
 	@Override  
 	public void getSmsLogScheduler() throws RuntimeException {
 		
@@ -368,7 +370,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// CLICK_DETAIL 로그 스케줄러
-	@Scheduled(fixedDelay = 66000)
+	@Scheduled(fixedDelay = 60000)
 	@Override  
 	public void getClickLogScheduler() throws RuntimeException {
 		
@@ -432,150 +434,162 @@ public class PushServiceImple implements PushService {
 	
 	// report 성공 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getSuccessList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getSuccessList(map);
 	}
 	
 	// report 성공 총 개수
 	@Override
-	public int allSuccessSize(String userId, int camId) throws RuntimeException {
+	public int allSuccessSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.allSuccessSize(map);
 	}
 	
 	// report 실패 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getFailList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getFailList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getFailList(map);
 	}
 	
 	// report 실패 총 개수
 	@Override
-	public int allFailSize(String userId, int camId) throws RuntimeException {
+	public int allFailSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.allFailSize(map);
 	}
 	
 	// report 오픈 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getOpenList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getOpenList(map);
 	}
 	
 	// report 오픈 총 개수
 	@Override
-	public int allOpenSize(String userId, int camId) throws RuntimeException {
+	public int allOpenSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.allOpenSize(map);
 	}
 	
 	// report 미오픈 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getNoOpenList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getNoOpenList(map);
 	}
 	
 	// report 미오픈 총 개수
 	@Override
-	public int allNoOpenSize(String userId, int camId) throws RuntimeException {
+	public int allNoOpenSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.allNoOpenSize(map);
 	}
 
 	// report SMS 성공 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getSmsSuccessList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getSmsSuccessList(map);
 	}
 	
 	// report SMS 성공 대상사 총 개수
 	@Override
-	public int smsSuccessSize(String userId, int camId) throws RuntimeException {
+	public int smsSuccessSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.smsSuccessSize(map);
 	}
 	
 	// report SMS 실패 대상자 가져오기
 	@Override
-	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit) throws RuntimeException {
+	public List<Map<String, Object>> getSmsFailList(String userId, int camId, int limit, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
 		map.put("limit", limit);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.getSmsFailList(map);
 	}
 
 	// report SMS 실패 대상자 총 개수
 	@Override
-	public int smsFailSize(String userId, int camId) throws RuntimeException {
+	public int smsFailSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("userId", userId);
 		map.put("camId", camId);
+		map.put("searchValue", searchValue);
 		
 		return pushDao.smsFailSize(map);
 		
