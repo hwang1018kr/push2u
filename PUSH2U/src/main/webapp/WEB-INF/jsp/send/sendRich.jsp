@@ -269,9 +269,12 @@ $(function(){
 	
     //전송버튼 클릭이벤트
     $("#sendPush").click(function(){
-        
+    	
     	var pushContent  = CKEDITOR.instances.pushEditor.getData();
     	var inappContent = CKEDITOR.instances.inappEditor.getData();
+    	
+    	pushContent  = pushContent.replace(/<script(.*?)>([^]+)<\/script>/gi, ""); // script 제거
+    	inappContent = inappContent.replace(/<script(.*?)>([^]+)<\/script>/gi, ""); // script 제거
     	
     	if($("#push_title").val() == null || $("#push_title").val() == "") {
     		
@@ -320,6 +323,10 @@ $(function(){
 		}
 		
 		if(confirm("발송 하시겠습니까?")) {
+			
+			CKEDITOR.instances.pushEditor.setData(pushContent);
+			CKEDITOR.instances.inappEditor.setData(inappContent);
+			
 			//폼 submit
 	        $("#pushRichSendForm").submit();
     	}
