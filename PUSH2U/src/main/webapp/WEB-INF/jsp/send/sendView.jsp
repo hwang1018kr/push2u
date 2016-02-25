@@ -10,10 +10,6 @@
 <script type="text/javascript" src="/resources/js/jquery-2.2.0.js"></script>
 <script type="text/javascript" src="/resources/js/bootstrap.js"></script>
 
-<!-- css -->
-<!-- <link rel="stylesheet" href="../resources/css/bootstrap.css" />
-<link rel="stylesheet" href="../resources/css/bootstrap-theme.css" /> -->
-
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
