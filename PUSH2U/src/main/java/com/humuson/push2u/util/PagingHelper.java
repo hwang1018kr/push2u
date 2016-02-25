@@ -218,30 +218,32 @@ public class PagingHelper {
 		}
 		
 		// 전체검색이 아닌경우 쿼리스트링 추가
-		if(!searchType.equals("")){
-			searchQuery = "&searchType=" + searchType + "&searchValue=" + searchValue;
-		}
+//		if(!searchType.equals("")){
+//			searchQuery = "&searchType=" + searchType + "&searchValue=" + searchValue;
+//		}
 		
+		if(!searchValue.equals("")){
+			searchQuery = "&searchValue=" + searchValue;
+		}
 		
 		// 이전목록 보여주기 여부
 		if(isShowPreviousList()){
-			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfPreviousList + camIdString + "' aria-label='Previous'><span aria-hidden='true'>《</span></a></li>";
+			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfPreviousList + camIdString + searchQuery + "' aria-label='Previous'><span aria-hidden='true'>《</span></a></li>";
 		}
 		
-
 		// 페이지 번호 반복
 		for(int i=startNoOfCurrentList; i<=endNoOfCurrentList; i++){
 			if(i == requestPage){
-				pageListhtml += "<li><a style='background-color : #EEEEEE;' href='/push/" + reportString + "?pageNum=" + i + camIdString + "'>" + i + "</a></li>";
+				pageListhtml += "<li><a style='background-color : #EEEEEE;' href='/push/" + reportString + "?pageNum=" + i + camIdString + searchQuery + "'>" + i + "</a></li>";
 			}else{
-				pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + i + camIdString + "'>" + i + "</a></li>";
+				pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + i + camIdString + searchQuery + "'>" + i + "</a></li>";
 			}
 		}
 
 		// 다음 목록 보여주기 여부
 		if(isShowNextList()){
 			//pageListhtml += "<span><a href='?page=" + startNoOfNextList + searchQuery + "'>다음목록</a></span>";
-			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfNextList + camIdString + "' aria-label='Previous'><span aria-hidden='true'>》</span></a></li>";;
+			pageListhtml += "<li><a href='/push/" + reportString + "?pageNum=" + startNoOfNextList + camIdString + searchQuery + "' aria-label='Previous'><span aria-hidden='true'>》</span></a></li>";;
 			 
 		}
 		
