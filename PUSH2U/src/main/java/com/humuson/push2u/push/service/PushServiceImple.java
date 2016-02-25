@@ -91,7 +91,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getMaxCamId();
 	}
 
-	// 캠페인 정보 insert
+	// 캠페인 정보 Local에 insert
 	@Override
 	public void insertCampaign(String userId, String msgType, String pushTitle, String popupContents, String pushMsg,
 			String inAppcontents, String smsYN, String smsContents, String phoneNum, int targetCnt) throws RuntimeException {
@@ -113,7 +113,7 @@ public class PushServiceImple implements PushService {
 		
 	}
 
-	// 캠페인 detail insert
+	// 캠페인 detail Local에 insert
 	@Override
 	public void insertPushDetail(List<Map<String, Object>> detailList) throws RuntimeException {
 		
@@ -294,7 +294,6 @@ public class PushServiceImple implements PushService {
 		
 	}
 	
-	
 	// 로컬 sms_detail MAX MSG_ID 아이디 가져오기
 	@Override
 	public int getMaxMsgId() throws RuntimeException {
@@ -361,7 +360,6 @@ public class PushServiceImple implements PushService {
 	}
 	
 	
-	
 	// 로컬 puch_click_detail MAX CLICK_ID 아이디 가져오기
 	@Override
 	public int getMaxClickId() throws RuntimeException {
@@ -370,7 +368,7 @@ public class PushServiceImple implements PushService {
 	}
 	
 	// CLICK_DETAIL 로그 스케줄러
-	@Scheduled(fixedDelay = 64000)
+	@Scheduled(fixedDelay = 20000)
 	@Override  
 	public void getClickLogScheduler() throws RuntimeException {
 		
@@ -425,12 +423,7 @@ public class PushServiceImple implements PushService {
 		pushDao.insertClickDetail(map);
 		
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	// report 성공 대상자 가져오기
 	@Override
@@ -446,7 +439,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getSuccessList(map);
 	}
 	
-	// report 성공 총 개수
+	// report 성공 총 개수 가져오기
 	@Override
 	public int allSuccessSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -473,7 +466,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getFailList(map);
 	}
 	
-	// report 실패 총 개수
+	// report 실패 총 개수 가져오기
 	@Override
 	public int allFailSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -500,7 +493,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getOpenList(map);
 	}
 	
-	// report 오픈 총 개수
+	// report 오픈 총 개수 가져오기
 	@Override
 	public int allOpenSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -527,7 +520,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getNoOpenList(map);
 	}
 	
-	// report 미오픈 총 개수
+	// report 미오픈 총 개수 가져오기
 	@Override
 	public int allNoOpenSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -554,7 +547,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getSmsSuccessList(map);
 	}
 	
-	// report SMS 성공 대상사 총 개수
+	// report SMS 성공 대상사 총 개수 가져오기
 	@Override
 	public int smsSuccessSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -581,7 +574,7 @@ public class PushServiceImple implements PushService {
 		return pushDao.getSmsFailList(map);
 	}
 
-	// report SMS 실패 대상자 총 개수
+	// report SMS 실패 대상자 총 개수 가져오기
 	@Override
 	public int smsFailSize(String userId, int camId, String searchValue) throws RuntimeException {
 		
@@ -597,23 +590,17 @@ public class PushServiceImple implements PushService {
 	
 	// Click 인앱메세지 상세 가져오기
 	@Override
-	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException {
-		
-//		Map<String, Object> map = new HashMap<String, Object>();
-		
+	public List<Map<String, Object>> getClickMessageList(int camId) throws RuntimeException {	
 		return pushDao.getClickMessageList(camId);
 	}
 	
 	// Click 팝업 상세 가져오기
 	@Override
 	public List<Map<String, Object>> getClickPopupList(int camId) throws RuntimeException {
-		
-//			Map<String, Object> map = new HashMap<String, Object>();
-		
 		return pushDao.getClickPopupList(camId);
 	}
 	
-	// push_click_detail 로그 인서트
+	// push_click_detail 로그 Local에 insert
 	@Override
 	public void insertImgDetail(int camId, String pushType, int linkSeq, String imgUrl) throws RuntimeException {
 				
