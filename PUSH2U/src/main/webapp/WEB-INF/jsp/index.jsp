@@ -35,8 +35,6 @@ $(function() {
 	var authFlag    = "N";
 	var idCheckFlag = "N";
 	
-	
-	
 	if(document.location.href == (parent.document.referrer+"?code=loginFail") || document.location.href == "http://localhost:8080/?code=loginFail") {
 		alert("아이디와 비밀번호를 확인해주세요.");
 	}
