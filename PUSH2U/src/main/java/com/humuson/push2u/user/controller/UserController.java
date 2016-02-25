@@ -178,7 +178,6 @@ public class UserController {
 		} else {
 			userService.insertAppUser(custId, phoneNum, device, osVer, appVer);
 		}
-		
-		//return "success";
+
 	}
 }
