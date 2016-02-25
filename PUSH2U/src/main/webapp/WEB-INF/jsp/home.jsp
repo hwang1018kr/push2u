@@ -30,7 +30,6 @@
 
 <script type="text/javascript">
 
-
 $(function() {
 	
     setOpenGraph();
@@ -54,9 +53,6 @@ function setOpenGraph() {
 			     title: {
 			            text: '시간대별 오픈/클릭률 '
 		         },
-// 		         subtitle: {
-// 		             text: '${userId }님의 푸시발송에 대한 시간별 오픈/클릭 그래프'
-// 		         },
 		         legend: {
 		             layout: 'vertical',
 		             align: 'left',
@@ -247,22 +243,13 @@ function setOpenGraph() {
 
 <!-- top menu 끝 -->
 
-<div class="col-md-12" style="height: 30%">
-<!-- 	<div class="page-header col-md-8 col-md-offset-2"> -->
-<!--           <h2>상세 레포트</h2> -->
-<!--           <ol class="breadcrumb" style="background-color: white; margin-bottom: 0px;"> -->
-<!-- 			  <li class="active">레포트</li> -->
-<!-- 			  <li class="active">상세 레포트</li> -->
-<!-- 		  </ol> -->
-<!--     </div> -->
- 	
  	<!-- jumbotron -->
  	<div class="jumbotron col-md-8 col-md-offset-2" >
 		<div class="container">	
 			<p class="lead"></p>
 			<h3 align="center"> PUSH2U 에 오신것을 환영합니다. </h3>
 	
-			</br>
+			<br>
 			<div class="row" align="center">
 				<a href="/push/sendView" class="btn btn-primary btn-lg">TEXT PUSH 전송</a>
 				<a href="/push/sendRich" class="btn btn-info btn-lg">RICH PUSH 전송</a>
@@ -276,7 +263,6 @@ function setOpenGraph() {
 		</div>
 	</div>	
 
-</div>
 
 </body>
 
