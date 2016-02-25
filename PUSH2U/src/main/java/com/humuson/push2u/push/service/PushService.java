@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * push 관련 비즈니스 규약(추상메소드) 선언
- * @author 황집중
+ * @author 황집중, 권세희
  *
  */
 
@@ -130,5 +130,5 @@ public interface PushService {
 	public Map<String, Object> getTotalOpenGraph() throws RuntimeException;
 	
 	// 그래프 전체 클릭 통계 가져오기
-	public Map<String, Object> getTotalClickGraph() throws RuntimeException;
+	public Map<String, Object> getTotalClickGraph() throws RuntimeException; 
 }
