@@ -463,20 +463,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.allTargetSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
+		String searchValue 	= request.getParameter("searchValue");
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
 		String reportString = "pushTarget";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.allTargetSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -484,11 +490,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getTargetList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getTargetList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/pushTarget";
 	}
@@ -501,20 +508,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.allSuccessSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "pushSuccess";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.allSuccessSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -522,11 +535,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getSuccessList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getSuccessList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/pushSuccess";
 	}
@@ -539,20 +553,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.allFailSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "pushFail";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.allFailSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -560,11 +580,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getFailList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getFailList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/pushFail";
 	}
@@ -577,20 +598,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.allOpenSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "pushOpen";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.allOpenSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -598,11 +625,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getOpenList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getOpenList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/pushOpen";
 	}
@@ -615,20 +643,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.allNoOpenSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "pushNoOpen";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.allNoOpenSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -636,11 +670,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getNoOpenList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getNoOpenList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/pushNoOpen";
 	}
@@ -653,20 +688,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.smsSuccessSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "smsSuccess";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.smsSuccessSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "",reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -674,11 +715,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getSmsSuccessList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getSmsSuccessList(userId, Integer.parseInt(camId), limit, searchValue);
 		
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/smsSuccess";
 	}
@@ -691,20 +733,26 @@ public class PushController {
 		
 		String userId    	= String.valueOf(session.getAttribute("userId"));
 		String camId        = request.getParameter("camId");
-		String pagerHtml 	= null;
-		int reportSize   	= pushService.smsFailSize(userId, Integer.parseInt(camId));
-		int limit  	     	= 0;
 		String pageString 	= request.getParameter("pageNum");
-		int pageNum 		= 1;
+		String searchValue	= request.getParameter("searchValue");
 		String reportString = "smsFail";
+		String pagerHtml 	= null;
+		int reportSize   	= 0;
+		int limit  	     	= 0;
+		int pageNum 		= 1;
 		
 		if (pageString != null){
 			pageNum =  Integer.parseInt(pageString);
 		}
 		
+		if (searchValue == null){
+			searchValue = "";
+		}
+		
+		reportSize = pushService.smsFailSize(userId, Integer.parseInt(camId), searchValue);
 		PagingHelper pagingHelper = new PagingHelper(5, 5, reportSize, pageNum);
 		pagingHelper.calculate();
-		pagerHtml = pagingHelper.toHtml("", "", reportString, Integer.parseInt(camId));
+		pagerHtml = pagingHelper.toHtml("", searchValue, reportString, Integer.parseInt(camId));
 		
 		if(pageNum == 1) {
 			limit = 0;
@@ -712,11 +760,12 @@ public class PushController {
 			limit = limit + 5 * (pageNum - 1);
 		}
 		
-		List<Map<String, Object>> reportList = pushService.getSmsFailList(userId, Integer.parseInt(camId), limit);
+		List<Map<String, Object>> reportList = pushService.getSmsFailList(userId, Integer.parseInt(camId), limit, searchValue);
 				
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("reportSize", reportSize);
+		model.addAttribute("camId", camId);
 		
 		return "report/smsFail";
 	}
