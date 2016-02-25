@@ -86,7 +86,7 @@ $("#btnSearch").click(function(){
     </div>
     
     <!-- 검색 -->
-    <div class="col-md-2 col-md-offset-1" style="margin-bottom: 20px;">
+    <div class="col-md-3 col-md-offset-8" style="margin-bottom: 20px;">
 	    <form id="reportSearchForm" action="/push/reportView" method="get" >
 		    <div class="input-group">
 		    	<input type="text" name="searchValue" class="form-control" placeholder="푸시 제목" >
