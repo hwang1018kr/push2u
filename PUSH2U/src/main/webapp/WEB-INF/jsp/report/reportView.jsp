@@ -28,6 +28,11 @@
 
 <script type="text/javascript">
 
+$("#btnSearch").click(function(){
+	
+	 $("#reportSearchForm").submit();
+});
+
 </script>
 
 <title>PUSH2U - 레포트</title>
@@ -70,7 +75,6 @@
       </div>
     </nav>
 </div>
-
 <!-- top menu 끝 -->
 
 <div class="col-md-12" style="height: 30%">
@@ -81,6 +85,18 @@
 			  <li class="active">레포트</li>
 		  </ol>
     </div>
+    
+    <!-- 검색 -->
+    <div class="col-md-2 col-md-offset-1" style="margin-bottom: 20px;">
+	    <form id="reportSearchForm" action="/push/reportView" method="get" >
+		    <div class="input-group">
+		    	<input type="text" name="searchValue" class="form-control" placeholder="Title..." >
+		    		<span class="input-group-btn">
+		    			<button id="btnSearch" class="btn btn-default" type="submit">Search</button>
+		      		</span>
+		    </div><!-- /input-group -->
+	    </form>
+	</div><!-- /.col-lg-6 -->
     
     <!-- 캠페인 리스트 테이블 시작 -->
 	<div class="col-md-10 col-md-offset-1" style="margin-bottom: 20px;">
