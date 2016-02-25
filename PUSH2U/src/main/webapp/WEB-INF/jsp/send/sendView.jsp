@@ -228,6 +228,12 @@ $(function () {
 	// 푸시 발송하기 버튼 클릭시
 	$("#sendPush").click(function() {
 		
+		var popup = $("#popup_contents").val();
+		var inapp = $("#inapp_contents").val();
+		
+		popup = popup.replace(/<script(.*?)>([^]+)<\/script>/gi, ""); // script 제거
+		inapp = inapp.replace(/<script(.*?)>([^]+)<\/script>/gi, ""); // script 제거
+		
 		if($("#push_title").val() == null || $("#push_title").val() == "") {
 			
 			alert("푸시 타이틀을 입력해주세요!");
@@ -267,6 +273,10 @@ $(function () {
 		}
 		
 		if(confirm("발송 하시겠습니까?")) {
+			
+			$("#popup_contents").val(popup);
+			$("#inapp_contents").val(inapp);
+			
     		$("#pushSendForm").submit();
     	}
 	});
