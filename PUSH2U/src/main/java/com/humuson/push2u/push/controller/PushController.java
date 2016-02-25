@@ -56,7 +56,7 @@ public class PushController {
 	@RequestMapping(value="/sendView")
 	public String sendView(Model model, HttpSession session, HttpServletRequest request) {
 		
-		String userId   = String.valueOf(session.getAttribute("userId"));
+		String userId = String.valueOf(session.getAttribute("userId"));
 		
 		List<Map<String, Object>> recentList = null;
 		
@@ -109,6 +109,7 @@ public class PushController {
 			
 		int i = 1;
 		
+		// 타겟 목록 생성
 		for (Map<String, String> map : appUserList) {
 			JsonObject listObj = new JsonObject();
 			
@@ -147,6 +148,7 @@ public class PushController {
 		
 		logger.debug(param);
 		
+		// URL 요청 시작
 		URL url = new URL("http://dev-api.pushpia.com/msg/send/realtime");
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		
@@ -164,8 +166,6 @@ public class PushController {
 		 
 		return "redirect:/push/reportView";
 	}
-	
-
 	
 	/*
 	 * Rich push 발송화면 요청
@@ -208,46 +208,57 @@ public class PushController {
 		ArrayList<String> messageImgArray = new ArrayList<String>();
 
 		
-		//팝업 IMG_URL 분리
+		// 팝업 IMG_URL 분리
 		temp = popupContents.replaceAll(System.getProperty("line.separator"), "");
 		do {
 			if (temp.contains("<a")){
+				
 				temp = temp.substring(temp.indexOf("<a") + 1);
 				tempATag = temp.substring(0, temp.indexOf("</a>"));
 				temp = temp.substring(temp.indexOf("</a>"));
-				if(tempATag.contains("src")){
+				
+				if(tempATag.contains("src")) {
+					
 					tempATag = tempATag.substring(tempATag.indexOf("src"));
 					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
 					popupImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+					
 					logger.debug(tempATag.substring(0, tempATag.indexOf("\"")));
-				}else{
+					
+				} else{
 					popupImgArray.add("");
 				}
-			}else{
+			} else{
 				temp = "";
 			}
-		}while(!temp.equals(""));
+		} while(!temp.equals(""));
 
 		
-		//인앱메세지 IMG_URL 분리
+		// 인앱메세지 IMG_URL 분리
 		temp = inAppContents.replaceAll(System.getProperty("line.separator"), "");
+		
 		do {
 			if (temp.contains("<a")){
+				
 				temp = temp.substring(temp.indexOf("<a") + 1);
 				tempATag = temp.substring(0, temp.indexOf("</a>"));
 				temp = temp.substring(temp.indexOf("</a>"));
-				if(tempATag.contains("src")){
+				
+				if(tempATag.contains("src")) {
+					
 					tempATag = tempATag.substring(tempATag.indexOf("src"));
 					tempATag = tempATag.substring(tempATag.indexOf("\"") + 1);
 					messageImgArray.add(tempATag.substring(0, tempATag.indexOf("\"")));
+					
 					logger.debug(tempATag.substring(0, tempATag.indexOf("\"")));
-				}else{
+					
+				} else{
 					messageImgArray.add("");
 				}
-			}else{
+			} else{
 				temp = "";
 			}
-		}while(!temp.equals(""));
+		} while(!temp.equals(""));
 		
 
 		List<Map<String, String>> appUserList = pushService.getAppUserList();
@@ -282,6 +293,7 @@ public class PushController {
 			
 		int i = 1;
 		
+		// 타겟 목록 생성
 		for (Map<String, String> map : appUserList) {
 			JsonObject listObj = new JsonObject();
 			
@@ -323,6 +335,7 @@ public class PushController {
 		
 		logger.debug(param);
 		
+		// URL 요청 시작
 		URL url = new URL("http://dev-api.pushpia.com/msg/send/realtime");
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		
@@ -339,15 +352,16 @@ public class PushController {
         printByInputStream(con.getInputStream());
         
         
-        
 		return "redirect:/push/reportView";
 	}
 	
 	
 	// 웹 서버로 부터 받은 웹 페이지 결과를 콘솔에 출력하는 메소드
 	public void printByInputStream(InputStream is) {
+		
 		byte[] buf = new byte[1024];
-		int len = -1;
+		int len    = -1;
+		
 		StringBuffer result = new StringBuffer();
 		
 		try {
@@ -854,10 +868,6 @@ public class PushController {
 	public String home(Model model, HttpSession session, HttpServletRequest request) {
 
 		String userId = String.valueOf(session.getAttribute("userId"));
-
-//		Map<String, Object> detailReport = pushService.getDetailReport(userId, Integer.parseInt(camId));
-//		logger.debug("*******************************************************************   userId = " + userId);
-//		model.addAttribute("userId", userId);
 
 		return "home";
 	}
