@@ -139,6 +139,7 @@
 		WHERE d.CAM_ID = #{camId}
 		AND RTN_TYPE = 'N'
 		AND USER_ID = #{userId}
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY detail_id DESC
 		LIMIT #{limit}, 5		
 	</select>
@@ -149,7 +150,8 @@
 		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
 		WHERE c.CAM_ID = #{camId}
 		AND USER_ID = #{userId}
-		AND RTN_TYPE = 'N';
+		AND RTN_TYPE = 'N'
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- MAX detail_id 가져오기 -->
@@ -168,6 +170,7 @@
 		AND RTN_TYPE = 'S'
 		AND RES_CD = 1000
 		AND USER_ID = #{userId}
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY detail_id DESC
 		LIMIT #{limit}, 5		
 	</select>
@@ -180,6 +183,7 @@
 		AND USER_ID = #{userId}
 		AND RTN_TYPE = 'S'
 		AND RES_CD = 1000
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report 실패 대상자 가져오기 -->
@@ -194,6 +198,7 @@
 				AND PD.RTN_TYPE = 'S'
 				AND PD.RES_CD != 1000) P
 		ON A.CUST_ID = P.CUST_ID
+		AND P.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY P.DETAIL_ID DESC
 		LIMIT #{limit}, 5
 	</select>
@@ -208,6 +213,7 @@
 		AND USER_ID = #{userId}
 		AND RTN_TYPE = 'S'
 		AND RES_CD != 1000
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report 오픈 대상자 화면 -->
@@ -225,6 +231,7 @@
 			ON A.CUST_ID = R.CUST_ID
 		WHERE P.CAM_ID = #{camId}
 		AND USER_ID = #{userId}
+		AND R.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY R.DETAIL_ID DESC	
 		LIMIT #{limit}, 5	
 	</select>
@@ -235,7 +242,8 @@
 		JOIN push_campaigns c ON c.CAM_ID = d.CAM_ID 
 		WHERE c.CAM_ID = #{camId}
 		AND USER_ID = #{userId}
-		AND RTN_TYPE = 'R';
+		AND RTN_TYPE = 'R'
+		AND d.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report 미오픈 대상자 화면 -->
@@ -257,6 +265,7 @@
 		AND P.USER_ID = #{userId} 
 		AND D.RTN_TYPE = 'S' 
 		AND D.RES_CD = 1000
+		AND D.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY D.DETAIL_ID DESC
 		LIMIT #{limit}, 5	
 	</select>
@@ -276,7 +285,8 @@
 		WHERE P.CAM_ID = #{camId}
 		AND D.RTN_TYPE = 'S' 
 		AND D.RES_CD = 1000
-		AND P.USER_ID = #{userId};
+		AND P.USER_ID = #{userId}
+		AND D.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report SMS 성공 대상자 리스트 -->
@@ -288,6 +298,7 @@
 		WHERE P.USER_ID = #{userId}
 		AND S.CAM_ID = #{camId}
 		AND S.RSLT_CODE = 100
+		AND S.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY S.DETAIL_ID DESC
 		LIMIT #{limit}, 5
 	</select>
@@ -301,6 +312,7 @@
 		WHERE P.USER_ID = #{userId}
 		AND S.CAM_ID = #{camId}
 		AND S.RSLT_CODE = 100
+		AND S.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report SMS 실패 대상자 리스트 -->
@@ -312,6 +324,7 @@
 		WHERE P.USER_ID = #{userId}
 		AND S.CAM_ID = #{camId}
 		AND S.RSLT_CODE IS NULL
+		AND S.CUST_ID like concat('%', #{searchValue}, '%')
 		ORDER BY S.DETAIL_ID DESC
 		LIMIT #{limit}, 5
 	</select>
@@ -325,6 +338,7 @@
 		WHERE P.USER_ID = #{userId}
 		AND S.CAM_ID = #{camId}
 		AND S.RSLT_CODE IS NULL
+		AND S.CUST_ID like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- SMS 발송할 정보 가져오기 -->
