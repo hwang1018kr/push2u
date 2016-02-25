@@ -68,7 +68,7 @@
 				<tbody>
 					<c:forEach var="pList" items="${pList }">
 						<tr>
-							<td style="text-align: center;"><img src="${pList.IMG_URL }" style="width: 30%;"></td>
+							<td style="text-align: center;"><img src="${pList.IMG_URL }" style="width: 40%;"></td>
 							<td style="text-align: center;">${pList.LINK }</td>
 							<td style="text-align: center;">${pList.CLICK_COUNT } </td>
 						</tr>
@@ -98,7 +98,7 @@
 				<tbody>
 					<c:forEach var="mList" items="${mList }">
 						<tr>
-							<td style="text-align: center;"><img src="${mList.IMG_URL }"></td>
+							<td style="text-align: center;"><img src="${mList.IMG_URL }" style="width: 40%;"></td>
 							<td style="text-align: center;">${mList.LINK }</td>
 							<td style="text-align: center;">${mList.CLICK_COUNT } </td>
 						</tr>
