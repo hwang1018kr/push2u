@@ -108,14 +108,16 @@
 	    SELECT CAM_ID, PUSH_TITLE, TARGET_CNT, SUCCESS_CNT, OPEN_CNT, CLICK_CNT, SMS_YN, REQ_DATE, MSG_TYPE
 	    FROM PUSH_CAMPAIGNS
 		WHERE USER_ID = #{userId}
+		AND PUSH_TITLE like concat('%', #{searchValue}, '%')
 		ORDER BY REQ_DATE DESC
 		LIMIT #{limit}, 5
 	</select>
 	
-	<select id="allReportSize" parameterType="java.lang.String" resultType="int">
+	<select id="allReportSize" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(CAM_ID)
 		FROM PUSH_CAMPAIGNS
 		WHERE USER_ID = #{userId}
+		AND PUSH_TITLE like concat('%', #{searchValue}, '%')
 	</select>
 	
 	<!-- report 상세 화면 -->

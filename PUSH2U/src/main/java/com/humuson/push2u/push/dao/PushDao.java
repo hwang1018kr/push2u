@@ -45,7 +45,7 @@ public interface PushDao {
 	public List<Map<String, Object>> getReportList(Map<String, Object> map) throws RuntimeException;
 	
 	// report 총 개수
-	public int allReportSize(String userId) throws RuntimeException;
+	public int allReportSize(Map<String, Object> map) throws RuntimeException;
 	
 	// report Detail 가져오기
 	public Map<String, Object> getDetailReport(Map<String, Object> map) throws RuntimeException;
