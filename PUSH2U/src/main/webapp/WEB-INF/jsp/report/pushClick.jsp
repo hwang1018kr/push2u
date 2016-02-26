@@ -69,7 +69,7 @@
 					<c:forEach var="pList" items="${pList }">
 						<tr>
 						 
-							<td style="text-align: center;">
+							<td style="text-align: center; vertical-align: middle;">
 								<c:choose>
 									<c:when test="${pList.IMG_URL eq ''}">
 										<span>NO IMAGE</span>
@@ -79,8 +79,8 @@
 									</c:otherwise>
 								</c:choose>
 							</td>
-							<td style="text-align: center;">${pList.LINK }</td>
-							<td style="text-align: center;">${pList.CLICK_COUNT } </td>
+							<td style="text-align: center; vertical-align: middle;">${pList.LINK }</td>
+							<td style="text-align: center; vertical-align: middle;">${pList.CLICK_COUNT } </td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -108,7 +108,7 @@
 				<tbody>
 					<c:forEach var="mList" items="${mList }">
 						<tr>
-							<td style="text-align: center;">
+							<td style="text-align: center; vertical-align: middle;">
 								<c:choose>
 									<c:when test="${mList.IMG_URL eq ''}">
 										<span>NO IMAGE</span>
@@ -118,8 +118,8 @@
 									</c:otherwise>
 								</c:choose>
 							</td>
-							<td style="text-align: center;">${mList.LINK }</td>
-							<td style="text-align: center;">${mList.CLICK_COUNT } </td>
+							<td style="text-align: center; vertical-align: middle; ">${mList.LINK }</td>
+							<td style="text-align: center; vertical-align: middle;">${mList.CLICK_COUNT } </td>
 						</tr>
 					</c:forEach>
 				</tbody>
