@@ -67,6 +67,10 @@ $(function(){
 
 	        	$("#rich_inapp").html("");
 	        	$("#rich_inapp").html(result.INAPP_CONTENT);
+	        	
+	        	limitByte($("#push_title"), 40, "title");
+	        	limitByte($("#status_contents"), 80, "status");
+	        	
 				
 			},
 		    error : function(xhr, error){
@@ -114,6 +118,8 @@ $(function(){
 				$("#preview_title").val(result.PUSH_TITLE);
 				$("#status_preview").val(result.PUSH_MSG);
 				
+				limitByte($("#push_title"), 40, "title");
+	        	limitByte($("#status_contents"), 80, "status");
 				
 			},
 		    error : function(xhr, error){
