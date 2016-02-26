@@ -53,7 +53,7 @@
           <p> 팝업 메세지 </p>
     </div>
  
-    <!-- 캠페인 리스트 테이블 시작 -->
+    <!--팝업 메세지 리스트 테이블 시작 -->
 	<div class="col-md-12" style="margin-bottom: 20px;">
 		<div class="table-responsive">
 			<table class="table table-hover" style="font-size: large;">
@@ -68,7 +68,17 @@
 				<tbody>
 					<c:forEach var="pList" items="${pList }">
 						<tr>
-							<td style="text-align: center;"><img src="${pList.IMG_URL }" style="width: 40%;"></td>
+						 
+							<td style="text-align: center;">
+								<c:choose>
+									<c:when test="${pList.IMG_URL eq ''}">
+										<span>NO IMAGE</span>
+									</c:when>
+									<c:otherwise>
+										<img src="${pList.IMG_URL }" style="width: 40%;">
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td style="text-align: center;">${pList.LINK }</td>
 							<td style="text-align: center;">${pList.CLICK_COUNT } </td>
 						</tr>
@@ -77,13 +87,13 @@
 			</table>
 		</div>
 	</div>
-	<!-- 캠페인 리스트 테이블 끝 -->
+	<!-- 팝업 메세지 리스트 테이블 끝 -->
 	
 	 <div class="col-md-12">
           <p> 앱 내 메세지 </p>
     </div>
  
-    <!-- 캠페인 리스트 테이블 시작 -->
+    <!-- 앱 내 메세지 리스트 테이블 시작 -->
 	<div class="col-md-12" style="margin-bottom: 20px;">
 		<div class="table-responsive">
 			<table class="table table-hover" style="font-size: large;">
@@ -98,7 +108,16 @@
 				<tbody>
 					<c:forEach var="mList" items="${mList }">
 						<tr>
-							<td style="text-align: center;"><img src="${mList.IMG_URL }" style="width: 40%;"></td>
+							<td style="text-align: center;">
+								<c:choose>
+									<c:when test="${mList.IMG_URL eq ''}">
+										<span>NO IMAGE</span>
+									</c:when>
+									<c:otherwise>
+										<img src="${mList.IMG_URL }" style="width: 40%;">
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td style="text-align: center;">${mList.LINK }</td>
 							<td style="text-align: center;">${mList.CLICK_COUNT } </td>
 						</tr>
@@ -107,7 +126,7 @@
 			</table>
 		</div>
 	</div>
-	<!-- 캠페인 리스트 테이블 끝 -->
+	<!-- 앱 내 메세지 리스트 테이블 끝 -->
 	
 </div>
 

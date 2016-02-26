@@ -28,6 +28,7 @@
 
 <script type="text/javascript">
 
+//
 $("#btnSearch").click(function(){
 	 $("#reportSearchForm").submit();
 });
@@ -82,10 +83,10 @@ $("#btnSearch").click(function(){
 					<tr class="active">
 						<!-- <th style="width: 15%">진행 상태</th> -->
 						<th style="width: 20%; text-align: center;">고객 ID</th>
-						<th style="width: 20%; text-align: center;">Send Date</th>
-						<th style="width: 20%; text-align: center;">OS Ver</th>
+						<th style="width: 30%; text-align: center;">Send Date</th>
+						<th style="width: 15%; text-align: center;">OS Ver</th>
 						<th style="width: 20%; text-align: center;">Device</th>
-						<th style="width: 20%; text-align: center;">App Ver</th>
+						<th style="width: 15%; text-align: center;">App Ver</th>
 					</tr>
 				</thead>
 				<tbody>
