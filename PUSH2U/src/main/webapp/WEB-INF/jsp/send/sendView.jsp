@@ -48,6 +48,10 @@ $(function () {
 				$("#popup_preview").val(result.PUSH_MSG);
 				$("#inapp_preview").val(result.INAPP_CONTENT);
 				
+				limitByte($("#push_title"), 40);
+				limitByte($("#popup_contents"), 80);
+				limitByte($("#inapp_contents"), 3500);
+				
 			},
 		    error : function(xhr, error){
 		    	alert(xhr.status + ", " + error);
@@ -94,6 +98,10 @@ $(function () {
 				$("#push_preview").val(result.PUSH_MSG);
 				$("#popup_preview").val(result.PUSH_MSG);
 				$("#inapp_preview").val(result.INAPP_CONTENT);
+				
+				limitByte($("#push_title"), 40);
+				limitByte($("#popup_contents"), 80);
+				limitByte($("#inapp_contents"), 3500);
 				
 			},
 		    error : function(xhr, error){
