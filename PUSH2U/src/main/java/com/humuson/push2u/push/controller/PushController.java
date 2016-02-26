@@ -417,6 +417,8 @@ public class PushController {
 		model.addAttribute("reportList", reportList);
 		model.addAttribute("pagerHtml", pagerHtml);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("reportSize", reportSize);
+		
 		
 		return "report/reportView";
 	}
